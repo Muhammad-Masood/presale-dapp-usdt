@@ -22,7 +22,7 @@ export default function RootLayout({
             <Suspense>
               <Navbar />
             </Suspense>
-            <main className="flex-1 p-4 banner bg-gradient-to-r from-gray-900 to-purple-900">
+            <main className="flex-1 banner bg-gradient-to-r from-gray-900 to-purple-900">
               {children}
             </main>
             <Footer />

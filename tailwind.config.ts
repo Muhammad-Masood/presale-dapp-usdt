@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +18,20 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "bg-button": "linear-gradient(155deg, #B07BFE 0%, #FFD178 100%)",
+        "bg-card": "linear-gradient(151deg, #FF94FF 0%, #3D214B 100%)",
+        "bg-gradientText": "linear-gradient(176deg, #8E054B 0%, #FF94FF 100%)",
+        "bg-gradientText2": "linear-gradient(155deg, #6EC1E4 0%, #FF94FF 100%)",
+        "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",
+        "bg-hero": "url('/landing-page/hero.png')",
+        "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
+      },
+      fontFamily: {
+        alfaSlabOne: ["Alfa Slab One", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,6 +89,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
