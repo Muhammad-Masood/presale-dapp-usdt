@@ -20,7 +20,9 @@ const config = {
     extend: {
       backgroundImage: {
         "bg-button": "linear-gradient(155deg, #B07BFE 0%, #FFD178 100%)",
-        "bg-card": "linear-gradient(151deg, #FF94FF 0%, #3D214B 100%)",
+        "bg-card":
+          "linear-gradient(151deg, rgba(255, 148, 255, 0.8) 0%, rgba(61, 33, 75, 0.8) 100%)",
+
         "bg-gradientText": "linear-gradient(176deg, #8E054B 0%, #FF94FF 100%)",
         "bg-gradientText2": "linear-gradient(155deg, #6EC1E4 0%, #FF94FF 100%)",
         "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",

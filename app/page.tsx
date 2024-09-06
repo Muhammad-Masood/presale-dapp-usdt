@@ -12,6 +12,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import { Button } from "@/components/shared";
+import JitterText from "@/components/animation/jitter";
 
 export default function Page() {
   return (
@@ -50,13 +51,18 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="flex gap-8 font-nunito mt-4 ml-4 text-white  p-4">
-                  <button className="bg-bg-button p-2 rounded-xl">
-                    White Paper
-                  </button>
-                  <button className="bg-bg-button p-2 rounded-xl">
-                    Audit report
-                  </button>
+                <div className="flex gap-8 font-nunito mt-4 ml-8 text-white  p-4">
+                  <JitterText>
+                    <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
+                      White Paper
+                    </button>
+                  </JitterText>
+
+                  <JitterText>
+                    <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
+                      Audit report
+                    </button>
+                  </JitterText>
                 </div>
               </div>
               <div className="px-12 ">
@@ -75,14 +81,19 @@ export default function Page() {
                   <h3 className="text-2xl font-poppins font-bold">
                     ——— 1 $WID = $0.03 ———
                   </h3>
-                  <button className="font-alfaSlabOne bg-bg-gradientText2 p-2 text-primary hover:text-secondary text-[1.625rem] rounded-xl">
+                  <img
+                    className="size-12"
+                    src="/landing-page/arrow.gif"
+                    alt=""
+                  />
+                  <button className="font-alfaSlabOne border-2 shadow-black shadow-sm border-black bg-bg-gradientText2 p-2 text-primary hover:text-secondary text-[1.625rem] rounded-xl">
                     BUY $WID
                   </button>
-                  <ul className="text-[1.188rem] text-center font-poppins font-bold">
+                  <ul className="text-[1.188rem] text-center pb-4 font-poppins font-bold">
                     <li>+ Launch Price = $0.15</li>
                     <li>+ Join $1,500,000 Quest</li>
                     <li>+ Get 10% free tokens with Referral link</li>
-                    <li className="bg-bg-gradientText3 rounded-xl px-4">
+                    <li className="bg-bg-gradientText3  rounded-xl  px-4">
                       + Double the tokens with the Airdrop (x2)
                     </li>
                   </ul>
@@ -472,6 +483,65 @@ export default function Page() {
                   alt=""
                 />
               </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <section className="bg-bg-gradientHero3">
+        <div className="text-center py-6 px-14 text-white">
+          <h2 className="font-poppins font-bold text-[2.5rem]">
+            Why <span className="text-secondary">WIDCOIN ?</span>
+          </h2>
+          <p className="font-poppins text-[0.875rem]">
+            The choice of “Widcoin” as a cryptocurrency or token name could be
+            driven by various factors, and without specific details about the
+            project’s motivations, here are some general reasons why a project
+            might choose a particular name:
+          </p>
+        </div>
+        <div className="grid p-24 md:grid-cols-3 gap-4 grid-cols-1">
+          <Card className="bg-transparent border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
+            <div className="flex flex-col">
+              <div className="border-[#6DD8D4]  border-2 rounded-full p-2 size-10">
+                <img src="/landing-page/hero10-1.svg" alt="" />
+              </div>
+              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                Unwavering Security
+              </h3>
+              <p className="font-poppins  text-xs text-white">
+                Our Crypto Wallet App is engineered with cutting-edge security
+                measures to safeguard your digital assets.
+              </p>
+            </div>
+          </Card>
+
+          <Card className="bg-transparent border-[#FFD178] px-8 pt-12 pb-20 rounded-3xl">
+            <div className="flex flex-col">
+              <div className="border-[#FFD178]  border-2 rounded-full p-2 size-10">
+                <img src="/landing-page/hero10-2.svg" alt="" />
+              </div>
+              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                Integration with Etherscan
+              </h3>
+              <p className="font-poppins  text-xs text-white">
+                As a testament to our commitment to transparency, our Crypto
+                Wallet App seamlessly integrates with Etherscan.
+              </p>
+            </div>
+          </Card>
+
+          <Card className="bg-transparent border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
+            <div className="flex flex-col">
+              <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
+                <img src="/landing-page/hero10-3.svg" alt="" />
+              </div>
+              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                Multi-Asset Support
+              </h3>
+              <p className="font-poppins  text-xs text-white">
+                Our Crypto Wallet App is not limited to a single cryptocurrency.
+              </p>
             </div>
           </Card>
         </div>
