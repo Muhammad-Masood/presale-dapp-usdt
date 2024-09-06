@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import {
   Card,
   CardHeader,
@@ -13,13 +14,19 @@ import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import { Button } from "@/components/shared";
 import JitterText from "@/components/animation/jitter";
+import { EmblaOptionsType } from "embla-carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 export default function Page() {
   return (
     <div>
       <div className="bg-bg-gradientHero ">
         <section className=" container   h-fit   ">
-          <div className="bg-bg-hero bg-cover">
+          <div className="md:bg-bg-hero bg-cover">
             <div className="grid p-12 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
               <div className="">
                 <div className="flex gap-4">
@@ -35,7 +42,7 @@ export default function Page() {
                     <FaYoutube size="20" color="white" />
                   </button>
                 </div>
-                <h1 className="text-7xl mt-4 text-white font-alfaSlabOne">
+                <h1 className="text-4xl md:text-7xl mt-4 text-white font-alfaSlabOne">
                   Revolutionizing the Digital Landscape with{" "}
                   <span className="text-secondary">Widcoin</span>
                 </h1>
@@ -65,7 +72,7 @@ export default function Page() {
                   </JitterText>
                 </div>
               </div>
-              <div className="px-12 ">
+              <div className="px-2 md:px-12 ">
                 <Card className="flex rounded-2xl bg-bg-card text-white  flex-col items-center">
                   <h2 className="font-poppins font-bold text-[2.5rem]">
                     Presale is Live
@@ -488,62 +495,212 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="bg-bg-gradientHero3">
+      <section className="relative bg-bg-gradientHero5    bg-cover bg-no-repeat">
+        <div className=" bg-bg-hero10 absolute inset-0 bg-contain bg-no-repeat opacity-50 "></div>
+        <div className="backdrop-blur-sm ">
+          <div className="text-center py-6 px-14 text-white">
+            <h2 className="font-poppins font-bold text-[2.5rem]">
+              Why <span className="text-secondary">WIDCOIN ?</span>
+            </h2>
+            <p className="font-poppins text-[0.875rem]">
+              The choice of “Widcoin” as a cryptocurrency or token name could be
+              driven by various factors, and without specific details about the
+              project’s motivations, here are some general reasons why a project
+              might choose a particular name:
+            </p>
+          </div>
+          <div className="grid p-24 md:grid-cols-3 gap-4 grid-cols-1">
+            <Card className="bg-transparent border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
+              <div className="flex flex-col">
+                <div className="border-[#6DD8D4]  border-2 rounded-full p-2 size-10">
+                  <img src="/landing-page/hero10-1.svg" alt="" />
+                </div>
+                <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                  Unwavering Security
+                </h3>
+                <p className="font-poppins  text-xs text-white">
+                  Our Crypto Wallet App is engineered with cutting-edge security
+                  measures to safeguard your digital assets.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="bg-transparent border-[#FFD178] px-8 pt-12 pb-20 rounded-3xl">
+              <div className="flex flex-col">
+                <div className="border-[#FFD178]  border-2 rounded-full p-2 size-10">
+                  <img src="/landing-page/hero10-2.svg" alt="" />
+                </div>
+                <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                  Integration with Etherscan
+                </h3>
+                <p className="font-poppins  text-xs text-white">
+                  As a testament to our commitment to transparency, our Crypto
+                  Wallet App seamlessly integrates with Etherscan.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="bg-transparent border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
+              <div className="flex flex-col">
+                <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
+                  <img src="/landing-page/hero10-3.svg" alt="" />
+                </div>
+                <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                  Multi-Asset Support
+                </h3>
+                <p className="font-poppins  text-xs text-white">
+                  Our Crypto Wallet App is not limited to a single
+                  cryptocurrency.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="  bg-[#222330]   ">
         <div className="text-center py-6 px-14 text-white">
-          <h2 className="font-poppins font-bold text-[2.5rem]">
-            Why <span className="text-secondary">WIDCOIN ?</span>
+          <h2 className="font-poppins text-secondary font-bold text-[2.5rem]">
+            Backers and Partners
+          </h2>
+        </div>
+
+        <Marquee className="py-6">
+          <img
+            src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
+            alt=""
+          />
+          <img
+            src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_news.svg"
+            alt=""
+          />
+
+          <img
+            src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
+            alt=""
+          />
+          <img
+            src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
+            alt=""
+          />
+
+          <img
+            src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
+            alt=""
+          />
+        </Marquee>
+      </section>
+
+      <section className="">
+        <div className="text-center py-6 px-14 text-white">
+          <h2 className="font-poppins text-[#B07BFE] font-bold text-[2.5rem]">
+            Roadmap
           </h2>
           <p className="font-poppins text-[0.875rem]">
-            The choice of “Widcoin” as a cryptocurrency or token name could be
-            driven by various factors, and without specific details about the
-            project’s motivations, here are some general reasons why a project
-            might choose a particular name:
+            Detailed action plan of how we are going to reshape the future of
+            earntertainment.
           </p>
         </div>
-        <div className="grid p-24 md:grid-cols-3 gap-4 grid-cols-1">
-          <Card className="bg-transparent border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
-            <div className="flex flex-col">
-              <div className="border-[#6DD8D4]  border-2 rounded-full p-2 size-10">
-                <img src="/landing-page/hero10-1.svg" alt="" />
-              </div>
-              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
-                Unwavering Security
-              </h3>
-              <p className="font-poppins  text-xs text-white">
-                Our Crypto Wallet App is engineered with cutting-edge security
-                measures to safeguard your digital assets.
-              </p>
-            </div>
-          </Card>
 
-          <Card className="bg-transparent border-[#FFD178] px-8 pt-12 pb-20 rounded-3xl">
-            <div className="flex flex-col">
-              <div className="border-[#FFD178]  border-2 rounded-full p-2 size-10">
-                <img src="/landing-page/hero10-2.svg" alt="" />
+        <Carousel>
+          <CarouselContent>
+            <CarouselItem className="md:basis-1/2 lg:basis-1/4">
+              <div className="flex items-center text-[#B07BFE] font-bold justify-center font-poppins text-2xl">
+                Q1
               </div>
-              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
-                Integration with Etherscan
-              </h3>
-              <p className="font-poppins  text-xs text-white">
-                As a testament to our commitment to transparency, our Crypto
-                Wallet App seamlessly integrates with Etherscan.
-              </p>
-            </div>
-          </Card>
+              <div className="flex w-full inset-4 items-center rounded-full h-14">
+                <div className="flex-grow border-4 border-b border-[#B07BFE]"></div>
+                <div className="w-12 h-12 flex items-center justify-center  rounded-full shadow border-4 border-[#B07BFE] cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="e-font-icon-svg size-6 e-fas-rocket"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="#B07BFE"
+                      d="M505.12 19.094c-1.19-5.532-6.658-11-12.207-12.188C460.716 0 435.507 0 410.407 0 307.175 0 245.27 55.203 199.052 128H94.838c-16.348.016-35.557 11.875-42.887 26.484L2.516 253.297A28.4 28.4 0 000 264a24.009 24.009 0 0024.006 24h103.81l-22.474 22.469c-11.366 11.361-12.996 32.258 0 45.25l50.904 50.906c11.156 11.188 32.156 13.156 45.277 0l22.475-22.469V488a24.009 24.009 0 0024.005 24 28.56 28.56 0 0010.707-2.516l98.729-49.39c14.629-7.297 26.508-26.5 26.508-42.86V312.797C456.544 266.484 511.98 204.39 511.98 101.703c.094-25.203.094-50.406-6.86-82.61zM384.04 168a40 40 0 1140.01-40 40.023 40.023 0 01-40.01 40z"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="flex-grow border-b border-4 border-[#B07BFE]"></div>
+              </div>
+              <Card className="relative border-0 bg-[#251942]  px-8 pb-36 rounded-xl pt-9 m-10">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 w-4 h-4 bg-[#251942] "></div>
+                <div className="flex flex-col gap-4">
+                  <h3 className="font-poppins space-y-8 font-bold text-[1.25rem] text-[#B07BFE]">
+                    Integration with Etherscan
+                  </h3>
+                  <p className="font-poppins  text-[0.875] text-white">
+                    Our Crypto Wallet App is not limited to a single
+                    cryptocurrency.
+                  </p>
+                </div>
+              </Card>
+            </CarouselItem>
+            <CarouselItem className="md:basis-1/2 pl-0 lg:basis-1/3">
+              <div className="flex w-full items-center rounded-full h-14">
+                <div className="flex-1 border-b border-[#FF94FF]"></div>
+                <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full shadow border border-gray-300 cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                  >
+                    <g id="Add">
+                      <path
+                        id="icon"
+                        d="M11 5.5V16.5M16.5 11H5.5"
+                        stroke="black"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div className="flex-1 border-b border-[#FF94FF]"></div>
+              </div>
+              <Card className="bg-transparent border-[#FF94FF] ml-2 px-8 pt-12 pb-20 rounded-3xl">
+                <div className="flex flex-col">
+                  <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
+                    <img src="/landing-page/hero10-3.svg" alt="" />
+                  </div>
+                  <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                    Multi-Asset Support
+                  </h3>
+                  <p className="font-poppins  text-xs text-white">
+                    Our Crypto Wallet App is not limited to a single
+                    cryptocurrency.
+                  </p>
+                </div>
+              </Card>
+            </CarouselItem>
+            <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+              <Card className="bg-transparent border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
+                <div className="flex flex-col">
+                  <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
+                    <img src="/landing-page/hero10-3.svg" alt="" />
+                  </div>
+                  <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
+                    Multi-Asset Support
+                  </h3>
+                  <p className="font-poppins  text-xs text-white">
+                    Our Crypto Wallet App is not limited to a single
+                    cryptocurrency.
+                  </p>
+                </div>
+              </Card>
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
+      </section>
 
-          <Card className="bg-transparent border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
-            <div className="flex flex-col">
-              <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
-                <img src="/landing-page/hero10-3.svg" alt="" />
-              </div>
-              <h3 className="font-poppins space-y-8 font-bold text-[1.438rem] text-white">
-                Multi-Asset Support
-              </h3>
-              <p className="font-poppins  text-xs text-white">
-                Our Crypto Wallet App is not limited to a single cryptocurrency.
-              </p>
-            </div>
-          </Card>
+      <section className="  bg-[#222330]   ">
+        <div className="text-center py-6 px-14 text-white">
+          <h2 className="font-poppins text-secondary font-bold text-[2.5rem]">
+            Tokenomics
+          </h2>
         </div>
       </section>
     </div>

@@ -27,6 +27,7 @@ const config = {
         "bg-gradientText2": "linear-gradient(155deg, #6EC1E4 0%, #FF94FF 100%)",
         "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",
         "bg-hero": "url('/landing-page/hero.png')",
+        "bg-hero10": "url('/landing-page/hero10-bg.png')",
         "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
         "bg-gradientHero2":
           "linear-gradient(232deg, #222330 80%, #6DD8D4 100%)",
@@ -36,6 +37,8 @@ const config = {
 
         "bg-gradientHero4":
           "linear-gradient(143deg, #222330 85%, #6DD8D4 100%)",
+        "bg-gradientHero5":
+          "linear-gradient(180deg, #222330 0%, #3D214B 50%, #222330 75%, #3D214B 100%)",
         "bg-transparent": "transparent",
       },
       fontFamily: {

@@ -18,11 +18,11 @@ export default function RootLayout({
       </head>
       <ThirdwebProvider>
         <body>
-          <div className="flex flex-col min-h-screen">
+          <div className="">
             <Suspense>
               <Navbar />
             </Suspense>
-            <main className="flex-1 banner bg-gradient-to-r from-gray-900 to-purple-900">
+            <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
               {children}
             </main>
             <Footer />
