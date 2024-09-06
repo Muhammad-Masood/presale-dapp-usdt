@@ -26,11 +26,21 @@ const config = {
         "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",
         "bg-hero": "url('/landing-page/hero.png')",
         "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
+        "bg-gradientHero2":
+          "linear-gradient(232deg, #222330 80%, #6DD8D4 100%)",
+
+        "bg-gradientHero3":
+          "linear-gradient(347deg, #27283C 71%, #3D214B 100%)",
+
+        "bg-gradientHero4":
+          "linear-gradient(143deg, #222330 85%, #6DD8D4 100%)",
+        "bg-transparent": "transparent",
       },
       fontFamily: {
         alfaSlabOne: ["Alfa Slab One", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
         nunito: ["Nunito", "sans-serif"],
+        albertSans: ["Albert Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
