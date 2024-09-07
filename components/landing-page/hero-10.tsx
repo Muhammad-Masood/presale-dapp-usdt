@@ -3,15 +3,15 @@ import { Card } from "../ui/card";
 const Hero10: React.FC = () => {
   return (
     <section className="bg-bg-gradientHero3">
-      <div className="grid p-28 md:grid-cols-2 gap-4 grid-cols-1">
+      <div className="grid p-14 md:p-28 md:grid-cols-2 gap-4 grid-cols-1">
         <Card className="bg-transparent relative border-[#FFD178] px-12 py-20 rounded-3xl">
           <img
-            className="w-1/4 -top-28 left-32  absolute"
+            className="w-1/4 -top-28 left-32 hidden md:block  absolute"
             src="/landing-page/hero9-2.png"
             alt=""
           />
-          <div className="flex justify-center items-center">
-            <div className="flex  gap-4 flex-col">
+          <div className="flex flex-col md:flex-row justify-center items-center">
+            <div className="flex  gap-4 flex-col md:flex-row">
               <h3 className="font-poppins text-[#FFD175] space-y-6 font-bold text-[1.75rem]">
                 Secure with BscScan
               </h3>
@@ -33,8 +33,8 @@ const Hero10: React.FC = () => {
         </Card>
 
         <Card className="bg-transparent border-[#FF94FF] px-12 py-20 rounded-3xl">
-          <div className="flex justify-center items-center">
-            <div className="flex  gap-4 flex-col">
+          <div className="flex flex-col md:flex-row justify-center items-center">
+            <div className="flex flex-col   gap-4 ">
               <h3 className="font-poppins text-[#FF94FF] space-y-6 font-bold text-[1.75rem]">
                 High Yield Potential
               </h3>

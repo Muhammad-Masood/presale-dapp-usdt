@@ -16,7 +16,7 @@ const Features1: React.FC = () => {
             might choose a particular name:
           </p>
         </div>
-        <div className="grid p-24 md:grid-cols-3 gap-4 grid-cols-1">
+        <div className="grid p-12 md:p-24 md:grid-cols-3 gap-4 grid-cols-1">
           <Card className="bg-transparent border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
             <div className="flex flex-col">
               <div className="border-[#6DD8D4]  border-2 rounded-full p-2 size-10">

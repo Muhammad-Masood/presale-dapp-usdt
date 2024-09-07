@@ -9,7 +9,7 @@ const Hero1 = () => {
     <div className="bg-bg-gradientHero ">
       <section className=" container   h-fit   ">
         <div className="md:bg-bg-hero bg-cover">
-          <div className="grid p-12 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+          <div className="grid p-6 md:p-12 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
             <div className="">
               <div className="flex gap-4">
                 <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
@@ -24,7 +24,7 @@ const Hero1 = () => {
                   <FaYoutube size="20" color="white" />
                 </button>
               </div>
-              <h1 className="text-4xl md:text-7xl mt-4 text-white font-alfaSlabOne">
+              <h1 className="text-3xl md:text-7xl mt-4 text-white font-alfaSlabOne">
                 Revolutionizing the Digital Landscape with{" "}
                 <span className="text-secondary">Widcoin</span>
               </h1>
@@ -39,7 +39,7 @@ const Hero1 = () => {
                 </p>
               </div>
 
-              <div className="flex gap-8 font-nunito mt-4 ml-8 text-white  p-4">
+              <div className="flex gap-8 font-nunito mt-4 md:ml-8 text-white  p-4">
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
                     White Paper
@@ -55,7 +55,7 @@ const Hero1 = () => {
             </div>
             <div className="px-2 md:px-12 ">
               <Card className="flex rounded-2xl bg-bg-card text-white  flex-col items-center">
-                <h2 className="font-poppins font-bold text-[2.5rem]">
+                <h2 className="font-poppins font-bold text-2xl md:text-[2.5rem]">
                   Presale is Live
                 </h2>
                 <img
@@ -63,10 +63,10 @@ const Hero1 = () => {
                   src="/landing-page/hero-avatar.png"
                   alt=""
                 />
-                <h3 className="mt-4 bg-bg-gradientText px-8 rounded-md text-[1.188rem] font-poppins">
+                <h3 className="mt-4 text-center bg-bg-gradientText px-8 rounded-md text-[1.188rem] font-poppins">
                   BUY BEFORE NEXT STAGE PRICE INCREASE
                 </h3>
-                <h3 className="text-2xl font-poppins font-bold">
+                <h3 className="text-lg md:text-2xl font-poppins font-bold">
                   ——— 1 $WID = $0.03 ———
                 </h3>
                 <img className="size-12" src="/landing-page/arrow.gif" alt="" />
