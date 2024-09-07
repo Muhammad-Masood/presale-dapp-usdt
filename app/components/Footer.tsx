@@ -1,10 +1,74 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { presale_address, widcoin_address } from "../contract/data";
+import { FaTelegram, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#040C18] text-[#f1f1f1] py-5 text-center flex flex-col items-center">
-      <p>&copy; 2024 WidCoin</p>
+    <footer className="bg-[#242834] text-white  shadow  ">
+      <div className="w-full max-w-screen-xl mx-auto p-8 md:py-8">
+        <hr className="my-6 border-black sm:mx-auto  lg:my-8" />
+        <div className="grid grid-cols-1 gap-6 md:gap-0 items-center  md:grid-cols-3 justify-items-center3 ">
+          <div>
+            <div className="flex gap-4">
+              <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
+                <FaXTwitter size="20" color="white" />
+              </button>
+
+              <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
+                <FaTelegram size="20" color="white" />
+              </button>
+
+              <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
+                <FaYoutube size="20" color="white" />
+              </button>
+            </div>
+            <ul className="font-roborto text-[#7A797A] text-[1.063rem]">
+              <li>WIDCOIN Network LLC</li>
+              <li>30 N Gould St Ste N</li>
+              <li>Sheridan, WY 82801</li>
+            </ul>
+          </div>
+          <div className="font-poppins md:text-left text-center  leading-5 text-[0.813rem]">
+            Embark on a journey of limitless possibilities with Widcoin, the
+            driving force behind a new era of digital entrepreneurship. Beyond
+            being a mere token, Widcoin is a gateway to unparalleled
+            opportunities in the online realm. Join us as we redefine the
+            boundaries of digital ventures, creating a dynamic network that not
+            only generates profits but also empowers a community of visionaries.
+          </div>
+          <img
+            className="w-2/3 rounded-lg  justify-self-center"
+            src="/winaudit.png"
+            alt="Certified Smart Contract"
+          />
+        </div>
+      </div>
+
+      <div className="bg-white w-full">
+        <ul className="flex flex-row  h-12 gap-4 justify-center items-center font-roborto text-[#54595F] text-base ">
+          <li className="border-r border-[#54595F] pr-2 border-1">
+            Terms of Use
+          </li>
+          <li className="border-r border-[#54595F] pr-2 border-1">
+            Privacy Policy
+          </li>
+          <li className="border-r border-[#54595F] pr-2 border-1">
+            Cookies Policy
+          </li>
+          <li className="border-r border-[#54595F] pr-2 border-1">
+            Contact US
+          </li>
+        </ul>
+      </div>
+
+      <div className="text-base h-12   text-center">
+        <span className=" pt-4 leading-6  font-poppins font-semibold text-gray-300  ">
+          Copyright © 2024 All rights reserved WIDCOIN Network LLC –
+          info@widcoin.net
+        </span>
+      </div>
     </footer>
   );
 };
