@@ -46,6 +46,7 @@ const config = {
         poppins: ["Poppins", "sans-serif"],
         nunito: ["Nunito", "sans-serif"],
         albertSans: ["Albert Sans", "sans-serif"],
+        roborto: ["Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
