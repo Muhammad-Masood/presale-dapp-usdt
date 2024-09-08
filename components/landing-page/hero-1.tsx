@@ -1,8 +1,10 @@
+"use client";
 import Marquee from "react-fast-marquee";
 import { Card } from "../ui/card";
 import { FaTelegram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import JitterText from "../animation/jitter";
+import { motion } from "framer-motion";
 
 const Hero1 = () => {
   return (
@@ -58,6 +60,8 @@ const Hero1 = () => {
                 <h2 className="font-poppins font-bold text-2xl md:text-[2.5rem]">
                   Presale is Live
                 </h2>
+
+                <img className="w-2/5" src="/landing-page/loading.gif" alt="" />
                 <img
                   className="w-1/2"
                   src="/landing-page/hero-avatar.png"
@@ -69,10 +73,26 @@ const Hero1 = () => {
                 <h3 className="text-lg md:text-2xl font-poppins font-bold">
                   ——— 1 $WID = $0.03 ———
                 </h3>
-                <img className="size-12" src="/landing-page/arrow.gif" alt="" />
-                <button className="font-alfaSlabOne border-2 shadow-black shadow-sm border-black bg-bg-gradientText2 p-2 text-primary hover:text-secondary text-[1.625rem] rounded-xl">
-                  BUY $WID
-                </button>
+                <div className="relative inline-block">
+                  <motion.div
+                    className="absolute inset-0 bg-secondary rounded-lg filter blur-md"
+                    animate={{
+                      opacity: [0.5, 1, 0.5],
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText2 p-2 px-6 text-primary hover:text-secondary text-[1.625rem] rounded-xl"
+                  >
+                    BUY $WID
+                  </motion.button>
+                </div>
                 <ul className="text-[1.188rem] text-center pb-4 font-poppins font-bold">
                   <li>+ Launch Price = $0.15</li>
                   <li>+ Join $1,500,000 Quest</li>

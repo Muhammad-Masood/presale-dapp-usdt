@@ -11,7 +11,7 @@ const Hero10: React.FC = () => {
             alt=""
           />
           <div className="flex flex-col md:flex-row justify-center items-center">
-            <div className="flex  gap-4 flex-col md:flex-row">
+            <div className="flex  gap-4 flex-col">
               <h3 className="font-poppins text-[#FFD175] space-y-6 font-bold text-[1.75rem]">
                 Secure with BscScan
               </h3>

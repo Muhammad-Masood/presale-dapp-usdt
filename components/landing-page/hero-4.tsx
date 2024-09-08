@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Button } from "../shared";
 
 const Hero4: React.FC = () => {
