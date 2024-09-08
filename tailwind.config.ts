@@ -29,6 +29,8 @@ const config = {
         "bg-hero": "url('/landing-page/hero.png')",
         "bg-hero10": "url('/landing-page/hero10-bg.png')",
         "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
+
+        "bg-heroEcos": "url('/ecosystem/widnet.png')",
         "bg-gradientHero2":
           "linear-gradient(232deg, #222330 80%, #6DD8D4 100%)",
 
@@ -47,6 +49,7 @@ const config = {
         nunito: ["Nunito", "sans-serif"],
         albertSans: ["Albert Sans", "sans-serif"],
         roborto: ["Roboto", "sans-serif"],
+        telex: ["Telex", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
