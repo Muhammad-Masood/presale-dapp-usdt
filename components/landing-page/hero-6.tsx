@@ -11,15 +11,17 @@ const Hero6: React.FC = () => {
               src="./landing-page/hero6-icon.svg"
               alt=""
             />
-            <div className="relative z-10">Ecosystem</div>
+            <div className="relative font-bold z-10">Ecosystem</div>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            The Widcoin Ecosystem stands out in decentralized finance (DeFi),
-            offering innovative solutions across multiple platforms
-            interconnected with the Widcoin network. Designed for user
-            empowerment and security, Widcoin presents diverse DeFi products and
-            services, enabling seamless crypto management, investment, and
-            participation in the evolving DeFi landscape.
+            The <span className="font-bold">Widcoin Ecosystem </span>
+            stands out in decentralized finance (DeFi), offering{" "}
+            <span className="font-bold">innovative solutions </span>
+            across multiple platforms interconnected with the Widcoin network.
+            Designed for user empowerment and security, Widcoin presents diverse{" "}
+            <span className="font-bold">DeFi </span>
+            products and services, enabling seamless crypto management,
+            investment, and participation in the evolving DeFi landscape.
           </p>
 
           <Button className="" size={"md"} color={"primary"}>

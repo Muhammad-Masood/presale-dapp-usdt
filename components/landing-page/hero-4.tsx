@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from "../shared";
 
@@ -14,17 +15,20 @@ const Hero4: React.FC = () => {
             />
             <div className="relative z-10">
               The Unique Value of Utility Tokens:
-              <span className=" text-secondary">
+              <span className=" text-[#FF92F9]">
                 {" "}
                 Widcoin's Multifaceted Purpose
               </span>
             </div>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            Widcoin goes beyond traditional digital currencies; it is a utility
-            token, an asset with inherent value. Operating on a decentralized
-            blockchain, secure smart contracts facilitate transparent
-            transactions and data storage.
+            <span className="font-bold"> Widcoin </span>
+            goes beyond traditional
+            <span className="font-bold"> digital currencies; </span>
+            it is a utility token, an asset with inherent value. Operating on a
+            <span className="font-bold"> decentralized blockchain, </span>
+            <span className="font-bold"> secure smart contracts </span>
+            facilitate transparent transactions and data storage.
           </p>
 
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
@@ -34,7 +38,7 @@ const Hero4: React.FC = () => {
             participation in the digital economy.
           </p>
 
-          <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
+          <p className="mb-8 font-bold leading-6 font-poppins text-white text-[0.938rem]">
             Join us in embracing Widcoin, where value meets utility in the world
             of digital assets.
           </p>

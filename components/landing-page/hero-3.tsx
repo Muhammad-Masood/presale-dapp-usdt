@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Button } from "../shared";
 
 const Hero3: React.FC = () => {
@@ -6,22 +7,24 @@ const Hero3: React.FC = () => {
       <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
         <div className="  flex flex-col md:items-start md:text-left items-center text-center">
           <h1 className="title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
-            Presale and Community Governance :
-            <span className="text-secondary">
+            Presale and Community Governance :{" "}
+            <span className="text-[#FF92F9]">
               Charting a Decentralized Future
             </span>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            The Widcoin presale marks a pivotal opportunity for enthusiasts to
-            secure tokens at exclusive rates. Beyond this, our community plays a
-            central role in governance.
+            The
+            <span className="font-bold"> Widcoin presale </span>
+            marks a pivotal opportunity for enthusiasts to secure tokens
+            <span className="font-bold"> at exclusive rates. </span>
+            Beyond this, our community plays a central role in governance.
           </p>
 
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            Post-presale, token holders gain access to a sophisticated
-            decentralized voting platform. Here, our community exercises
-            collective decision-making power, evaluating, proposing, and voting
-            on new projects.
+            <span className="font-bold"> Post-presale,</span>
+            token holders gain access to a sophisticated decentralized voting
+            platform. Here, our community exercises collective decision-making
+            power, evaluating, proposing, and voting on new projects.
           </p>
 
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">

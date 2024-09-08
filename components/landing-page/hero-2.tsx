@@ -17,10 +17,11 @@ const Hero2: React.FC = () => {
             <span className="text-secondary">Sustainable Growt</span>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            Operating on the <span className="font-bold">BEP-20</span> standard,
-            Widcoin (WID) symbolizes the future of digital economies. Initially
-            priced at <span className="font-bold">$1 for 33.33 WID,</span>
-            <span className="font-bold">total token supply</span>
+            Operating on the <span className="font-bold"> BEP-20 </span>{" "}
+            standard, Widcoin (WID) symbolizes the future of digital economies.
+            Initially priced at{" "}
+            <span className="font-bold"> $1 for 33.33 WID, </span>
+            <span className="font-bold"> total token supply </span>
             the stands at <span className="font-bold">
               8,000,000,000 WID,
             </span>{" "}

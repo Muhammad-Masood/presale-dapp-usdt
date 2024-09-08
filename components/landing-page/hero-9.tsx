@@ -9,11 +9,14 @@ const Hero9: React.FunctionComponent = () => {
       <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
         <div className="  flex flex-col md:items-start md:text-left items-center text-center">
           <h1 className="title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
-            Presale and Community Governance : Seamless Participation in the
+            Presale and Community Governance : Seamless Participation in the{" "}
             <span className="text-secondary">$WID coin Revolution</span>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            Exclusive access to discounted Widcoins at {"{"}widcoin.net{"}"}.
+            Exclusive access to discounted Widcoins at{" "}
+            <span className="text-pink-950">
+              {"{"}widcoin.net{"}"}.
+            </span>
             Easy transactions with USDC (BEP-20) or USDT (BEP-20) via a
             user-friendly form. Secure smart contract ensures token release
             post-presale. Newcomers benefit from MetaMask setup guidance. Start

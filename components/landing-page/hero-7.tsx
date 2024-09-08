@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Button } from "../shared";
 
 const Hero7: React.FC = () => {
@@ -20,16 +21,19 @@ const Hero7: React.FC = () => {
           <h1 className="title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
             Widcoin Network:
             <span className="text-secondary">
+              {" "}
               A new era of digital entrepreneurship
             </span>
           </h1>
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
-            With Widcoin, explore limitless possibilities. Create and launch
+            With <span className="font-bold">Widcoin </span>, explore limitless
+            possibilities. <span className="font-bold">Create and launch </span>
             your digital entrepreneurial projects within our network, garner
             community consensus, initiate fundraising campaigns, or engage in
-            multiproperty projects using Blockchain technology. Integration of
-            $WID tokens into the Widcoin network ensures a decentralized
-            financial system with zero transaction fees.
+            multiproperty projects using Blockchain technology. Integration of{" "}
+            <span className="font-bold">$WID tokens </span>
+            into the Widcoin network ensures a decentralized financial system
+            with <span className="font-bold">zero transaction fees.</span>
           </p>
           <Button className="" size={"md"} color={"primary"}>
             $ Buy WID
