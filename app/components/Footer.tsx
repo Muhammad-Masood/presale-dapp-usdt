@@ -1,12 +1,39 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { presale_address, widcoin_address } from "../contract/data";
 import { FaTelegram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Footer = () => {
+  const controls = useAnimation();
+
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+  const animationsVariants = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+      transition: { duration: 3, type: "spring", stiffness: 100 },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 3, type: "spring", stiffness: 100 },
+    },
+  };
+
   return (
-    <footer className="bg-[#242834] text-white  shadow  ">
+    <footer ref={ref} className="bg-[#242834] text-white  shadow  ">
       <div className="w-full max-w-screen-xl mx-auto p-8 md:py-8">
         <hr className="my-6 border-black sm:mx-auto  lg:my-8" />
         <div className="grid grid-cols-1 gap-6 md:gap-0 items-center  md:grid-cols-3 justify-items-center3 ">
@@ -30,14 +57,19 @@ const Footer = () => {
               <li>Sheridan, WY 82801</li>
             </ul>
           </div>
-          <div className="font-poppins md:text-left text-center  leading-5 text-[0.813rem]">
+          <motion.div
+            variants={animationsVariants}
+            initial="hidden"
+            animate={controls}
+            className="font-poppins md:text-left text-center  leading-5 text-[0.813rem]"
+          >
             Embark on a journey of limitless possibilities with Widcoin, the
             driving force behind a new era of digital entrepreneurship. Beyond
             being a mere token, Widcoin is a gateway to unparalleled
             opportunities in the online realm. Join us as we redefine the
             boundaries of digital ventures, creating a dynamic network that not
             only generates profits but also empowers a community of visionaries.
-          </div>
+          </motion.div>
           <img
             className="w-2/3 rounded-lg  justify-self-center"
             src="/winaudit.png"
