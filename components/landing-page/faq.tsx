@@ -48,7 +48,8 @@ const FaqSection: React.FC = () => {
     <section className=" bg-bg-gradientHero5 py-6   ">
       <div className="text-center py-3 px-14 text-white">
         <h2 className="font-poppins text-secondary font-bold text-[3.625rem]">
-          FAQ
+          <span className="text-[#B07BFE]">F</span>
+          AQs
         </h2>
         <Faq data={data} styles={styles} config={config} />
       </div>

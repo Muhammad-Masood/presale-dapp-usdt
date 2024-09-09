@@ -26,8 +26,10 @@ const config = {
         "bg-gradientText": "linear-gradient(176deg, #8E054B 0%, #FF94FF 100%)",
         "bg-gradientText2": "linear-gradient(155deg, #6EC1E4 0%, #FF94FF 100%)",
         "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",
+        "bg-gradientText4": "linear-gradient(238deg, #FFD178 0%, #B07BFE 100%)",
         "bg-hero": "url('/landing-page/hero.png')",
         "bg-hero10": "url('/landing-page/hero10-bg.png')",
+        "bg-winningPool": "url('/winning-pool/bg.jpg')",
         "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
 
         "bg-heroEcos": "url('/ecosystem/widnet.png')",
@@ -50,6 +52,7 @@ const config = {
         albertSans: ["Albert Sans", "sans-serif"],
         roborto: ["Roboto", "sans-serif"],
         telex: ["Telex", "sans-serif"],
+        tradeWinds: ["Trade Winds", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
