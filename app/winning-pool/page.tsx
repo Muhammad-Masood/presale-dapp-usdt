@@ -10,46 +10,16 @@ import {
 } from "@/components/ui/table";
 import { motion } from "framer-motion";
 
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+  AccordionItemState,
+} from "react-accessible-accordion";
+
 import Faq from "react-faq-component";
-const data = {
-  title: "",
-  rows: [
-    {
-      title: "Eligibility ",
-      content: `To qualify, ensure you hold a minimum participation of $150 or more in the Widcoin presale. This minimum participation reflects the dollar value of $WID tokens you’ve purchased and own. The required amount may vary for each presale stage, so ensure ownership before each stage concludes. 
-
-Important Note: Even $WID tokens obtained for free through our Referral link program count towards meeting the minimum participation. These tokens seamlessly combine with purchased ones, updating your balance automatically when you connect your wallet to the purchase form. 
-
-How to Earn Free $WID Tokens: Participating in our Referral link program is simple! It’s akin to “digital word of mouth.” Connect your wallet used for purchasing $WID tokens to the purchase form, click the “10% referral link” button, and receive a shareable link. When someone clicks your link and purchases, you receive 10% free tokens! For instance, if they buy 10,000 WID tokens, you earn 1000 WID tokens, automatically added to your balance. Don’t miss out on this opportunity to win big with Widcoin! **Share your Referral Link along with an Advertising Banner <Download Banners👆>`,
-    },
-    {
-      title: "How it works",
-      content: `Presale Token Handling:
-
-During Presale:
-
-$WID tokens are securely held in a smart contract on the Binance Smart Chain.
-Post-Presale Release:
-
-Tokens are released to your wallet after the presale concludes.
-Integration for Transfer:
-
-Add the $WID token to your Binance Smart Chain network for smooth transfer operations.
-Prize Allocation:
-
-Presale Conclusion:
-
-At each presale’s end, the smart contract proceeds with prize allocation.
-Random Selection:
-
-A qualified wallet is randomly chosen from those meeting the minimum participation criteria.
-Winnings Distribution:
-
-Winnings, a percentage of the total collected amount, are automatically distributed in USDC (BEP-20) and USDT (BEP-20) to the selected wallet.
-This straightforward guide ensures clarity on how presale tokens are handled and how prize allocation occurs, maintaining transparency and efficiency throughout the process.`,
-    },
-  ],
-};
 const styles = {
   // styles for the FAQ component
   bgColor: "bg-white",
@@ -57,13 +27,6 @@ const styles = {
   rowTitleColor: "text-xl font-semibold text-gray-700",
   rowContentColor: "text-base text-gray-600",
   arrowColor: "text-gray-500",
-};
-
-const config = {
-  animate: true,
-  expandIcon: "+",
-  collapseIcon: "-",
-  openOnload: 0,
 };
 
 const stages = [
@@ -79,18 +42,97 @@ const stages = [
   { stage: "Stage 10", minParticipation: "$5,000", widwin: "$500,000" },
 ];
 
+const Eligibility = (expanded: boolean | undefined) => {
+  switch (expanded) {
+    case true:
+      return (
+        <p className="text-[#61CE70] gap-2 flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="size-4"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#61CE70"
+              d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+          Eligibility
+        </p>
+      );
+    case false:
+      return (
+        <p className="flex items-center gap-2">
+          <svg
+            className="size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#61CE70"
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+          Eligibility{" "}
+        </p>
+      );
+  }
+};
+
+const HowItsWork = (expanded: boolean | undefined) => {
+  switch (expanded) {
+    case true:
+      return (
+        <p className="text-[#61CE70] gap-2 flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="size-4"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#6EC1E4"
+              d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+          How it works
+        </p>
+      );
+    case false:
+      return (
+        <p className="flex items-center gap-2">
+          <svg
+            className="size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#6EC1E4"
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+            ></path>
+          </svg>
+          How it works
+        </p>
+      );
+  }
+};
+
 export default function Page() {
   return (
     <div>
       <section className="relative h-fit bg-cover bg-bg-winningPool">
         <div className="absolute inset-0 bg-[#7A7A7A] opacity-30"></div>
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-[4.375rem]">
+        <motion.h1
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-[4.375rem]"
+        >
           Win{" "}
           <span className="text-[#FFD700]">
             $1,5 Million <br /> in USDC and USDT <br />
           </span>{" "}
           with Widcoin
-        </h1>
+        </motion.h1>
         <div className="z-10 relative">
           <Table className="border border-gray-600/30 bg-[#6B4760]/50 mx-auto text-white font-bold max-w-4xl">
             <TableHeader className="">
@@ -245,12 +287,164 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="h-fit text-[#222330]">
+      <section className="h-fit bg-[#222330] py-8 ">
         <h1 className="relative leading-none font-semibold z-10 font-tradeWinds  italic text-[#6EC1E4]  text-center text-[2.813rem]">
           Terms & Conditions
         </h1>
+        <div className="py-8 px-6">
+          <Accordion
+            className="border text-white border-white"
+            allowZeroExpanded
+            allowMultipleExpanded
+            preExpanded={["a"]}
+          >
+            <AccordionItem uuid="a">
+              <AccordionItemHeading className="border-y p-4 font-bold font-roborto underline text-[#6EB5C1] border-white/50">
+                <AccordionItemButton>
+                  <AccordionItemState>
+                    {({ expanded }) => Eligibility(expanded)}
+                  </AccordionItemState>
+                </AccordionItemButton>
+              </AccordionItemHeading>
 
-        {/* <Faq data={data} styles={styles} config={config} /> */}
+              <AccordionItemPanel className="p-4 text-[#6C7975] font-roborto">
+                <p className="space-y-4">
+                  <div>
+                    To qualify, ensure you hold a minimum participation of{" "}
+                    <span className="font-bold">$150</span> or more in the{" "}
+                    <span className="font-bold">Widcoin presale.</span>
+                    This minimum participation reflects the dollar value of $WID
+                    tokens you’ve purchased and own. The required amount may
+                    vary for each presale stage, so ensure ownership before each
+                    stage concludes.
+                  </div>
+                  <div>
+                    <span className="font-bold">Important Note:</span> Even $WID
+                    tokens obtained for free through our Referral link program
+                    count towards meeting the minimum participation. These
+                    tokens seamlessly combine with purchased ones, updating your
+                    balance automatically when you connect your wallet to the
+                    purchase form.
+                  </div>
+                  <div>
+                    <span className="font-bold">
+                      How to Earn Free $WID Tokens:
+                    </span>{" "}
+                    Participating in our Referral link program is simple! It’s
+                    akin to “digital word of mouth.” Connect your wallet used
+                    for purchasing $WID tokens to the purchase form, click the
+                    “10% referral link” button, and receive a shareable link.
+                    When someone clicks your link and purchases, you receive 10%
+                    free tokens! For instance, if they buy 10,000 WID tokens,
+                    you earn 1000 WID tokens, automatically added to your
+                    balance. Don’t miss out on this opportunity to win big with
+                    Widcoin! **Share your Referral Link along with an
+                    Advertising Banner{" "}
+                    <span className="text-pink-700 hover:text-[#2A4867]">
+                      {"<Download Banners👆>"}
+                    </span>
+                  </div>
+                </p>
+              </AccordionItemPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <AccordionItemHeading className="border-y font-bold p-4 font-roborto underline text-[#6EB5C1] border-white/50">
+                <AccordionItemButton>
+                  <AccordionItemState>
+                    {({ expanded }) => HowItsWork(expanded)}
+                  </AccordionItemState>
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className="p-4 text-[#6C7975] font-roborto">
+                <p>
+                  <div>
+                    <span className="font-bold">Presale Token Handling:</span>
+                    <ol className="mt-4 ml-6">
+                      <li>
+                        <span className="font-bold">1. During Presale:</span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            $WID tokens are securely held in a smart contract on
+                            the Binance Smart Chain.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">
+                          2. Post-Presale Release:
+                        </span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            Tokens are released to your wallet after the presale
+                            concludes.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">
+                          3. Integration for Transfer:
+                        </span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            Add the $WID token to your Binance Smart Chain
+                            network for smooth transfer operations.
+                          </li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                  <div>
+                    <span className="font-bold">Prize Allocation:</span>
+                    <ol className="mt-4 ml-6">
+                      <li>
+                        <span className="font-bold">1.Presale Conclusion:</span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            At each presale’s end, the smart contract proceeds
+                            with prize allocation.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">2.Random Selection:</span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            A qualified wallet is randomly chosen from those
+                            meeting the minimum participation criteria.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">
+                          Winnings Distribution:
+                        </span>
+                        <ul className="list-disc mt-4 pl-20">
+                          <li>
+                            Winnings, a percentage of the total collected
+                            amount, are automatically distributed in USDC
+                            (BEP-20) and USDT (BEP-20) to the selected wallet.
+                          </li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                  <div>
+                    This straightforward guide ensures clarity on how presale
+                    tokens are handled and how prize allocation occurs,
+                    maintaining transparency and efficiency throughout the
+                    process.
+                  </div>
+                </p>
+              </AccordionItemPanel>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        <div className="text-center text-[#6C7975] font-roborto px-36">
+          <span className="font-bold underline">Disclaimer:</span>{" "}
+          Cryptocurrency may be unregulated in your jurisdiction. The value of
+          cryptocurrencies may fluctuate. Profits may be subject to capital
+          gains or other taxes applicable in your jurisdiction.
+        </div>
       </section>
     </div>
   );
