@@ -41,12 +41,12 @@ export default function Page() {
   };
 
   return (
-    <section className="h-screen bg-gradient-to-b from-[#28273D] to-[#392248] pt-8 px-24">
+    <section className="h-fit bg-gradient-to-b from-[#28273D] to-[#392248] pt-8 px-6 md:px-24">
       <div className="bg-gradient-to-b from-[#382347] to-[#392248] p-8 rounded-lg shadow-lg">
         <h2 className="text-[2.313rem] font-roborto font-bold text-center text-[#6EC1E4] mb-6">
           Contact us
         </h2>
-        <form onSubmit={handleSubmit} className="mx-44 space-y-6">
+        <form onSubmit={handleSubmit} className="md:mx-44 space-y-6">
           {/* {error && ( */}
           {/*   <Alert variant="destructive"> */}
           {/*     <AlertCircle className="h-4 w-4" /> */}
@@ -66,7 +66,7 @@ export default function Page() {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="mt-1 block w-full p-2  border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="mt-1 block w-full p-2  border-gray-300 shadow-sm  "
               placeholder="E.g. John"
             />
           </div>
@@ -84,7 +84,7 @@ export default function Page() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="mt-1 p-2 block w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="mt-1 p-2 block w-full border-gray-300 shadow-sm  "
               placeholder="E.g. john@doe.com"
             />
           </div>
@@ -101,14 +101,14 @@ export default function Page() {
               value={formData.message}
               onChange={handleInputChange}
               required
-              className="mt-1 block p-2 w-full  border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  min-h-36"
+              className="mt-1 block p-2 w-full  border-gray-300 shadow-sm   min-h-36"
               placeholder="Enter your message..."
             ></textarea>
             <p className="text-sm text-right text-white mt-1">
               {wordCount} / 100 words
             </p>
           </div>
-          <div className="flex items-start">
+          <div className="flex  items-start">
             <input
               type="checkbox"
               id="consent"
@@ -116,7 +116,7 @@ export default function Page() {
               checked={formData.consent}
               onChange={handleInputChange}
               required
-              className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              className="mt-1 h-4 w-4 text-indigo-600  border-gray-300 rounded"
             />
 
             <label htmlFor="consent" className="ml-2 block text-sm text-white">
@@ -128,7 +128,7 @@ export default function Page() {
           <div>
             <button
               type="submit"
-              className=" flex justify-center py-2 px-4 border border-transparent  shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className=" flex justify-center py-2 px-4 border border-transparent  shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-indigo-700 focus:outline-none "
             >
               Send Message
             </button>

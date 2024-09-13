@@ -2,11 +2,12 @@ import { Card } from "../ui/card";
 
 const Hero10: React.FC = () => {
   return (
-    <section className="bg-bg-gradientHero3">
+    <section className="relative bg-bg-gradientHero3">
+      <div className=" bg-bg-gradient1 absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
       <div className="grid p-14 md:p-28 md:grid-cols-2 gap-4 grid-cols-1">
         <Card className="bg-transparent relative border-[#FFD178] px-12 py-20 rounded-3xl">
           <img
-            className="w-1/4 -top-28 left-32 hidden md:block  absolute"
+            className="w-1/4 -top-28 hidden md:block left-32 hidden md:block  absolute"
             src="/landing-page/hero9-2.png"
             alt=""
           />

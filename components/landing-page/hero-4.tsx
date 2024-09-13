@@ -9,7 +9,7 @@ const Hero4: React.FC = () => {
         <div className="  flex flex-col md:items-start md:text-left items-center text-center">
           <h1 className="relative title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
             <img
-              className="absolute z-0  w-2/6 -top-32"
+              className="absolute hidden md:block z-0  w-2/6 -top-32"
               src="./landing-page/hero4-icon.png"
               alt=""
             />
@@ -42,12 +42,14 @@ const Hero4: React.FC = () => {
             Join us in embracing Widcoin, where value meets utility in the world
             of digital assets.
           </p>
-          <Button className="" size={"md"} color={"primary"}>
-            $ Buy WID
-          </Button>
+          <a href="https://widcoin.net/">
+            <Button className="" size={"md"} color={"primary"}>
+              $ Buy WID
+            </Button>
+          </a>
         </div>
 
-        <div className=" w-3/4 pl-12 mb-10 md:mb-0">
+        <div className=" w-3/4 mx-auto md:pl-12 mb-10 md:mb-0">
           <img
             className="object-cover  object-center rounded"
             alt="hero"

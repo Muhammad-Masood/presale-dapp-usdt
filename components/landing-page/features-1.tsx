@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 
 const Features1: React.FC = () => {
   return (
-    <section className="relative bg-bg-gradientHero5    bg-cover bg-no-repeat">
+    <section className="relative bg-bg-gradientHero5    bg-contain bg-no-repeat">
       <div className=" bg-bg-hero10 absolute inset-0 bg-contain bg-no-repeat opacity-50 "></div>
       <div className="backdrop-blur-sm ">
         <div className="text-center py-6 px-14 text-white">
@@ -17,7 +17,7 @@ const Features1: React.FC = () => {
           </p>
         </div>
         <div className="grid p-12 md:p-24 md:grid-cols-3 gap-4 grid-cols-1">
-          <Card className="bg-transparent border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
+          <Card className="bg-[#27283C] border-[#6DD8D4] px-8 pt-12 pb-20 rounded-3xl">
             <div className="flex flex-col">
               <div className="border-[#6DD8D4]  border-2 rounded-full p-2 size-10">
                 <img src="/landing-page/hero10-1.svg" alt="" />
@@ -32,7 +32,7 @@ const Features1: React.FC = () => {
             </div>
           </Card>
 
-          <Card className="bg-transparent border-[#FFD178] px-8 pt-12 pb-20 rounded-3xl">
+          <Card className="bg-[#27283C] border-[#FFD178] px-8 pt-12 pb-20 rounded-3xl">
             <div className="flex flex-col">
               <div className="border-[#FFD178]  border-2 rounded-full p-2 size-10">
                 <img src="/landing-page/hero10-2.svg" alt="" />
@@ -47,7 +47,7 @@ const Features1: React.FC = () => {
             </div>
           </Card>
 
-          <Card className="bg-transparent border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
+          <Card className="bg-[#27283C] border-[#FF94FF] px-8 pt-12 pb-20 rounded-3xl">
             <div className="flex flex-col">
               <div className="border-[#FF94FF]  border-2 rounded-full p-2 size-10">
                 <img src="/landing-page/hero10-3.svg" alt="" />

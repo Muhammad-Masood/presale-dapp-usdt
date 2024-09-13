@@ -4,8 +4,9 @@ import { Button } from "../shared";
 const Hero3: React.FC = () => {
   return (
     <section className="bg-bg-gradientHero3  body-font">
-      <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
-        <div className="  flex flex-col md:items-start md:text-left items-center text-center">
+      <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+        <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
+        <div className="relative z-10  flex flex-col md:items-start md:text-left items-center text-center">
           <h1 className="title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
             Presale and Community Governance :{" "}
             <span className="text-[#FF92F9]">
@@ -32,12 +33,14 @@ const Hero3: React.FC = () => {
             governance, driving Widcoin towards a future shaped by its dedicated
             community.
           </p>
-          <Button className="" size={"md"} color={"primary"}>
-            $ Buy WID
-          </Button>
+          <a href="https://widcoin.net/">
+            <Button className="" size={"md"} color={"primary"}>
+              $ Buy WID
+            </Button>
+          </a>
         </div>
 
-        <div className=" w-3/4 mb-10 md:mb-0">
+        <div className="mx-auto w-3/4 mb-10 md:mb-0">
           <img
             className="object-cover  object-center rounded"
             alt="hero"

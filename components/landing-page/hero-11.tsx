@@ -10,28 +10,21 @@ const Hero11: React.FunctionComponent = () => {
       </div>
 
       <Marquee className="py-6">
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
-          alt=""
-        />
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_news.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/binance.svg" alt="" />
+        <img src="landing-page/companies/bitcoin_insider.svg" alt="" />
 
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
-          alt=""
-        />
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/buisness_news.svg" alt="" />
+        <img src="landing-page/companies/crypto_deily.svg" alt="" />
 
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/crypto_news.svg" alt="" />
+
+        <img src="landing-page/companies/marketwatch.svg" alt="" />
+
+        <img src="landing-page/companies/morningstar.svg" alt="" />
+
+        <img src="landing-page/companies/news_btc.svg" alt="" />
+
+        <img src="landing-page/companies/yahoo.svg" alt="" />
       </Marquee>
     </section>
   );

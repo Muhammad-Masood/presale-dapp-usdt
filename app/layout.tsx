@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
+import Sticky from "react-sticky-el";
 
 export default function RootLayout({
   children,
@@ -17,17 +18,21 @@ export default function RootLayout({
         <title>WidCoin Presale</title>
       </head>
       <ThirdwebProvider>
-        <body>
-          <div className="">
-            <Suspense>
-              <Navbar />
-            </Suspense>
-            <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
-              {children}
-            </main>
+        <body className="w-full">
+          <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
+            <Sticky
+              stickyStyle={{
+                zIndex: 1000,
+              }}
+            >
+              <Suspense>
+                <Navbar />
+              </Suspense>
+            </Sticky>
+            {children}
             <Footer />
             <Toaster />
-          </div>
+          </main>
         </body>
       </ThirdwebProvider>
     </html>

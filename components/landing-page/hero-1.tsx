@@ -6,24 +6,78 @@ import { FaXTwitter } from "react-icons/fa6";
 import JitterText from "../animation/jitter";
 import { motion } from "framer-motion";
 
+import * as Dialog from "@radix-ui/react-dialog";
+import { IoMdClose } from "react-icons/io";
+
+const OpenModalToken = () => {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <li className="bg-bg-gradientText3  rounded-xl  px-4">
+          + Double the tokens with the Airdrop (x2)
+        </li>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Content className="data-[state=open]:animate-contentShow z-20 p-4 fixed top-[50%] left-[50%] max-h-[85vh]  max-w-[650px] translate-x-[-50%] translate-y-[-50%]  bg-white  shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+          <div className="grid-cols-1 gap-2 pt-4 md:gap-4 md:grid-cols-2 grid">
+            <div>
+              <img src="/landing-page/airdrop.png" alt="" />
+            </div>
+            <div>
+              <h3 className="md:mt-4 mt-1 font-nunito text-xs md:text-[1.313rem] leading-none font-bold text-[#27283C]">
+                Limited-time offers may be launched during the presale to double
+                the $WID tokens during the purchase phase. Follow us on Telegram
+                and X channels to find out when the Airdrop (x2) is active.
+              </h3>
+              <img
+                className="w-2/5 mx-auto mt-4"
+                src="/landing-page/glass.gif"
+                alt=""
+              />
+            </div>
+          </div>
+          <Dialog.Close asChild>
+            <button
+              className=" absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center  "
+              aria-label="Close"
+            >
+              <IoMdClose />
+            </button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+};
+
 const Hero1 = () => {
   return (
     <div className="bg-bg-gradientHero ">
       <section className=" container   h-fit   ">
         <div className="md:bg-bg-hero bg-cover">
-          <div className="grid p-6 md:p-12 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+          <div className="grid p-6 md:p-9 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
             <div className="">
               <div className="flex gap-4">
                 <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                  <FaXTwitter size="20" color="white" />
+                  <a href="https://x.com/xwidcoin" target="_blank">
+                    <FaXTwitter size="20" color="white" />
+                  </a>
                 </button>
 
                 <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                  <FaTelegram size="20" color="white" />
+                  <a href="https://t.me/widcointoken" target="_blank">
+                    <FaTelegram size="20" color="white" />
+                  </a>
                 </button>
 
                 <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                  <FaYoutube size="20" color="white" />
+                  <a
+                    href="http://www.youtube.com/@widcointoken"
+                    target="_blank"
+                  >
+                    <FaYoutube size="20" color="white" />
+                  </a>
                 </button>
               </div>
               <h1 className="text-3xl md:text-7xl mt-4 text-white font-alfaSlabOne">
@@ -44,20 +98,30 @@ const Hero1 = () => {
               <div className="flex gap-8 font-nunito mt-4 md:ml-8 text-white  p-4">
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
-                    White Paper
+                    <a
+                      href="https://presale.widcoin.net/wp-content/uploads/2024/08/WIDCOIN-Whitepaper.pdf"
+                      target="_blank"
+                    >
+                      White Paper
+                    </a>
                   </button>
                 </JitterText>
 
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
-                    Audit report
+                    <a
+                      href="https://presale.widcoin.net/wp-content/uploads/2024/02/Audit-WidCoin.pdf"
+                      target="_blank"
+                    >
+                      Audit report
+                    </a>
                   </button>
                 </JitterText>
               </div>
             </div>
             <div className="px-2 md:px-12 ">
-              <Card className="flex rounded-2xl bg-bg-card text-white  flex-col items-center">
-                <h2 className="font-poppins font-bold text-2xl md:text-[2.5rem]">
+              <Card className="flex space-y-2 rounded-2xl bg-bg-card text-white  flex-col items-center">
+                <h2 className="font-poppins pt-2 font-bold text-2xl md:text-[2.5rem]">
                   Presale is Live
                 </h2>
 
@@ -75,7 +139,7 @@ const Hero1 = () => {
                 </h3>
                 <div className="relative inline-block">
                   <motion.div
-                    className="absolute inset-0 bg-secondary rounded-lg filter blur-md"
+                    className="absolute inset-0 bg-[#BF7838] rounded-lg filter blur-md"
                     animate={{
                       opacity: [0.5, 1, 0.5],
                       scale: [1, 1.05, 1],
@@ -88,18 +152,16 @@ const Hero1 = () => {
                   />
                   <motion.button
                     whileHover={{ scale: 1.2 }}
-                    className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText2 p-2 px-6 text-primary hover:text-secondary text-[1.625rem] rounded-xl"
+                    className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText5 p-2 px-6  text-secondary text-[1.625rem] rounded-xl"
                   >
-                    BUY $WID
+                    <a href="https://widcoin.net/">BUY $WID</a>
                   </motion.button>
                 </div>
                 <ul className="text-[1.188rem] text-center pb-4 font-poppins font-bold">
                   <li>+ Launch Price = $0.15</li>
                   <li>+ Join $1,500,000 Quest</li>
                   <li>+ Get 10% free tokens with Referral link</li>
-                  <li className="bg-bg-gradientText3  rounded-xl  px-4">
-                    + Double the tokens with the Airdrop (x2)
-                  </li>
+                  <OpenModalToken />
                 </ul>
               </Card>
             </div>
@@ -108,28 +170,21 @@ const Hero1 = () => {
       </section>
 
       <Marquee className="py-6">
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
-          alt=""
-        />
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_news.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/binance.svg" alt="" />
+        <img src="landing-page/companies/bitcoin_insider.svg" alt="" />
 
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/crypto_deily.svg"
-          alt=""
-        />
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/buisness_news.svg" alt="" />
+        <img src="landing-page/companies/crypto_deily.svg" alt="" />
 
-        <img
-          src="https://presale.widcoin.net/wp-content/uploads/2023/11/yahoo.svg"
-          alt=""
-        />
+        <img src="landing-page/companies/crypto_news.svg" alt="" />
+
+        <img src="landing-page/companies/marketwatch.svg" alt="" />
+
+        <img src="landing-page/companies/morningstar.svg" alt="" />
+
+        <img src="landing-page/companies/news_btc.svg" alt="" />
+
+        <img src="landing-page/companies/yahoo.svg" alt="" />
       </Marquee>
     </div>
   );

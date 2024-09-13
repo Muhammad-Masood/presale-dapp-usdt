@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 export default function Page() {
   return (
     <div className="bg-white text-[#333333]  mx-auto md:px-24 py-8">

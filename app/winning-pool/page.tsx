@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import {
   Table,
@@ -20,6 +21,9 @@ import {
 } from "react-accessible-accordion";
 
 import Faq from "react-faq-component";
+
+import * as Dialog from "@radix-ui/react-dialog";
+import { FaWindowClose } from "react-icons/fa";
 const styles = {
   // styles for the FAQ component
   bgColor: "bg-white",
@@ -125,7 +129,7 @@ export default function Page() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-[4.375rem]"
+          className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-4xl md:text-[4.375rem]"
         >
           Win{" "}
           <span className="text-[#FFD700]">
@@ -182,11 +186,11 @@ export default function Page() {
         </div>
       </section>
       <section className="h-fit bg-[#27283C]">
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-[4.375rem]">
+        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-4xl md:text-[4.375rem]">
           Winning Pool
         </h1>
 
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds underline italic text-[#FF94FF]  text-center text-[2.813rem]">
+        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds underline italic text-[#FF94FF]  text-center text-2xl text-[2.813rem]">
           🔥 Join $1,5 Million Quest 🔥
         </h1>
         <div className="text-white px-4  mx-auto max-w-6xl ">
@@ -240,7 +244,7 @@ export default function Page() {
           </h2>
 
           <p className="font-roborto text-base">
-            DDo you want to use your $WID tokens, acquired for free through the
+            Do you want to use your $WID tokens, acquired for free through the
             referral links to exceed the “Minimum Participation” value, and make
             them eligible to participate in the prize draw? It’s very easy:
             first, you must validate them before the end of each stage; second,
@@ -250,11 +254,38 @@ export default function Page() {
             $WID will be enough. This action is necessary and must always be
             done after exceeding the minimum value for participation, before the
             end of each stage and for all the stages of the presale in which you
-            want to participate for the prize draw. If the value of the $WID
-            tokens purchased already exceeds the “Minimum Participation”, no
-            validation action is needed to participate for the prize draw,
-            because everything will be validated automatically by the smart
-            contract.
+            want to participate for the prize draw.
+            <Dialog.Root>
+              <Dialog.Trigger asChild>
+                <button className="text-pink-800">[Example image].</button>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
+                <Dialog.Content className="bg-white p-2 data-[state=open]:animate-contentShow  fixed top-[50%] left-[50%] max-h-[85vh] w-[60vw] max-w-max translate-x-[-50%] translate-y-[-50%]    shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+                  <Dialog.Description>
+                    <p className="text-center mb-4 text-[0.813rem] font-bold font-roborto text-[#3D2468]">
+                      1. Exceeds the value of “Min. Participation” {">"} 2.
+                      Purchase new $WID tokens {">"} 3. Enter the drawing and
+                      Good Luck!
+                    </p>
+                    <img
+                      src="/winning-pool/img.png"
+                      className="w-full z-50 relative"
+                      alt="Example image"
+                    />
+                    <p className="text-center font-roborto text-[0.688rem] text-[#3D2468]">
+                      * If the value of “Your Purchased $WID” already exceeds
+                      the value of “Min. Participation” you do not need to take
+                      any action to participate in the drawing
+                    </p>
+                  </Dialog.Description>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
+            If the value of the $WID tokens purchased already exceeds the
+            “Minimum Participation”, no validation action is needed to
+            participate for the prize draw, because everything will be validated
+            automatically by the smart contract.
           </p>
           <h2 className="text-[1.75rem] py-2 font-bold">
             What Are You Waiting For?
@@ -281,14 +312,16 @@ export default function Page() {
               }}
             />
             <motion.button className="relative font-bold font-poppins  shadow-sm  bg-bg-gradientText4 p-3 px-8 text-[#3D214B]  text-base rounded-3xl">
-              $ {"  "}
-              Buy WID
+              <a href="https://widcoin.net/">
+                $ {"  "}
+                Buy WID
+              </a>
             </motion.button>
           </div>
         </div>
       </section>
       <section className="h-fit bg-[#222330] py-8 ">
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds  italic text-[#6EC1E4]  text-center text-[2.813rem]">
+        <h1 className="relative leading-none font-semibold  font-tradeWinds  italic text-[#6EC1E4]  text-center text-[2.813rem]">
           Terms & Conditions
         </h1>
         <div className="py-8 px-6">
@@ -341,7 +374,12 @@ export default function Page() {
                     Widcoin! **Share your Referral Link along with an
                     Advertising Banner{" "}
                     <span className="text-pink-700 hover:text-[#2A4867]">
-                      {"<Download Banners👆>"}
+                      <a
+                        href="https://presale.widcoin.net/banner/"
+                        target="_blank"
+                      >
+                        {"<Download Banners👆>"}
+                      </a>
                     </span>
                   </div>
                 </p>
@@ -439,7 +477,7 @@ export default function Page() {
             </AccordionItem>
           </Accordion>
         </div>
-        <div className="text-center text-[#6C7975] font-roborto px-36">
+        <div className="text-center text-[#6C7975] font-roborto px-12 md:px-36">
           <span className="font-bold underline">Disclaimer:</span>{" "}
           Cryptocurrency may be unregulated in your jurisdiction. The value of
           cryptocurrencies may fluctuate. Profits may be subject to capital

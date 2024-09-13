@@ -4,8 +4,9 @@ import { Button } from "../shared";
 const Hero7: React.FC = () => {
   return (
     <section className="bg-bg-gradientHero3  body-font">
-      <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
-        <div className="pl-12 w-3/5 mb-10 md:mb-0">
+      <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+        <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
+        <div className="md:pl-12 w-3/5 mx-auto mb-10 md:mb-0">
           <img
             className="object-cover  object-center rounded"
             alt="hero"
@@ -14,7 +15,7 @@ const Hero7: React.FC = () => {
         </div>
         <div className="  relative flex flex-col md:items-start md:text-left items-center text-center">
           <img
-            className="absolute right-14 -top-32 w-1/5"
+            className="absolute hidden md:block right-14 -top-32 w-1/5"
             src="/landing-page/hero7-icon.png"
             alt=""
           />
@@ -36,7 +37,7 @@ const Hero7: React.FC = () => {
             with <span className="font-bold">zero transaction fees.</span>
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            $ Buy WID
+            <a href="https://widcoin.net/">$ Buy WID</a>
           </Button>
         </div>
       </div>

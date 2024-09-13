@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      zIndex: {
+        "9999": "9999",
+      },
       backgroundImage: {
         "bg-button": "linear-gradient(155deg, #B07BFE 0%, #FFD178 100%)",
         "bg-card":
@@ -27,10 +30,19 @@ const config = {
         "bg-gradientText2": "linear-gradient(155deg, #6EC1E4 0%, #FF94FF 100%)",
         "bg-gradientText3": "linear-gradient(180deg, #6EC1E4 0%, #3D214B 100%)",
         "bg-gradientText4": "linear-gradient(238deg, #FFD178 0%, #B07BFE 100%)",
+        "bg-gradientText5": "linear-gradient(155deg, #27283C 0%, #8E054B 100%)",
         "bg-hero": "url('/landing-page/hero.png')",
         "bg-hero10": "url('/landing-page/hero10-bg.png')",
         "bg-winningPool": "url('/winning-pool/bg.jpg')",
         "bg-gradientHero": "linear-gradient(174deg, #3D214B 0%, #222330 100%)",
+
+        "bg-gradient":
+          "linear-gradient(232deg, rgba(34, 35, 48, 0.8) 0%, #6DD8D4 100%)",
+
+        "bg-gradient1": "linear-gradient(299deg, #222330 73%, #3D214B 100%)",
+
+        "bg-gradient2":
+          "radial-gradient(at top left, #3D214B 42%, #6DD8D4 100%)",
 
         "bg-heroEcos": "url('/ecosystem/widnet.png')",
         "bg-gradientHero2":
@@ -41,8 +53,7 @@ const config = {
 
         "bg-gradientHero4":
           "linear-gradient(143deg, #222330 85%, #6DD8D4 100%)",
-        "bg-gradientHero5":
-          "linear-gradient(180deg, #222330 0%, #3D214B 50%, #222330 75%, #3D214B 100%)",
+        "bg-gradientHero5": "linear-gradient(180deg, #222330 0%, #3D214B 50%)",
         "bg-transparent": "transparent",
       },
       fontFamily: {

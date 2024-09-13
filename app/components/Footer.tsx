@@ -6,6 +6,7 @@ import { FaTelegram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const Footer = () => {
   const controls = useAnimation();
@@ -37,18 +38,24 @@ const Footer = () => {
       <div className="w-full max-w-screen-xl mx-auto p-8 md:py-8">
         <hr className="my-6 border-black sm:mx-auto  lg:my-8" />
         <div className="grid grid-cols-1 gap-6 md:gap-0 items-center  md:grid-cols-3 justify-items-center3 ">
-          <div>
+          <div className="space-y-4">
             <div className="flex gap-4">
               <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                <FaXTwitter size="20" color="white" />
+                <a href="https://x.com/xwidcoin" target="_blank">
+                  <FaXTwitter size="20" color="white" />
+                </a>
               </button>
 
               <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                <FaTelegram size="20" color="white" />
+                <a href="https://t.me/widcointoken" target="_blank">
+                  <FaTelegram size="20" color="white" />
+                </a>
               </button>
 
               <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
-                <FaYoutube size="20" color="white" />
+                <a href="http://www.youtube.com/@widcointoken" target="_blank">
+                  <FaYoutube size="20" color="white" />
+                </a>
               </button>
             </div>
             <ul className="font-roborto text-[#7A797A] text-[1.063rem]">
@@ -70,33 +77,39 @@ const Footer = () => {
             boundaries of digital ventures, creating a dynamic network that not
             only generates profits but also empowers a community of visionaries.
           </motion.div>
-          <img
-            className="w-2/3 rounded-lg  justify-self-center"
-            src="/winaudit.png"
-            alt="Certified Smart Contract"
-          />
+          <a
+            href="https://github.com/TechRate/Smart-Contract-Audits/blob/main/February_2024/WidCoin.pdf"
+            target="_blank"
+            className="w-2/3   justify-self-center"
+          >
+            <img
+              src="/winaudit.png"
+              className="rounded-lg"
+              alt="Certified Smart Contract"
+            />
+          </a>
         </div>
       </div>
 
       <div className="bg-white w-full">
-        <ul className="flex flex-row  h-12 gap-4 justify-center items-center font-roborto text-[#54595F] text-base ">
+        <ul className="flex flex-row  h-12 gap-4 justify-center items-center font-roborto text-[#54595F] text-[0.875rem] ">
           <li className="border-r border-[#54595F] pr-2 border-1">
-            Terms of Use
+            <Link href="terms-of-use">Terms of Use</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            Privacy Policy
+            <Link href="privacy-policy">Privacy Policy</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            Cookies Policy
+            <Link href="cookies-policy">Cookies Policy</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            Contact US
+            <Link href="contact-us">Contact US</Link>
           </li>
         </ul>
       </div>
 
       <div className="text-base h-12   text-center">
-        <span className=" pt-4 leading-6  font-poppins font-semibold text-gray-300  ">
+        <span className="pt-4 leading-6  font-poppins font-semibold text-gray-300  ">
           Copyright © 2024 All rights reserved WIDCOIN Network LLC –
           info@widcoin.net
         </span>

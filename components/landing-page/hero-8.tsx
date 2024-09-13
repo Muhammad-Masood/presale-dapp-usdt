@@ -2,9 +2,10 @@ import { Card } from "../ui/card";
 
 const Hero8: React.FC = () => {
   return (
-    <section className="bg-bg-gradientHero3">
+    <section className="relative bg-bg-gradientHero3">
+      <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
       <div className="grid px-12 py-24 md:grid-cols-3 gap-4 grid-cols-1">
-        <Card className="bg-transparent border-[#6DD8D4] p-8 rounded-3xl">
+        <Card className="bg-[#27283C] border-[#6DD8D4] p-8 rounded-3xl">
           <div className="flex flex-col">
             <h1 className="text-[2rem] font-bold text-[#6DD8D4]">1.</h1>
             <h3 className="font-poppins space-y-6 font-bold text-[1.438rem] text-white">
@@ -17,7 +18,7 @@ const Hero8: React.FC = () => {
           </div>
         </Card>
 
-        <Card className="bg-transparent border-[#FFD178] p-8 rounded-3xl">
+        <Card className="bg-[#2C223A] border-[#FFD178] p-8 rounded-3xl">
           <div className="flex flex-col">
             <h1 className="text-[2rem] font-bold text-[#FFD178]">2.</h1>
             <h3 className="font-poppins space-y-6 font-bold text-[1.438rem] text-white">
@@ -30,7 +31,7 @@ const Hero8: React.FC = () => {
           </div>
         </Card>
 
-        <Card className="bg-transparent border-[#FF94FF] p-8 rounded-3xl">
+        <Card className="bg-[#27283C] border-[#FF94FF] p-8 rounded-3xl">
           <div className="flex flex-col">
             <h1 className="text-[2rem] font-bold text-[#FF94FF]">1.</h1>
             <h3 className="font-poppins space-y-6 font-bold text-[1.438rem] text-white">
