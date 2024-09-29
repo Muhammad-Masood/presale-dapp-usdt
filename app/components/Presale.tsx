@@ -250,12 +250,8 @@ const Presale = ({
     return () => clearInterval(interval);
   }, [airdropEndTime]);
 
-  const prepareAndSendTransaction = async () => {
+  const prepareAndSendTransaction = async (totalWIDCost?: bigint) => {
     const wicAmountDec = toWei(wicAmount);
-    // const totalWICCost = await presaleContractEthers.calculateTotalTokensCost(
-    //   wicAmountDec,
-    //   selectedPaymentMode
-    // );
     const transaction = prepareContractCall({
       contract,
       method: "function buyToken(uint256 amount, uint8 mode,address refferal)",
@@ -266,7 +262,7 @@ const Presale = ({
           ? "0x0000000000000000000000000000000000000000"
           : referral,
       ],
-      // value: selectedPaymentMode !== 0 ? 0 : totalWICCost,
+      value: totalWIDCost,
     });
     sendTransaction(transaction);
   };
@@ -287,12 +283,21 @@ const Presale = ({
             selectedPaymentMode
           );
 
-        // if (selectedPaymentMode === 1) {
         if (typeof window !== "undefined") {
           const provider = new ethers.BrowserProvider((window as any).ethereum);
           const signer = await provider.getSigner();
+          // BNB Payment
+          if (selectedPaymentMode === 1) {
+            const totalWIDCost =
+              await presaleContractEthers.calculateTotalTokensCost(
+                wicAmountDec,
+                selectedPaymentMode
+              );
+            await prepareAndSendTransaction(totalWIDCost);
+            return;
+          }
           const tokenSignerContract = new ethers.Contract(
-            selectedPaymentMode === 1 ? usdt_address : usdc_address,
+            selectedPaymentMode === 2 ? usdt_address : usdc_address,
             erc20_abi,
             signer
           );
@@ -311,9 +316,6 @@ const Presale = ({
               "Please wait for the confirmation and purchase transaction.",
           });
         }
-        // } else {
-        //   await prepareAndSendTransaction();
-        // }
       } catch (error) {
         toast({
           title: "Error",
@@ -365,7 +367,7 @@ const Presale = ({
           </p>
         </div>
         <ul className="flex justify-center space-x-6 mb-5 pt-3">
-          {["USDC(BEP-20)", "USDT(BEP-20)"].map((item, index) => (
+          {["USDC(BEP-20)", "BNB", "USDT(BEP-20)"].map((item, index) => (
             <li
               key={index}
               className="nav-item bg-purple-800 rounded-md shadow-lg"
@@ -382,6 +384,8 @@ const Presale = ({
                   src={
                     item === "USDC(BEP-20)"
                       ? "/usdc(bep-20).png"
+                      : item === "BNB"
+                      ? "/bnb.png"
                       : "/usdt(bep-20).png"
                   }
                   alt={`${item}_logo`}
