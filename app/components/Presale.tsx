@@ -402,6 +402,15 @@ const Presale = ({
                         (BEP-20)
                       </span>
                     </div>
+                  ) : item === "BNB" ? (
+                    <div className="flex flex-col">
+                      <p className="text-xs lg:text-md md:text-sm font-bold tracking-wide">
+                        {item}
+                      </p>
+                      {/* <span className="text-xs lg:text-sm font-normal lg:font-bold md:font-medium">
+                        (BEP-20)
+                      </span> */}
+                    </div>
                   ) : (
                     <div className="flex flex-col">
                       <p className="text-xs lg:text-md md:text-sm font-bold tracking-wide">
