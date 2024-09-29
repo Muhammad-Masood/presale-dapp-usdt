@@ -1,5 +1,4 @@
 "use client";
-import { AlertCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function Page() {

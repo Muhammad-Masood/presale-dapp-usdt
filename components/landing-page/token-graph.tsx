@@ -62,7 +62,7 @@ const TokenGraph = () => {
   }, [inView]);
 
   return (
-    <section ref={ref} id="tokenomics" className="relative bg-[#222330] py-6">
+    <section id="tokenmics" ref={ref} className="relative bg-[#222330] py-6">
       <div className=" bg-bg-gradient1 absolute inset-0 bg-contain bg-no-repeat opacity-50 "></div>
       <div className="relative z-10 text-center py-3 px-4 md:px-14 text-white">
         <h2 className="font-poppins text-secondary font-bold text-[2rem] md:text-[3.625rem]">

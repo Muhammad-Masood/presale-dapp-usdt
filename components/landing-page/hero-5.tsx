@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../shared";
 
 const Hero5: React.FC = () => {
@@ -33,7 +34,7 @@ const Hero5: React.FC = () => {
             understanding and strategic approach.
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            <a href="https://widcoin.net/">$ Buy WID</a>
+            <Link href="/buy">$ Buy WID</Link>
           </Button>
         </div>
       </div>

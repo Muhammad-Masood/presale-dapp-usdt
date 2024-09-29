@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { Button } from "../shared";
 
 const Hero7: React.FC = () => {
@@ -37,7 +38,7 @@ const Hero7: React.FC = () => {
             with <span className="font-bold">zero transaction fees.</span>
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            <a href="https://widcoin.net/">$ Buy WID</a>
+            <Link href="/buy">$ Buy WID</Link>
           </Button>
         </div>
       </div>

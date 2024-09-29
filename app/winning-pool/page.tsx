@@ -3,7 +3,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -19,19 +18,10 @@ import {
   AccordionItemPanel,
   AccordionItemState,
 } from "react-accessible-accordion";
-
-import Faq from "react-faq-component";
+import { useInView } from "react-intersection-observer";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { FaWindowClose } from "react-icons/fa";
-const styles = {
-  // styles for the FAQ component
-  bgColor: "bg-white",
-  titleTextColor: "text-2xl font-bold text-gray-800",
-  rowTitleColor: "text-xl font-semibold text-gray-700",
-  rowContentColor: "text-base text-gray-600",
-  arrowColor: "text-gray-500",
-};
+import Link from "next/link";
 
 const stages = [
   { stage: "Stage 1", minParticipation: "$150", widwin: "$20,000" },
@@ -121,6 +111,23 @@ const HowItsWork = (expanded: boolean | undefined) => {
 };
 
 export default function Page() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const headingVariants = {
+    hidden: { scaleX: 1 },
+    visible: {
+      scaleX: [1, 1.2, 0.9, 1.1, 1],
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+      },
+    },
+  };
+
   return (
     <div>
       <section className="relative h-fit bg-cover bg-bg-winningPool">
@@ -133,7 +140,7 @@ export default function Page() {
         >
           Win{" "}
           <span className="text-[#FFD700]">
-            $1,5 Million <br /> in USDC and USDT <br />
+            $1,5 Million <br /> in BNB, USDC and USDT <br />
           </span>{" "}
           with Widcoin
         </motion.h1>
@@ -186,11 +193,17 @@ export default function Page() {
         </div>
       </section>
       <section className="h-fit bg-[#27283C]">
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-4xl md:text-[4.375rem]">
+        <motion.h1
+          ref={ref}
+          className="relative leading-none font-semibold z-10 font-tradeWinds text-white py-8 text-center text-4xl md:text-[4.375rem]"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={headingVariants}
+        >
           Winning Pool
-        </h1>
+        </motion.h1>
 
-        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds underline italic text-[#FF94FF]  text-center text-2xl text-[2.813rem]">
+        <h1 className="relative leading-none font-semibold z-10 font-tradeWinds underline italic text-[#FF94FF]  text-center text-2xl md:text-[2.813rem]">
           🔥 Join $1,5 Million Quest 🔥
         </h1>
         <div className="text-white px-4  mx-auto max-w-6xl ">
@@ -211,7 +224,7 @@ export default function Page() {
             As each presale stage concludes, our cutting-edge smart contract
             identifies wallets meeting the minimum participation threshold.
             Through a random selection process, one lucky wallet receives the
-            prize – the value of which is promptly delivered in USDC (BEP-20)
+            prize – the value of which is promptly delivered in BNB, USDC (BEP-20)
             and USDT (BEP-20). The winnings can be claimed at the end of each
             stage. Rest assured, our system is seamlessly managed by a smart
             contract deployed in the Blockchain, ensuring fairness and
@@ -240,54 +253,6 @@ export default function Page() {
           </p>
 
           <h2 className="text-[1.75rem] py-2 font-bold">
-            How to use free “Referral Rewards” tokens in the Winning Pool?
-          </h2>
-
-          <p className="font-roborto text-base">
-            Do you want to use your $WID tokens, acquired for free through the
-            referral links to exceed the “Minimum Participation” value, and make
-            them eligible to participate in the prize draw? It’s very easy:
-            first, you must validate them before the end of each stage; second,
-            when the sum of purchased tokens + free tokens exceeds the minimum
-            value for participation, all you have to do is validate your
-            participation for the prize draw by purchasing new tokens, even one
-            $WID will be enough. This action is necessary and must always be
-            done after exceeding the minimum value for participation, before the
-            end of each stage and for all the stages of the presale in which you
-            want to participate for the prize draw.
-            <Dialog.Root>
-              <Dialog.Trigger asChild>
-                <button className="text-pink-800">[Example image].</button>
-              </Dialog.Trigger>
-              <Dialog.Portal>
-                <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
-                <Dialog.Content className="bg-white p-2 data-[state=open]:animate-contentShow  fixed top-[50%] left-[50%] max-h-[85vh] w-[60vw] max-w-max translate-x-[-50%] translate-y-[-50%]    shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-                  <Dialog.Description>
-                    <p className="text-center mb-4 text-[0.813rem] font-bold font-roborto text-[#3D2468]">
-                      1. Exceeds the value of “Min. Participation” {">"} 2.
-                      Purchase new $WID tokens {">"} 3. Enter the drawing and
-                      Good Luck!
-                    </p>
-                    <img
-                      src="/winning-pool/img.png"
-                      className="w-full z-50 relative"
-                      alt="Example image"
-                    />
-                    <p className="text-center font-roborto text-[0.688rem] text-[#3D2468]">
-                      * If the value of “Your Purchased $WID” already exceeds
-                      the value of “Min. Participation” you do not need to take
-                      any action to participate in the drawing
-                    </p>
-                  </Dialog.Description>
-                </Dialog.Content>
-              </Dialog.Portal>
-            </Dialog.Root>
-            If the value of the $WID tokens purchased already exceeds the
-            “Minimum Participation”, no validation action is needed to
-            participate for the prize draw, because everything will be validated
-            automatically by the smart contract.
-          </p>
-          <h2 className="text-[1.75rem] py-2 font-bold">
             What Are You Waiting For?
           </h2>
 
@@ -312,16 +277,16 @@ export default function Page() {
               }}
             />
             <motion.button className="relative font-bold font-poppins  shadow-sm  bg-bg-gradientText4 p-3 px-8 text-[#3D214B]  text-base rounded-3xl">
-              <a href="https://widcoin.net/">
+              <Link href="/buy">
                 $ {"  "}
                 Buy WID
-              </a>
+              </Link>
             </motion.button>
           </div>
         </div>
       </section>
       <section className="h-fit bg-[#222330] py-8 ">
-        <h1 className="relative leading-none font-semibold  font-tradeWinds  italic text-[#6EC1E4]  text-center text-[2.813rem]">
+        <h1 className="relative leading-none font-semibold  font-tradeWinds  italic text-[#6EC1E4]  text-center text-4xl md:text-[2.813rem]">
           Terms & Conditions
         </h1>
         <div className="py-8 px-6">
@@ -374,12 +339,7 @@ export default function Page() {
                     Widcoin! **Share your Referral Link along with an
                     Advertising Banner{" "}
                     <span className="text-pink-700 hover:text-[#2A4867]">
-                      <a
-                        href="https://presale.widcoin.net/banner/"
-                        target="_blank"
-                      >
-                        {"<Download Banners👆>"}
-                      </a>
+                      <Link href="/banner">{"<Download Banners👆>"}</Link>
                     </span>
                   </div>
                 </p>
@@ -459,7 +419,7 @@ export default function Page() {
                         <ul className="list-disc mt-4 pl-20">
                           <li>
                             Winnings, a percentage of the total collected
-                            amount, are automatically distributed in USDC
+                            amount, are automatically distributed in BNB, USDC
                             (BEP-20) and USDT (BEP-20) to the selected wallet.
                           </li>
                         </ul>

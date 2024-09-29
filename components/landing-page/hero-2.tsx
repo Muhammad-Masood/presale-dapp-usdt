@@ -1,3 +1,6 @@
+"use client"
+
+import Link from "next/link";
 import { Button } from "../shared";
 
 const Hero2: React.FC = () => {
@@ -31,11 +34,11 @@ const Hero2: React.FC = () => {
             driving growth, community engagement, and seamless integration
             across diverse platforms.
           </p>
-          <a href="https://widcoin.net/">
+          <Link href={"/buy"}>
             <Button className="" size={"md"} color={"primary"}>
               $ Buy WID
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

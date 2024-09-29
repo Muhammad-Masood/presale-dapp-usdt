@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { Button } from "../shared";
 
 const Hero3: React.FC = () => {
@@ -33,11 +34,11 @@ const Hero3: React.FC = () => {
             governance, driving Widcoin towards a future shaped by its dedicated
             community.
           </p>
-          <a href="https://widcoin.net/">
+          <Link href="/buy">
             <Button className="" size={"md"} color={"primary"}>
               $ Buy WID
             </Button>
-          </a>
+          </Link>
         </div>
 
         <div className="mx-auto w-3/4 mb-10 md:mb-0">

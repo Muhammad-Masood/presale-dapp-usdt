@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { Button } from "../shared";
 
 const Hero9: React.FunctionComponent = () => {
   return (
     <section className="bg-bg-gradientHero3  body-font">
-      <h1 className="text-4xl md:text-[3.125rem] mt-2 md:mt-0 font-bold font-albertSans text-center text-white">
+      <h1 className="text-4xl md:text-[3.125rem] pt-4 md:pt-7 md:mt-0 font-bold font-albertSans text-center text-white">
         Presale Details and Onboarding:
       </h1>
       <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
@@ -19,13 +20,13 @@ const Hero9: React.FunctionComponent = () => {
                 {"{"}widcoin.net{"}"}.
               </a>
             </span>
-            Easy transactions with USDC (BEP-20) or USDT (BEP-20) via a
+            Easy transactions with BNB, USDC (BEP-20) or USDT (BEP-20) via a
             user-friendly form. Secure smart contract ensures token release
             post-presale. Newcomers benefit from MetaMask setup guidance. Start
             your journey into the Widcoin ecosystem today!
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            <a href="https://widcoin.net/">$ Buy WID</a>
+            <Link href="/buy">$ Buy WID</Link>
           </Button>
         </div>
 

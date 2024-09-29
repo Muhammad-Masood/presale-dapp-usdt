@@ -8,18 +8,20 @@ import { motion } from "framer-motion";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdClose } from "react-icons/io";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const OpenModalToken = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <li className="bg-bg-gradientText3  rounded-xl  px-4">
+        <li className="bg-bg-gradientText3 cursor-pointer mt-4  rounded-xl mx-4 py-2 md:py-4  px-4">
           + Double the tokens with the Airdrop (x2)
         </li>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
-        <Dialog.Content className="data-[state=open]:animate-contentShow z-20 p-4 fixed top-[50%] left-[50%] max-h-[85vh]  max-w-[650px] translate-x-[-50%] translate-y-[-50%]  bg-white  shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+        <Dialog.Content className="data-[state=open]:animate-contentShow z-50 p-4 fixed top-[50%] left-[50%] max-h-[85vh]  max-w-[650px] translate-x-[-50%] translate-y-[-50%]  bg-white  shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <div className="grid-cols-1 gap-2 pt-4 md:gap-4 md:grid-cols-2 grid">
             <div>
               <img src="/landing-page/airdrop.png" alt="" />
@@ -52,11 +54,13 @@ const OpenModalToken = () => {
 };
 
 const Hero1 = () => {
+  const searchParams = useSearchParams();
+  const ref = searchParams.get("ref");
   return (
     <div className="bg-bg-gradientHero ">
-      <section className=" container   h-fit   ">
-        <div className="md:bg-bg-hero bg-cover">
-          <div className="grid p-6 md:p-9 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
+      <section className="bg-bg-hero bg-top bg-cover container   h-fit   ">
+        <div className="">
+          <div className="grid p-0 md:p-6 pt-6 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
             <div className="">
               <div className="flex gap-4">
                 <button className="hover:bg-[#69B1D4] bg-[#91B1D4]  p-4 rounded-sm">
@@ -95,7 +99,7 @@ const Hero1 = () => {
                 </p>
               </div>
 
-              <div className="flex gap-8 font-nunito mt-4 md:ml-8 text-white  p-4">
+              <div className="flex gap-12 font-nunito mt-4 md:ml-8 text-white  p-4">
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
                     <a
@@ -119,7 +123,7 @@ const Hero1 = () => {
                 </JitterText>
               </div>
             </div>
-            <div className="px-2 md:px-12 ">
+            <div className="px-0 md:px-0 md:ml-24 ">
               <Card className="flex space-y-2 rounded-2xl bg-bg-card text-white  flex-col items-center">
                 <h2 className="font-poppins pt-2 font-bold text-2xl md:text-[2.5rem]">
                   Presale is Live
@@ -131,15 +135,15 @@ const Hero1 = () => {
                   src="/landing-page/hero-avatar.png"
                   alt=""
                 />
-                <h3 className="mt-4 text-center bg-bg-gradientText px-8 rounded-md text-[1.188rem] font-poppins">
+                <h3 className="mt-4 text-center bg-bg-gradientText px-4 md:py-2  md:px-8 rounded-md text-xs md:text-[1.188rem] font-poppins">
                   BUY BEFORE NEXT STAGE PRICE INCREASE
                 </h3>
-                <h3 className="text-lg md:text-2xl font-poppins font-bold">
+                <h3 className=" text-base md:text-2xl font-poppins font-bold">
                   ——— 1 $WID = $0.03 ———
                 </h3>
                 <div className="relative inline-block">
                   <motion.div
-                    className="absolute inset-0 bg-[#BF7838] rounded-lg filter blur-md"
+                    className="absolute inset-0 bg-white rounded-lg filter blur-md"
                     animate={{
                       opacity: [0.5, 1, 0.5],
                       scale: [1, 1.05, 1],
@@ -151,16 +155,16 @@ const Hero1 = () => {
                     }}
                   />
                   <motion.button
-                    whileHover={{ scale: 1.2 }}
-                    className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText5 p-2 px-6  text-secondary text-[1.625rem] rounded-xl"
+                    whileHover={{ scale: 1.2, background: "#252639" }}
+                    className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText5 p-2 px-6  text-secondary hover:bg-white text-[1.625rem] rounded-xl"
                   >
-                    <a href="https://widcoin.net/">BUY $WID</a>
+                    <Link href={`${ref ? `buy?ref=${ref}` : "buy"}`}>BUY $WID</Link>
                   </motion.button>
                 </div>
-                <ul className="text-[1.188rem] text-center pb-4 font-poppins font-bold">
+                <ul className="text-xs space-y-4 pt-2  md:text-[1.188rem] text-center pb-4 font-poppins font-bold">
                   <li>+ Launch Price = $0.15</li>
                   <li>+ Join $1,500,000 Quest</li>
-                  <li>+ Get 10% free tokens with Referral link</li>
+                  <li>+ Get 15% free tokens with Referral link</li>
                   <OpenModalToken />
                 </ul>
               </Card>

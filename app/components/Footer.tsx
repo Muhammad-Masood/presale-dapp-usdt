@@ -92,7 +92,7 @@ const Footer = () => {
       </div>
 
       <div className="bg-white w-full">
-        <ul className="flex flex-row  h-12 gap-4 justify-center items-center font-roborto text-[#54595F] text-[0.875rem] ">
+        <ul className="flex md:flex-row  h-12 md:gap-4 font-roborto text-[#54595F] text-[0.875rem] justify-center items-center  flex-wrap gap-x-3.5 ">
           <li className="border-r border-[#54595F] pr-2 border-1">
             <Link href="terms-of-use">Terms of Use</Link>
           </li>
@@ -108,8 +108,8 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className="text-base h-12   text-center">
-        <span className="pt-4 leading-6  font-poppins font-semibold text-gray-300  ">
+      <div className="md:text-base text-xs h-24   text-center px-6">
+        <span className="pt-4 leading-6   font-poppins font-semibold text-gray-300  ">
           Copyright © 2024 All rights reserved WIDCOIN Network LLC –
           info@widcoin.net
         </span>
