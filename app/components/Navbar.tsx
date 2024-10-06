@@ -8,6 +8,7 @@ import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import GoogleTranslate from "./GoogleTranslate";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -124,6 +125,7 @@ const Navbar = () => {
               </Link>
               <div className="block  py-2 rounded-md text-base font-medium text-white">
                 <ConnectButton client={client} wallets={wallets} />
+                <GoogleTranslate/>
               </div>
             </div>
           </div>

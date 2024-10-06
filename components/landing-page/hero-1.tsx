@@ -103,7 +103,7 @@ const Hero1 = () => {
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
                     <a
-                      href="https://presale.widcoin.net/wp-content/uploads/2024/08/WIDCOIN-Whitepaper.pdf"
+                      href="https://widcoin.net/whitepaper.pdf"
                       target="_blank"
                     >
                       White Paper
@@ -113,10 +113,7 @@ const Hero1 = () => {
 
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
-                    <a
-                      href="https://presale.widcoin.net/wp-content/uploads/2024/02/Audit-WidCoin.pdf"
-                      target="_blank"
-                    >
+                    <a href="https://widcoin.net/audit.pdf" target="_blank">
                       Audit report
                     </a>
                   </button>
@@ -158,7 +155,9 @@ const Hero1 = () => {
                     whileHover={{ scale: 1.2, background: "#252639" }}
                     className="relative font-alfaSlabOne  shadow-sm  bg-bg-gradientText5 p-2 px-6  text-secondary hover:bg-white text-[1.625rem] rounded-xl"
                   >
-                    <Link href={`${ref ? `buy?ref=${ref}` : "buy"}`}>BUY $WID</Link>
+                    <Link href={`${ref ? `buy?ref=${ref}` : "buy"}`}>
+                      BUY $WID
+                    </Link>
                   </motion.button>
                 </div>
                 <ul className="text-xs space-y-4 pt-2  md:text-[1.188rem] text-center pb-4 font-poppins font-bold">

@@ -13,28 +13,27 @@ interface IERC20Extended is IERC20 {
 }
 
 contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
-
     struct Stage {
-    uint8 stageNumber;
-    uint256 stageSupply;
-    uint256 supplySold;
-    uint256 tokenPrice;
-    uint256 minParticipationUSDT;
-    uint256 winningPool;
-    address winner;
-}
+        uint8 stageNumber;
+        uint256 stageSupply;
+        uint256 supplySold;
+        uint256 tokenPrice;
+        uint256 minParticipationUSDT;
+        uint256 winningPool;
+        address winner;
+    }
 
-struct RequestStatus {
-    bool fulfilled; // whether the request has been successfully fulfilled
-    bool exists; // whether a requestId exists
-    uint256[] randomWords;
-}
+    struct RequestStatus {
+        bool fulfilled; // whether the request has been successfully fulfilled
+        bool exists; // whether a requestId exists
+        uint256[] randomWords;
+    }
 
-enum PaymentMethod {
-    USDC,
-    USDT,
-    BNB
-}
+    enum PaymentMethod {
+        USDC,
+        BNB,
+        USDT
+    }
 
     uint8 private _currentStage;
     uint8 private _totalStages = 10;
@@ -46,7 +45,7 @@ enum PaymentMethod {
     uint40 private constant USD_PRECISION = 1e10;
     bool private _isTradingEnabled = false;
     bool private _isEmergencyPaused = false;
-    
+
     // Aidrop
     uint256 private _airdropEndTime;
 
@@ -74,14 +73,20 @@ enum PaymentMethod {
     // address private widCoinAddress = 0xb6CFc7b7aC28aad46773a9B1605e5992C61d8aDa;
     address private widCoinAddress = 0x8d2415C3736B775c33B23518025D89eAcB48eCEC;
 
-    mapping(uint8 stage => mapping(uint256 index => address buyer)) private stageToIndexOfBuyerEligibleForPool;
-    mapping(address buyer => bool hasMarkedEligible) private buyerToIsAlreadyEligible;
+    mapping(uint8 stage => mapping(uint256 index => address buyer))
+        private stageToIndexOfBuyerEligibleForPool;
+    mapping(address buyer => bool hasMarkedEligible)
+        private buyerToIsAlreadyEligible;
     mapping(uint8 stageNumber => Stage stage) private stageNumberToSpecs;
-    mapping(address buyer  => uint256 purchasedTokens) private buyerToPurchasedTokens;
+    mapping(address buyer => uint256 purchasedTokens)
+        private buyerToPurchasedTokens;
     mapping(address => uint256) private addressToRefferalTokens;
-    mapping(uint256 => RequestStatus) private s_requests; /* requestId --> requestStatus */
-    mapping(uint8 stage => mapping(address winner => bool hasClaimed)) private stageToHasWinnerClaimedPool;
-    mapping(address => bool hasClaimedPresaleTokens) private addressToHasClaimedPresaleTokens;
+    mapping(uint256 => RequestStatus)
+        private s_requests; /* requestId --> requestStatus */
+    mapping(uint8 stage => mapping(address winner => bool hasClaimed))
+        private stageToHasWinnerClaimedPool;
+    mapping(address => bool hasClaimedPresaleTokens)
+        private addressToHasClaimedPresaleTokens;
 
     // AggregatorV3Interface private usdtPriceFeed = AggregatorV3Interface(0xB97Ad0E74fa7d920791E90258A6E2085088b4320);
     // AggregatorV3Interface private usdcPriceFeed = AggregatorV3Interface(0x51597f405303C4377E36123cBc172b13269EA163);
@@ -90,13 +95,15 @@ enum PaymentMethod {
         AggregatorV3Interface(0xEca2605f0BCF2BA5966372C99837b1F182d3D620); // testnet
     AggregatorV3Interface private usdcPriceFeed =
         AggregatorV3Interface(0x90c069C4538adAc136E051052E14c1cD799C41B7); // testnet
-    AggregatorV3Interface private bnbPriceFeed = AggregatorV3Interface(0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526); // testnet
+    AggregatorV3Interface private bnbPriceFeed =
+        AggregatorV3Interface(0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526); // testnet
 
     // The gas lane to use, which specifies the maximum gas price to bump to.
     // For a list of available gas lanes on each network,
     // see https://docs.chain.link/docs/vrf/v2-5/supported-networks
     // bytes32 public keyHash = 0x8596b430971ac45bdf6088665b9ad8e8630c9d5049ab54b14dff711bee7c0e26; // 0x130dba50ad435d4ecc214aad0d5820474137bd68e7e77724144f27c3c377d3d4 BSC Mainnet
-    bytes32 public keyHash = 0x130dba50ad435d4ecc214aad0d5820474137bd68e7e77724144f27c3c377d3d4;
+    bytes32 public keyHash =
+        0x130dba50ad435d4ecc214aad0d5820474137bd68e7e77724144f27c3c377d3d4;
 
     error Unauthorized();
     error InvalidWinner();
@@ -109,20 +116,30 @@ enum PaymentMethod {
         uint256 amount,
         PaymentMethod paymentMethod
     );
-    event NextStageLaunched(uint8 previousStage, uint8 newStage, address winner);
+    event NextStageLaunched(
+        uint8 previousStage,
+        uint8 newStage,
+        address winner
+    );
     event RequestSent(uint256 requestId, uint32 numWords);
     event RequestFulfilled(uint256 requestId, uint256[] randomWords);
     event TradingEnabled(uint256 startTime);
-    event WinnerPoolClaimed(uint8 indexed stageNumber, address indexed winner, int256 winningPool);
+    event WinnerPoolClaimed(
+        uint8 indexed stageNumber,
+        address indexed winner,
+        int256 winningPool
+    );
     event AirdropOpened(uint256 indexed startTimestamp, uint256 endTimestamp);
     event BurnedWIDTokens(uint256 amount);
+    event PresaleTokensClaimed(address indexed user, uint256 amount);
 
     /**
     COORDINATOR 0xd691f04bc0C9a24Edb78af9E005Cf85768F694C9 //BSC Mainnet
     COORDINATOR 0xDA3b641D438362C440Ac5458c57e00a712b66700 //BSC Testnet
     **/
-    constructor(uint256 subscriptionId) VRFConsumerBaseV2Plus(0xDA3b641D438362C440Ac5458c57e00a712b66700)
-    {
+    constructor(
+        uint256 subscriptionId
+    ) VRFConsumerBaseV2Plus(0xDA3b641D438362C440Ac5458c57e00a712b66700) {
         uint96[10] memory stageAllocSupply = [
             50000000 ether,
             100000000 ether,
@@ -195,49 +212,57 @@ enum PaymentMethod {
         uint256 amount,
         PaymentMethod mode,
         address referral
-    ) public nonReentrant notEmergencyPaused {
+    ) public payable nonReentrant notEmergencyPaused {
         uint256 initAmount = amount;
         address contract_address = address(this);
-        if(block.timestamp < _airdropEndTime) {
-            amount = amount*2; // x2
+        if (block.timestamp < _airdropEndTime) {
+            amount = amount * 2; // x2
         }
         Stage storage stageSpecs = stageNumberToSpecs[_currentStage];
-        uint256 remainingSupply = stageSpecs.stageSupply-stageSpecs.supplySold;
-        if(amount > remainingSupply){
+        uint256 remainingSupply = stageSpecs.stageSupply -
+            stageSpecs.supplySold;
+        if (amount > remainingSupply) {
             amount = remainingSupply;
         }
-        uint256 payableAmount = calculateTotalTokensCost(initAmount, mode);
-        if(mode == PaymentMethod.BNB){
-            (bool success, ) = contract_address.call{value:payableAmount}('');
-            if(!success) revert PurchasePaymentUnsuccessfull();
+        uint256 payableAmount = calculateTotalTokensCost(initAmount, mode); 
+        if (mode == PaymentMethod.BNB) {
+            require(msg.value >= payableAmount, "InvalidFundsSentFromBuyer");
         } else {
-        address payableToken = mode == PaymentMethod.USDC?usdcAddress:usdtAddress;
+            address payableToken = mode == PaymentMethod.USDC
+                ? usdcAddress
+                : usdtAddress;
             IERC20(payableToken).transferFrom(
                 msg.sender,
                 contract_address,
                 payableAmount
             );
         }
-        if (referral != address(0) && msg.sender!=referral) {
+        if (referral != address(0) && msg.sender != referral) {
             uint256 refferalTokensAmount = (amount * _referralPercentage) /
                 PERCENTAGE_PRECISION;
             uint256 referrerTokensAmount = (amount * _referrerPercentage) /
                 PERCENTAGE_PRECISION;
             addressToRefferalTokens[referral] += refferalTokensAmount;
             addressToRefferalTokens[msg.sender] += referrerTokensAmount;
-            stageSpecs.supplySold+=(refferalTokensAmount+_referrerPercentage);
+            stageSpecs.supplySold += (refferalTokensAmount +
+                referrerTokensAmount);
         }
         buyerToPurchasedTokens[msg.sender] += amount;
         uint8 stageNumber = stageSpecs.stageNumber;
         uint256 userTotalTokens = buyerToPurchasedTokens[msg.sender] +
             addressToRefferalTokens[msg.sender];
-        if(userTotalTokens>0){
-        uint256 userTokensValueUSD = (userTotalTokens * stageSpecs.tokenPrice) /
-            1e18; // 8 dec -> 1e8
-        if (userTokensValueUSD >= stageSpecs.minParticipationUSDT && !buyerToIsAlreadyEligible[msg.sender]) {
-            stageToIndexOfBuyerEligibleForPool[stageNumber][eligibleBuyersCounter++] = msg.sender;
-            buyerToIsAlreadyEligible[msg.sender] = true;
-        }
+        if (userTotalTokens > 0) {
+            uint256 userTokensValueUSD = (userTotalTokens *
+                stageSpecs.tokenPrice) / 1e18; // 8 dec -> 1e8
+            if (
+                userTokensValueUSD >= stageSpecs.minParticipationUSDT &&
+                !buyerToIsAlreadyEligible[msg.sender]
+            ) {
+                stageToIndexOfBuyerEligibleForPool[stageNumber][
+                    eligibleBuyersCounter++
+                ] = msg.sender;
+                buyerToIsAlreadyEligible[msg.sender] = true;
+            }
         }
         // Stage check
         stageSpecs.supplySold += amount;
@@ -252,46 +277,71 @@ enum PaymentMethod {
 
     function claimTokens() external nonReentrant notEmergencyPaused {
         require(_isTradingEnabled, "Err: Trading not enabled.");
-        uint256 userBalance = buyerToPurchasedTokens[msg.sender]+addressToRefferalTokens[msg.sender];
-        IERC20Extended(widCoinAddress).transfer(msg.sender, userBalance);
+        uint256 userTokensBalance = buyerToPurchasedTokens[msg.sender] +
+            addressToRefferalTokens[msg.sender];
+        IERC20Extended(widCoinAddress).transfer(msg.sender, userTokensBalance);
+        addressToHasClaimedPresaleTokens[msg.sender] = true;
+        emit PresaleTokensClaimed(msg.sender, userTokensBalance);
     }
 
-    function claimWinnerPool(uint8 stageNumber) external nonReentrant onlyStageWinner(stageNumber) notEmergencyPaused {
+    function claimWinnerPool(
+        uint8 stageNumber
+    ) external nonReentrant onlyStageWinner(stageNumber) notEmergencyPaused {
         address winner = payable(msg.sender);
-        if(stageToHasWinnerClaimedPool[stageNumber][winner]) revert WinningPoolClaimedAlready();
+        if (stageToHasWinnerClaimedPool[stageNumber][winner])
+            revert WinningPoolClaimedAlready();
         Stage memory stage = stageNumberToSpecs[stageNumber];
         int256 winningPool = int256(stage.winningPool); // $$$
-        int256 winningPoolDec = winningPool * int40(USD_PRECISION);  // 18 dec
+        int256 winningPoolDec = winningPool * int40(USD_PRECISION); // 18 dec
         // Send the winning pool to the winner in BNB, USDC, and USDT, available in the contract.
-        int256 contractUSDTBalance = int256(IERC20(usdtAddress).balanceOf(address(this)));
+        int256 contractUSDTBalance = int256(
+            IERC20(usdtAddress).balanceOf(address(this))
+        );
         int256 USDT_USD = getLatestPrice(PaymentMethod.USDT);
-        int256 contractTotalUSDTBalanceInUSD = (contractUSDTBalance * USDT_USD)/1e8;  // 18 dec
+        int256 contractTotalUSDTBalanceInUSD = (contractUSDTBalance *
+            USDT_USD) / 1e8; // 18 dec
         // int256 remainingPoolToPayUSDC = winningPoolDec - contractTotalUSDTBalanceInUSD;
-        int256 remainingPoolToPay = winningPoolDec - contractTotalUSDTBalanceInUSD;
-        if(remainingPoolToPay <= 0 ){
-            IERC20(usdtAddress).transfer(winner, uint256(winningPoolDec));  // distribute all in USDT
-        } else { 
+        int256 remainingPoolToPay = winningPoolDec -
+            contractTotalUSDTBalanceInUSD;
+        if (remainingPoolToPay <= 0) {
+            IERC20(usdtAddress).transfer(winner, uint256(winningPoolDec)); // distribute all in USDT
+        } else {
             IERC20(usdtAddress).transfer(winner, uint256(contractUSDTBalance));
             int256 contractBNBBalance = int256(address(this).balance);
             int256 BNB_USD = getLatestPrice(PaymentMethod.BNB);
-            int256 contractTotalBNBBalanceInUSD = (contractBNBBalance * BNB_USD)/1e8;  // 18 dec
+            int256 contractTotalBNBBalanceInUSD = (contractBNBBalance *
+                BNB_USD) / 1e8; // 18 dec
             remainingPoolToPay -= contractTotalBNBBalanceInUSD;
-            if(remainingPoolToPay <= 0){
-                (bool success, ) = winner.call{value:uint256(remainingPoolToPay * 1e8 / BNB_USD)}('');
-                if(!success) revert PurchasePaymentUnsuccessfull();
+            if (remainingPoolToPay <= 0) {
+                (bool success, ) = winner.call{
+                    value: uint256((remainingPoolToPay * 1e8) / BNB_USD)
+                }("");
+                if (!success) revert PurchasePaymentUnsuccessfull();
             } else {
-                (bool success, ) = winner.call{value:uint256(contractBNBBalance)}('');
-                if(!success) revert PurchasePaymentUnsuccessfull();
-                int256 contractUSDCBalance = int256(IERC20(usdcAddress).balanceOf(address(this)));
+                (bool success, ) = winner.call{
+                    value: uint256(contractBNBBalance)
+                }("");
+                if (!success) revert PurchasePaymentUnsuccessfull();
+                int256 contractUSDCBalance = int256(
+                    IERC20(usdcAddress).balanceOf(address(this))
+                );
                 int256 USDC_USD = getLatestPrice(PaymentMethod.USDC);
-                int256 contractTotalUSDCBalanceInUSD = (contractUSDCBalance * USDC_USD)/1e8;  // 18 dec
-                int256 remainingPoolToPayUSDC = remainingPoolToPay - contractTotalUSDCBalanceInUSD;
+                int256 contractTotalUSDCBalanceInUSD = (contractUSDCBalance *
+                    USDC_USD) / 1e8; // 18 dec
+                int256 remainingPoolToPayUSDC = remainingPoolToPay -
+                    contractTotalUSDCBalanceInUSD;
                 // IERC20(usdcAddress).transfer(msg.sender, uint256(remainingPoolToPayUSDC));
                 if (remainingPoolToPayUSDC <= 0) {
-                    IERC20(usdcAddress).transfer(msg.sender, uint256(remainingPoolToPay * 1e8 / USDC_USD)); // Send remaining in USDC
+                    IERC20(usdcAddress).transfer(
+                        msg.sender,
+                        uint256((remainingPoolToPay * 1e8) / USDC_USD)
+                    ); // Send remaining in USDC
                 } else {
                     // Send all available USDC
-                    IERC20(usdcAddress).transfer(msg.sender, uint256(contractUSDCBalance));
+                    IERC20(usdcAddress).transfer(
+                        msg.sender,
+                        uint256(contractUSDCBalance)
+                    );
                 }
             }
         }
@@ -301,25 +351,31 @@ enum PaymentMethod {
 
     // admin functions
 
-    function enableTrading() external nonReentrant onlyOwner{
+    function enableTrading() external nonReentrant onlyOwner {
         _isTradingEnabled = true;
         emit TradingEnabled(block.timestamp);
     }
 
     // Temporary pause the presale
-    function pausePresale() external nonReentrant onlyOwner{
+    function pausePresale() external nonReentrant onlyOwner {
         _isEmergencyPaused = true;
     }
 
-    function enableAirdrop(uint256 endTime) external nonReentrant onlyOwner{
-        require(endTime > block.timestamp, "Airdrop end time should be in future");
+    function enableAirdrop(uint256 endTime) external nonReentrant onlyOwner {
+        require(
+            endTime > block.timestamp,
+            "Airdrop end time should be in future"
+        );
         _airdropEndTime = endTime;
         emit AirdropOpened(block.timestamp, endTime);
     }
 
-    function withdrawAdminFunds(uint256 amount, PaymentMethod mode) external nonReentrant onlyOwner {
+    function withdrawAdminFunds(
+        uint256 amount,
+        PaymentMethod mode
+    ) external nonReentrant onlyOwner {
         address payable owner = payable(owner());
-        if(mode == PaymentMethod.USDC){
+        if (mode == PaymentMethod.USDC) {
             IERC20(usdcAddress).transfer(owner, amount);
         } else {
             IERC20(usdtAddress).transfer(owner, amount);
@@ -329,12 +385,13 @@ enum PaymentMethod {
     // End/Finish the presale in case of no sale of tokens.
     function endPresale() external nonReentrant onlyOwner {
         uint256 totalSupplySold;
-        for (uint8 i = 1; i<=_currentStage; i++) 
-        {
+        for (uint8 i = 1; i <= _currentStage; i++) {
             Stage memory stage = stageNumberToSpecs[i];
-            totalSupplySold +=stage.supplySold;
+            totalSupplySold += stage.supplySold;
         }
-        uint256 contractWIDBalance = IERC20Extended(widCoinAddress).balanceOf(address(this));
+        uint256 contractWIDBalance = IERC20Extended(widCoinAddress).balanceOf(
+            address(this)
+        );
         uint256 supplyToBurn = contractWIDBalance - totalSupplySold;
         IERC20Extended(widCoinAddress).burn(supplyToBurn);
         emit BurnedWIDTokens(supplyToBurn);
@@ -354,14 +411,14 @@ enum PaymentMethod {
 
     // modifiers
 
-    modifier notEmergencyPaused () {
+    modifier notEmergencyPaused() {
         require(!_isEmergencyPaused, "Presale is temporarily paused!");
         _;
     }
 
     modifier onlyStageWinner(uint8 stageNumber) {
         Stage memory stage = stageNumberToSpecs[stageNumber];
-        if(msg.sender!=stage.winner) revert InvalidWinner();
+        if (msg.sender != stage.winner) revert InvalidWinner();
         _;
     }
 
@@ -429,8 +486,10 @@ enum PaymentMethod {
         s_requests[_requestId].fulfilled = true;
         s_requests[_requestId].randomWords = _randomWords;
         Stage storage stageSpecs = stageNumberToSpecs[_currentStage];
-        uint256 index = _randomWords[0]%eligibleBuyersCounter;
-        address winner = stageToIndexOfBuyerEligibleForPool[stageSpecs.stageNumber][index];
+        uint256 index = _randomWords[0] % eligibleBuyersCounter;
+        address winner = stageToIndexOfBuyerEligibleForPool[
+            stageSpecs.stageNumber
+        ][index];
         stageSpecs.winner = winner;
         emit NextStageLaunched(_currentStage, ++_currentStage, winner);
         emit RequestFulfilled(_requestId, _randomWords);
@@ -441,12 +500,13 @@ enum PaymentMethod {
     function getLatestPrice(PaymentMethod mode) public view returns (int) {
         AggregatorV3Interface priceFeed = getPriceFeed(mode);
         (
-            /** uint80 roundID **/, 
-            int price, 
-            /** uint startedAt **/,
-            /** uint timeStamp **/,
-            /** uint80 answeredInRound **/
-        ) = priceFeed.latestRoundData();
+            ,
+            /** uint80 roundID **/ int price,
+            ,
+            ,
+
+        ) = /** uint startedAt **/ /** uint timeStamp **/ /** uint80 answeredInRound **/
+            priceFeed.latestRoundData();
         return price;
     }
 
@@ -487,11 +547,7 @@ enum PaymentMethod {
     /**
     Returns the number of total users eligible for the winning pool.
      */
-    function totalEligibleUsersForWinningPool()
-        public
-        view
-        returns (uint256)
-    {
+    function totalEligibleUsersForWinningPool() public view returns (uint256) {
         return eligibleBuyersCounter;
     }
 
@@ -499,7 +555,10 @@ enum PaymentMethod {
         return addressToRefferalTokens[user];
     }
 
-    function stageToPoolClaimedByWinner(uint8 stageNumber, address winner) public view returns (bool) {
+    function stageToPoolClaimedByWinner(
+        uint8 stageNumber,
+        address winner
+    ) public view returns (bool) {
         return stageToHasWinnerClaimedPool[stageNumber][winner];
     }
 

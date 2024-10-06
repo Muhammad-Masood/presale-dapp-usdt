@@ -224,10 +224,10 @@ export default function Page() {
             As each presale stage concludes, our cutting-edge smart contract
             identifies wallets meeting the minimum participation threshold.
             Through a random selection process, one lucky wallet receives the
-            prize – the value of which is promptly delivered in BNB, USDC (BEP-20)
-            and USDT (BEP-20). The winnings can be claimed at the end of each
-            stage. Rest assured, our system is seamlessly managed by a smart
-            contract deployed in the Blockchain, ensuring fairness and
+            prize – the value of which is promptly delivered in BNB, USDC
+            (BEP-20) and USDT (BEP-20). The winnings can be claimed at the end
+            of each stage. Rest assured, our system is seamlessly managed by a
+            smart contract deployed in the Blockchain, ensuring fairness and
             transparency at every step. In addition, the random selection of the
             winner is done using{" "}
             <span className="font-bold">Chainlink VRF.</span> This process
@@ -331,13 +331,14 @@ export default function Page() {
                     Participating in our Referral link program is simple! It’s
                     akin to “digital word of mouth.” Connect your wallet used
                     for purchasing $WID tokens to the purchase form, click the
-                    “10% referral link” button, and receive a shareable link.
-                    When someone clicks your link and purchases, you receive 10%
-                    free tokens! For instance, if they buy 10,000 WID tokens,
-                    you earn 1000 WID tokens, automatically added to your
-                    balance. Don’t miss out on this opportunity to win big with
-                    Widcoin! **Share your Referral Link along with an
-                    Advertising Banner{" "}
+                    “15% referral link” button, and receive a shareable link.
+                    When someone clicks on your link and purchases, you both
+                    receive a percentage of free $WID tokens! The owner of the
+                    Referral link will receive 10% of the purchased value in
+                    $WID tokens while the user who used the Referral link to
+                    purchase $WID tokens will receive 5% more tokens. Don’t miss
+                    out on this opportunity to win big with Widcoin! **Share
+                    your Referral Link along with an Advertising Banner{" "}
                     <span className="text-pink-700 hover:text-[#2A4867]">
                       <Link href="/banner">{"<Download Banners👆>"}</Link>
                     </span>

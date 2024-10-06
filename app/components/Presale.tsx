@@ -251,12 +251,12 @@ const Presale = ({
   }, [airdropEndTime]);
 
   const prepareAndSendTransaction = async (totalWIDCost?: bigint) => {
-    const wicAmountDec = toWei(wicAmount);
+    const widAmountDec = toWei(wicAmount);
     const transaction = prepareContractCall({
       contract,
       method: "function buyToken(uint256 amount, uint8 mode,address refferal)",
       params: [
-        wicAmountDec,
+        widAmountDec,
         selectedPaymentMode,
         referral === null
           ? "0x0000000000000000000000000000000000000000"
@@ -264,6 +264,7 @@ const Presale = ({
       ],
       value: totalWIDCost,
     });
+    console.log(transaction);
     sendTransaction(transaction);
   };
 
@@ -277,44 +278,44 @@ const Presale = ({
       try {
         setIsApproving(true);
         const wicAmountDec = toWei(wicAmount);
-        const totalWICCost =
+        const totalWIDCost =
           await presaleContractEthers.calculateTotalTokensCost(
             wicAmountDec,
             selectedPaymentMode
           );
-
+        console.log(totalWIDCost);
         if (typeof window !== "undefined") {
           const provider = new ethers.BrowserProvider((window as any).ethereum);
           const signer = await provider.getSigner();
           // BNB Payment
           if (selectedPaymentMode === 1) {
-            const totalWIDCost =
-              await presaleContractEthers.calculateTotalTokensCost(
-                wicAmountDec,
-                selectedPaymentMode
-              );
+            // const totalWIDCost =
+            //   await presaleContractEthers.calculateTotalTokensCost(
+            //     wicAmountDec,
+            //     selectedPaymentMode
+            //   );
             await prepareAndSendTransaction(totalWIDCost);
-            return;
+          } else {
+            const tokenSignerContract = new ethers.Contract(
+              selectedPaymentMode === 2 ? usdt_address : usdc_address,
+              erc20_abi,
+              signer
+            );
+            const tx = await tokenSignerContract.approve(
+              presale_address,
+              totalWIDCost
+            );
+            console.log(tx);
+            setTimeout(() => {
+              console.log("processing after 10 seconds");
+              prepareAndSendTransaction();
+            }, 9000);
+            toast({
+              title: "Approval transaction processed successfully!",
+              description:
+                "Please wait for the confirmation and purchase transaction.",
+            });
           }
-          const tokenSignerContract = new ethers.Contract(
-            selectedPaymentMode === 2 ? usdt_address : usdc_address,
-            erc20_abi,
-            signer
-          );
-          const tx = await tokenSignerContract.approve(
-            presale_address,
-            totalWICCost
-          );
-          console.log(tx);
-          setTimeout(() => {
-            console.log("processing after 10 seconds");
-            prepareAndSendTransaction();
-          }, 9000);
-          toast({
-            title: "Approval transaction processed successfully!",
-            description:
-              "Please wait for the confirmation and purchase transaction.",
-          });
         }
       } catch (error) {
         toast({
@@ -370,14 +371,14 @@ const Presale = ({
           {["USDC(BEP-20)", "BNB", "USDT(BEP-20)"].map((item, index) => (
             <li
               key={index}
-              className="nav-item bg-purple-800 rounded-md shadow-lg"
+              className="nav-item rounded-md shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl"
             >
               <button
-                className={`nav-link flex items-center space-x-2 p-3 text-white ${
+                className={`nav-link flex items-center space-x-2 p-3 text-white transition-all duration-300 ease-in-out ${
                   selectedPaymentMode === index
                     ? "bg-purple-500"
                     : "bg-purple-800"
-                }`}
+                } hover:bg-purple-600`}
                 onClick={() => setSelectedPaymentMode(index)}
               >
                 <img
@@ -392,7 +393,7 @@ const Presale = ({
                   width={30}
                   height={30}
                 />
-                <b className="">
+                <b>
                   {item === "USDT(BEP-20)" ? (
                     <div className="flex flex-col">
                       <p className="text-xs lg:text-md md:text-sm font-bold tracking-wide">
@@ -405,11 +406,11 @@ const Presale = ({
                   ) : item === "BNB" ? (
                     <div className="flex flex-col">
                       <p className="text-xs lg:text-md md:text-sm font-bold tracking-wide">
-                        {item}
+                        BNB
                       </p>
-                      {/* <span className="text-xs lg:text-sm font-normal lg:font-bold md:font-medium">
+                      <span className="text-xs lg:text-sm font-normal lg:font-bold md:font-medium">
                         (BEP-20)
-                      </span> */}
+                      </span>
                     </div>
                   ) : (
                     <div className="flex flex-col">
@@ -426,11 +427,14 @@ const Presale = ({
             </li>
           ))}
         </ul>
-        {/* {selectedPaymentMode == 1 && ( */}
-        <div className="text-center mt-2 text-sm text-gray-400">
-          <p>Note: There will be a total of 2 transactions.</p>
-        </div>
-        {/* )} */}
+
+        {
+          <div className="text-center mt-2 text-sm text-gray-400">
+            {selectedPaymentMode !== 1 && (
+              <p>Note: There will be a total of 2 transactions.</p>
+            )}
+          </div>
+        }
         <div className="tab-content py-4">
           <div className={`tab-pane fade show active`}>
             <div className="space-y-2 mt-2 mb-4">
@@ -464,7 +468,11 @@ const Presale = ({
               >
                 {isPending || isApproving
                   ? isApproving
-                    ? "Approving..."
+                    ? `${
+                        selectedPaymentMode === 1
+                          ? "Processing..."
+                          : "Approving..."
+                      }`
                     : "Processing..."
                   : "Buy Now"}
               </button>
@@ -474,8 +482,8 @@ const Presale = ({
         <div className="presaleStats bg-yellow-500 bg-opacity-10 text-gray-200 p-6 rounded-lg shadow-inner">
           <div className="flex space-x-2 items-center justify-center my-5">
             <hr className="border-t border-white w-1/5" />
-            <h2 className="text-white text-md font-bold">
-              Your Purchased $WID ={" "}
+            <h2 className="text-white text-lg font-semibold">
+              Your $WID ={" "}
               {userWIDTokens
                 ? userWIDTokens.purchasedTokens.toString() +
                   " " +
@@ -489,6 +497,22 @@ const Presale = ({
                 : "Connect Wallet"}
             </h2>
             <hr className="border-t border-white w-1/5" />
+          </div>
+          <div className="statTop flex justify-between items-center pb-3">
+            <p className="text-sm md:text-base">Your Purchased $WID</p>
+            <p className="text-sm md:text-base">
+              {userWIDTokens
+                ? Number(userWIDTokens.referralTokens) +
+                  userWIDTokens.purchasedTokens +
+                  " $WID ($" +
+                  (
+                    (userWIDTokens.referralTokens +
+                      userWIDTokens.purchasedTokens) *
+                    data.stageDetails.tokenPrice
+                  ).toString() +
+                  ")"
+                : "---"}{" "}
+            </p>
           </div>
           <div className="statTop flex justify-between items-center border-b border-gray-600 pb-3">
             <p className="text-sm md:text-base">Your Referral Rewards</p>

@@ -214,7 +214,7 @@ export default function Page() {
               <a target="_blank" href="https://widlance.com/">
                 <img
                   className="size-[5.75rem]"
-                  src="/ecosystem/lopro4.png"
+                  src="/ecosystem/wl.jpg"
                   alt=""
                 />
               </a>
@@ -247,10 +247,10 @@ export default function Page() {
 
           <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#61CE70] border-2">
             <div className="flex flex-col gap-6 items-center">
-              <a target="_blank" href="">
+              <a target="_blank" href="https://widnet.network/">
                 <img
                   className="size-[5.75rem]"
-                  src="/ecosystem/lopro5.png"
+                  src="/ecosystem/wn.jpg"
                   alt=""
                 />
               </a>
@@ -258,7 +258,8 @@ export default function Page() {
                 WIDNET
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
-                Blockchain, Layer 2, EVM-Compatible, Fast & Secure transactions, Low gas
+                Blockchain, Layer 2, EVM-Compatible, Fast & Secure transactions,
+                Low gas
               </p>
               <div className="w-full  bg-gray-100  h-6 ">
                 <div
@@ -292,23 +293,21 @@ export default function Page() {
                 New Project
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
-                We are already thinking about a new project ... 
+                We are already thinking about a new project ...
               </p>
               <div className="w-full  bg-gray-100  h-6 ">
                 <div
-                  className="bg-secondary flex font-roborto px-2 text-[#43484D] justify-between items-center h-6  text-xs  text-center"
+                  className="bg-green-400 flex font-roborto px-2 text-[#43484D] items-center h-6 text-xs text-center space-x-2"
                   style={{ width: "100%" }}
                 >
-                  {/* <span>in progress</span> */}
-                  <span>👉🏽 Join the project ...</span>
+                  <span>👉🏽</span>
+                  <span>Join the project ...</span>
                 </div>
               </div>
             </div>
             <div className="space-y-4 text-[0.813rem] pb-2 mt-4 font-semibold">
-              <OpenModal value="⮃ Vote" />
-
-              <OpenModal value="📉 Polls" />
-
+              <OpenModal value="> Project <" />
+              <OpenModal value="> Timeshare Project <" />
               <OpenModal value="🎁 Rewards" />
               <OpenModal value="🔎 Details" />
             </div>
