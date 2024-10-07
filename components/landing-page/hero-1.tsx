@@ -57,7 +57,7 @@ const Hero1 = () => {
   const searchParams = useSearchParams();
   const ref = searchParams.get("ref");
   return (
-    <div className="bg-bg-gradientHero ">
+    <div className="bg-bg-gradientHero">
       <section className="bg-bg-hero bg-top bg-cover container   h-fit   ">
         <div className="">
           <div className="grid p-0 md:p-6 pt-6 grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">

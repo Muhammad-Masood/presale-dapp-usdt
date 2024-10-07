@@ -8,7 +8,8 @@ import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import GoogleTranslate from "./GoogleTranslate";
+import { bsc } from "thirdweb/chains";
+import TranslateComponent from "./TranslateComponent";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +65,13 @@ const Navbar = () => {
                   Claim
                 </Button>
               </Link>
-              <ConnectButton client={client} wallets={wallets} />
+              <ConnectButton
+                client={client}
+                wallets={wallets}
+                chain={bsc}
+                chains={[bsc]}
+              />
+              <TranslateComponent />
             </div>
             <div className="md:hidden flex items-center">
               <button
@@ -98,7 +105,9 @@ const Navbar = () => {
                     <Link href={`/ecosystem?ref=${referral}`}>EcoSystem</Link>
                   </li>
                   <li>
-                    <Link href={`/winning-pool?ref=${referral}`}>Winning Pool</Link>
+                    <Link href={`/winning-pool?ref=${referral}`}>
+                      Winning Pool
+                    </Link>
                   </li>
                   <li>
                     <Link href={`/#road-map?ref=${referral}`} shallow={true}>
@@ -124,8 +133,12 @@ const Navbar = () => {
                 </Button>
               </Link>
               <div className="block  py-2 rounded-md text-base font-medium text-white">
-                <ConnectButton client={client} wallets={wallets} />
-                <GoogleTranslate/>
+                <ConnectButton
+                  client={client}
+                  wallets={wallets}
+                  chain={bsc}
+                  chains={[bsc]}
+                />
               </div>
             </div>
           </div>

@@ -1,13 +1,13 @@
 "use client";
 import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.css";
-import Navbar from "./components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
-import Footer from "./components/Footer";
 import { Suspense, useEffect } from "react";
 import Sticky from "react-sticky-el";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function RootLayout({
   children,
@@ -83,7 +83,7 @@ export default function RootLayout({
     });
   }, []);
   return (
-    <html lang="en">
+    <html lang="ja">
       <head>
         <title>WidCoin Presale</title>
       </head>

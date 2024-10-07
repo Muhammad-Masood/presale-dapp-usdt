@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Button } from "../shared";
+import { useEffect } from "react";
 
 const Hero2: React.FC = () => {
+  
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
