@@ -9,8 +9,6 @@ import { Fragment } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { bsc } from "thirdweb/chains";
-import TranslateComponent from "./TranslateComponent";
-import { GoogleTranslate } from "./GoogleTranslate";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,8 +70,6 @@ const Navbar = () => {
                 chain={bsc}
                 chains={[bsc]}
               />
-              <GoogleTranslate prefLangCookie={"en"} />
-              {/* <TranslateComponent /> */}
             </div>
             <div className="md:hidden flex items-center">
               <button
