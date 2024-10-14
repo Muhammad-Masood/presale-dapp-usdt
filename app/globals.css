@@ -75,3 +75,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+body > .skiptranslate {
+  display: none !important;
+}
+
+iframe.skiptranslate {
+  display: none !important;
+}
+
+/* Hide the Google Translate toolbar container */
+#goog-gt-vt {
+  display: none !important;
+}
+
+/* Hide the entire Google Translate container */
+#goog-gt-vt,
+#goog-gt-vt iframe {
+  display: none !important;
+}

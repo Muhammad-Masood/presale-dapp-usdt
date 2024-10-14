@@ -8,6 +8,8 @@ import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import final from "@/public/final.png";
+import Image from "next/image";
 
 export default function RootLayout({
   children,
@@ -89,20 +91,26 @@ export default function RootLayout({
       </head>
       <ThirdwebProvider>
         <body className="w-full">
-          <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
-            <Sticky
-              stickyStyle={{
-                zIndex: 40,
-              }}
-            >
-              <Suspense>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center h-screen bg-black">
+                <Image src={final} alt="Loading..." className="animate-spin" width={50} height={50}/>{" "}
+              </div>
+            }
+          >
+            <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
+              <Sticky
+                stickyStyle={{
+                  zIndex: 40,
+                }}
+              >
                 <Navbar />
-              </Suspense>
-            </Sticky>
-            {children}
-            <Footer />
-            <Toaster />
-          </main>
+              </Sticky>
+              {children}
+              <Footer />
+              <Toaster />
+            </main>
+          </Suspense>
         </body>
       </ThirdwebProvider>
     </html>
