@@ -92,11 +92,11 @@ export default function RootLayout({
       <ThirdwebProvider>
         <body className="w-full">
           <Suspense
-            fallback={
-              <div className="flex items-center justify-center h-screen bg-black">
-                <Image src={final} alt="Loading..." className="animate-spin" width={50} height={50}/>{" "}
-              </div>
-            }
+          // fallback={
+          // <div className="flex items-center justify-center h-screen bg-black">
+          // <Image src={final} alt="Loading..." className="animate-spin" width={50} height={50}/>{" "}
+          // </div>
+          // }
           >
             <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
               <Sticky
