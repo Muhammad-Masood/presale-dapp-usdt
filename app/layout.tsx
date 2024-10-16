@@ -2,13 +2,13 @@
 import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Sticky from "react-sticky-el";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import final from "@/public/final.png";
+import final from "../public/final.png";
 import Image from "next/image";
 
 export default function RootLayout({
@@ -16,7 +16,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
     CookieConsent.run({
       categories: {
         necessary: {
@@ -85,19 +89,24 @@ export default function RootLayout({
     });
   }, []);
   return (
-    <html lang="ja">
+    <html lang="en">
       <head>
         <title>WidCoin Presale</title>
       </head>
       <ThirdwebProvider>
         <body className="w-full !top-0">
-          <Suspense
-          fallback={
-          <div className="flex items-center justify-center h-screen bg-black">
-          <Image src={final} alt="Loading..." className="animate-spin" width={120} height={120}/>{" "}
-          </div>
-          }
-          >
+          {isLoading && (
+            <div className="flex items-center justify-center h-screen bg-black">
+              <Image
+                src={final}
+                alt="Loading..."
+                className="animate-spin"
+                width={120}
+                height={120}
+              />{" "}
+            </div>
+          )}
+          <Suspense fallback={null}>
             <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
               <Sticky
                 stickyStyle={{
@@ -111,6 +120,7 @@ export default function RootLayout({
               <Toaster />
             </main>
           </Suspense>
+          {/* </Suspense> */}
         </body>
       </ThirdwebProvider>
     </html>

@@ -75,7 +75,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Europandex
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -109,7 +109,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Tryllet
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -145,7 +145,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Swapbay
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -182,7 +182,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Widpay
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -218,7 +218,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Widlance
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -254,7 +254,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 WIDNET
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -290,7 +290,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 WUSD
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
@@ -324,7 +324,7 @@ export default function Page() {
                   alt=""
                 />
               </a>
-              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+              <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 New Project
               </h3>
               <p className="text-center  font-poppins text-base text-[#6BD8D4]">
