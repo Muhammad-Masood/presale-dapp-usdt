@@ -94,3 +94,17 @@ iframe.skiptranslate {
 #goog-gt-vt iframe {
   display: none !important;
 }
+
+
+
+body { position: "static"; top: "0px !important"; }
+iframe.skiptranslate { display: "none !important"; }
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+display: none !important;
+}
+
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

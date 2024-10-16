@@ -250,7 +250,7 @@ export default function Page() {
               <a target="_blank" href="https://widnet.network/">
                 <img
                   className="size-[5.75rem]"
-                  src="/ecosystem/wn.jpg"
+                  src="/ecosystem/wn.png"
                   alt=""
                 />
               </a>
@@ -280,6 +280,41 @@ export default function Page() {
               <OpenModal value="🔎 Details" />
             </div>
           </Card>
+
+          <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#61CE70] border-2">
+            <div className="flex flex-col gap-6 items-center">
+              <a target="_blank" href="https://widnet.network/">
+                <img
+                  className="size-[5.75rem]"
+                  src="/ecosystem/wusd.png"
+                  alt=""
+                />
+              </a>
+              <h3 className="font-poppins text-white font-bold text-[1.75rem]">
+                WUSD
+              </h3>
+              <p className="text-center  font-poppins text-base text-[#6BD8D4]">
+                The First Stabletoken, EVM-Wallet, Zero transaction fees, Secure
+                & Trusted
+              </p>
+              <div className="w-full  bg-gray-100  h-6 ">
+                <div
+                  className="bg-secondary flex font-roborto px-2 text-[#43484D] justify-between items-center h-6  text-xs  text-center"
+                  style={{ width: "2%" }}
+                >
+                  {/* <span>in progress</span> */}
+                  <span>2%</span>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4 text-[0.813rem] pb-2 mt-4 font-semibold">
+              <OpenModal value="⮃ Vote" />
+              <OpenModal value="📉 Polls" />
+              <OpenModal value="🎁 Rewards" />
+              <OpenModal value="🔎 Details" />
+            </div>
+          </Card>
+
           <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#61CE70] border-2">
             <div className="flex flex-col gap-6 items-center">
               <a target="_blank" href="">

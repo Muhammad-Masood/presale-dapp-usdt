@@ -9,6 +9,8 @@ import { Fragment } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { bsc } from "thirdweb/chains";
+import { GoogleTranslate } from "@/components/landing-page/translation-button";
+const isBrowser = typeof window !== "undefined";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,39 +22,44 @@ const Navbar = () => {
       <header className="bg-[#040C18] text-[#f1f1f1] ">
         <div className="container mx-auto py-4 px-7">
           <nav className="navbar  flex justify-between items-center">
-            <Link
-              className="navbar-brand"
-              href={`/${referral ? `?ref=${referral}` : ""}`}
-            >
-              <img
-                src={"/wclogo.png"}
-                height={60}
-                width={60}
-                alt="widcoin_logo"
-              />
-            </Link>
-            <div className=" font-poppins hidden md:block font-semibold md:mr-48  p-1 px-2">
-              <ul className="uppercase  flex gap-6">
-                <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                  <Link href={`/ecosystem?ref=${referral}`}>EcoSystem</Link>
-                </li>
-                <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                  <Link href={`/winning-pool?ref=${referral}`}>
-                    Winning Pool
-                  </Link>
-                </li>
-                <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                  <Link href={`/#road-map?ref=${referral}`} shallow={true}>
-                    RoadMap
-                  </Link>
-                </li>
-                <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                  <Link href={`/#tokenmics?ref=${referral}`} shallow={true}>
-                    Tokenomics
-                  </Link>
-                </li>
-              </ul>
+            <div className="flex gap-2 items-center">
+              <Link
+                className="navbar-brand"
+                href={`/${referral ? `?ref=${referral}` : ""}`}
+              >
+                <img
+                  src={"/wclogo.png"}
+                  height={60}
+                  className="min-w-20 h-auto"
+                  width={60}
+                  alt="widcoin_logo"
+                />
+              </Link>
+
+              <div className=" font-poppins hidden md:block font-semibold md:mr-48  p-1 px-2">
+                <ul className="uppercase  flex gap-6">
+                  <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
+                    <Link href={`/ecosystem?ref=${referral}`}>EcoSystem</Link>
+                  </li>
+                  <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
+                    <Link href={`/winning-pool?ref=${referral}`}>
+                      Winning Pool
+                    </Link>
+                  </li>
+                  {/* <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
+                    <Link href={`/#road-map?ref=${referral}`} shallow={true}>
+                      RoadMap
+                    </Link>
+                  </li>
+                  <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
+                    <Link href={`/#tokenmics?ref=${referral}`} shallow={true}>
+                      Tokenomics
+                    </Link>
+                  </li> */}
+                </ul>
+              </div>
             </div>
+
             <div className="hidden md:flex items-center space-x-7">
               <Link href={`/buy?ref=${referral}`}>
                 <Button className="bg-gradient-to-r to-white from-blue-500 text-black  shadow-lg hover:from-gray-300 hover:to-blue-600 transform hover:scale-105 transition-transform duration-300">
@@ -70,6 +77,7 @@ const Navbar = () => {
                 chain={bsc}
                 chains={[bsc]}
               />
+              {isBrowser && <GoogleTranslate />}
             </div>
             <div className="md:hidden flex items-center">
               <button
@@ -98,7 +106,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 sm:px-3">
               <div className=" font-poppins  font-semibold my-4  p-1 px-2">
-                <ul className="uppercase  flex flex-col gap-6">
+                {isBrowser && <GoogleTranslate />}
+
+                <ul className="uppercase mt-4 flex flex-col gap-6">
                   <li>
                     <Link href={`/ecosystem?ref=${referral}`}>EcoSystem</Link>
                   </li>
