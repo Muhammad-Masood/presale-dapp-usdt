@@ -152,10 +152,10 @@ export default function Page() {
                   Stages
                 </TableHead>
                 <TableHead className="text-white text-center">
-                  Minimum Participation
+                  Minimum participation $WID
                 </TableHead>
                 <TableHead className="text-center text-white">
-                  $WIDWIN
+                  WIN
                 </TableHead>
               </TableRow>
             </TableHeader>

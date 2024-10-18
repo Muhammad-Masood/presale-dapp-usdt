@@ -31,6 +31,7 @@ const Presale = ({
   stageNumber,
   stageDetails,
   totalFundsRaised,
+  tokensPrices,
 }: {
   initialAirdropCountdown: string;
   isAirdropOpen: boolean;
@@ -39,6 +40,11 @@ const Presale = ({
   stageNumber: number;
   stageDetails: Stage;
   totalFundsRaised: Number;
+  tokensPrices: {
+    usdtPrice: number;
+    bnbPrice: number;
+    usdcPrice: number;
+  };
 }) => {
   const [data, setData] = useState({
     // initialAirdropCountdown,
@@ -54,7 +60,12 @@ const Presale = ({
   const [referralLink, setReferralLink] = useState<string | undefined>(
     undefined
   );
-  const [wicAmount, setWicAmount] = useState<string>("");
+  const [prices, setPrices] = useState({
+    usdtAmount: 0,
+    widAmount: 0,
+    bnbAmount: 0,
+    usdcAmount: 0,
+  });
   const [isApproving, setIsApproving] = useState<boolean>(false);
   const [userWIDTokens, setUserWIDTokens] = useState<
     | {
@@ -251,7 +262,7 @@ const Presale = ({
   }, [airdropEndTime]);
 
   const prepareAndSendTransaction = async (totalWIDCost?: bigint) => {
-    const widAmountDec = toWei(wicAmount);
+    const widAmountDec = toWei(prices.widAmount.toString());
     const transaction = prepareContractCall({
       contract,
       method: "function buyToken(uint256 amount, uint8 mode,address refferal)",
@@ -277,7 +288,7 @@ const Presale = ({
     } else {
       try {
         setIsApproving(true);
-        const wicAmountDec = toWei(wicAmount);
+        const wicAmountDec = toWei(prices.widAmount.toString());
         const totalWIDCost =
           await presaleContractEthers.calculateTotalTokensCost(
             wicAmountDec,
@@ -326,6 +337,35 @@ const Presale = ({
       } finally {
         setIsApproving(false);
       }
+    }
+  };
+
+  const handleSetPrice = (usdAmount: number) => {
+    const { usdtPrice, bnbPrice, usdcPrice } = tokensPrices;
+    const widAmount = usdAmount * stageDetails.tokenPrice;
+    console.log("Inside_handle -> ", usdtPrice, bnbPrice, usdcPrice);
+    const usdtAmount = usdAmount / usdtPrice;
+    const bnbAmount = usdAmount / bnbPrice;
+    const usdcAmount = usdAmount / usdcPrice;
+    console.log(usdtPrice, bnbPrice, usdcPrice);
+    setPrices({
+      usdtAmount,
+      widAmount,
+      bnbAmount,
+      usdcAmount,
+    });
+  };
+
+  const getNameByModeId = (mode: number) => {
+    switch (mode) {
+      case 0:
+        return "USDC";
+      case 1:
+        return "BNB";
+      case 2:
+        return "USDT";
+      default:
+        return "";
     }
   };
 
@@ -437,29 +477,88 @@ const Presale = ({
         }
         <div className="tab-content py-4">
           <div className={`tab-pane fade show active`}>
-            <div className="space-y-2 mt-2 mb-4">
-              <label className="text-white text-sm">Enter Amount</label>
-              <div className="flex">
+            <div className="space-y-4 mt-4 mb-6">
+              <label className="text-gray-200 text-lg font-semibold">
+                Enter Amount
+              </label>
+
+              <div className="flex items-center">
                 <input
                   onChange={(e) => {
                     e.preventDefault();
-                    setWicAmount(e.target.value);
+                    handleSetPrice(Number(e.target.value));
+                    // setWicAmount(e.target.value);
                   }}
                   min={1}
                   type="number"
-                  className="w-full py-3 px-3 outline-none rounded-l bg-gray-800 text-white text-sm"
-                  placeholder="$WID Amount to purchase"
+                  className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                  placeholder="Enter Dollar amount"
                 />
-                <button className="flex items-center text-white rounded-r border-l bg-gray-600 px-4">
+                <button className="flex items-center justify-center text-white rounded-r-lg transition px-4">
                   <img
                     src="/wclogo.png"
                     alt="Preloader Logo"
-                    width={50}
-                    height={40}
+                    width={30}
+                    height={30}
                   />
                 </button>
               </div>
+
+              <div className="flex items-center gap-x-4 justify-between">
+                <div className="space-y-4 mt-2">
+                  <label className="text-gray-200 text-md">
+                    {getNameByModeId(selectedPaymentMode)} To Pay
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      disabled
+                      className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-gray-500 text-sm"
+                      placeholder={`${getNameByModeId(
+                        selectedPaymentMode
+                      )} to pay`}
+                      value={
+                        getNameByModeId(selectedPaymentMode) === "USDC"
+                          ? prices.usdcAmount
+                          : getNameByModeId(selectedPaymentMode) === "BNB"
+                          ? prices.bnbAmount
+                          : prices.usdtAmount
+                      }
+                    />
+                    <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
+                      <img
+                        src="/wclogo.png"
+                        alt="Preloader Logo"
+                        width={30}
+                        height={30}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mt-2">
+                  <label className="text-gray-200 text-md">
+                    $WID You Receive
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      disabled
+                      className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-gray-500 text-sm"
+                      placeholder="$WID you receive"
+                      value={prices.widAmount}
+                    />
+                    <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
+                      <img
+                        src="/wclogo.png"
+                        alt="Preloader Logo"
+                        width={30}
+                        height={30}
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div className="text-center my-5">
               <button
                 className="px-6 py-3 rounded-lg bg-gradient-to-r from-gold-light to-gold-dark text-white font-bold shadow-lg hover:from-gold-dark hover:to-gold-light transform hover:scale-105 transition-transform duration-300"

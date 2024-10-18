@@ -13,8 +13,9 @@ export default async function Home() {
   const isAirdropOpen = await presaleContractEthers.isAirdropOpen();
   const airdropEndTime = await presaleContractEthers.airdropEndTime();
   const currentStageNumber = await presaleContractEthers.currentStage();
-  const stageDetails =
-    await presaleContractEthers.getStageSpecs(currentStageNumber);
+  const stageDetails = await presaleContractEthers.getStageSpecs(
+    currentStageNumber
+  );
   const updatedStageSupply = ethers.formatEther(stageDetails.stageSupply);
   const supplySoldFormat = Number(ethers.formatEther(stageDetails.supplySold));
   const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
@@ -33,16 +34,32 @@ export default async function Home() {
   const stageSpecs = await Promise.all(
     Array.from({ length: Number(currentStage) }, async (_, index) => {
       const stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
-        index + 1,
+        index + 1
       );
       const supplySoldFormat = Number(
-        ethers.formatEther(stageSpecs.supplySold!),
+        ethers.formatEther(stageSpecs.supplySold!)
       );
       totalFundsRaised +=
         supplySoldFormat * Number(ethers.formatUnits(stageSpecs.tokenPrice, 8));
       return stageSpecs;
-    }),
+    })
   );
+
+  const usdtPriceResponse = await fetch(
+    "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd"
+  );
+  const usdtData = await usdtPriceResponse.json();
+  const usdtPrice: number = usdtData.tether.usd;
+  const bnbPriceResponse = await fetch(
+    "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
+  );
+  const bnbData = await bnbPriceResponse.json();
+  const bnbPrice: number = bnbData.binancecoin.usd;
+  const usdcPriceResponse = await fetch(
+    "https://api.coingecko.com/api/v3/simple/price?ids=usd-coin&vs_currencies=usd"
+  );
+  const usdcData = await usdcPriceResponse.json();
+  const usdcPrice: number = usdcData["usd-coin"].usd;
 
   return (
     <Suspense>
@@ -57,6 +74,7 @@ export default async function Home() {
           stageDetails={updatedStageDetails}
           stageNumber={currentStageNumber}
           totalFundsRaised={totalFundsRaised}
+          tokensPrices={{ usdtPrice, bnbPrice, usdcPrice }}
         />
       </div>
     </Suspense>
