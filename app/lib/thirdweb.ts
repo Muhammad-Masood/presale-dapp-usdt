@@ -23,8 +23,8 @@ const client = createThirdwebClient({
 const contract = getContract({
   client,
   // the chain the contract is deployed on
-  // chain: bscTestnet,
-  chain: bsc,
+  chain: bscTestnet,
+  // chain: bsc,
   // the contract's address
   address: presale_address,
   // OPTIONAL: the contract's abi
@@ -34,8 +34,8 @@ const contract = getContract({
 const tokenContract = getContract({
   client,
   // the chain the contract is deployed on
-  // chain: bscTestnet,
-  chain: bsc,
+  chain: bscTestnet,
+  // chain: bsc,
   // the contract's address
   address: widcoin_address,
   // OPTIONAL: the contract's abi
@@ -44,8 +44,8 @@ const tokenContract = getContract({
 
 const usdtContract = getContract({
   client,
-  // chain: bscTestnet,
-  chain: bsc,
+  chain: bscTestnet,
+  // chain: bsc,
   address: usdt_address,
   abi: erc20_abi,
 });

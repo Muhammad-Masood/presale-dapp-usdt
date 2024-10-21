@@ -8,7 +8,7 @@ import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { bsc } from "thirdweb/chains";
+import { bsc, bscTestnet } from "thirdweb/chains";
 import { GoogleTranslate } from "@/components/landing-page/translation-button";
 const isBrowser = typeof window !== "undefined";
 
@@ -74,8 +74,10 @@ const Navbar = () => {
               <ConnectButton
                 client={client}
                 wallets={wallets}
-                chain={bsc}
-                chains={[bsc]}
+                // chain={bsc}
+                chain={bscTestnet}
+                // chains={[bsc]}
+                chains={[bscTestnet]}
               />
               {isBrowser && <GoogleTranslate />}
             </div>
@@ -144,8 +146,10 @@ const Navbar = () => {
                 <ConnectButton
                   client={client}
                   wallets={wallets}
-                  chain={bsc}
-                  chains={[bsc]}
+                  // chain={bsc}
+                  chain={bscTestnet}
+                  // chains={[bsc]}
+                  chains={[bscTestnet]}
                 />
               </div>
             </div>

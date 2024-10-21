@@ -342,7 +342,7 @@ const Presale = ({
 
   const handleSetPrice = (usdAmount: number) => {
     const { usdtPrice, bnbPrice, usdcPrice } = tokensPrices;
-    const widAmount = usdAmount * stageDetails.tokenPrice;
+    const widAmount = usdAmount / stageDetails.tokenPrice;
     console.log("Inside_handle -> ", usdtPrice, bnbPrice, usdcPrice);
     const usdtAmount = usdAmount / usdtPrice;
     const bnbAmount = usdAmount / bnbPrice;
@@ -483,17 +483,22 @@ const Presale = ({
               </label>
 
               <div className="flex items-center">
-                <input
-                  onChange={(e) => {
-                    e.preventDefault();
-                    handleSetPrice(Number(e.target.value));
-                    // setWicAmount(e.target.value);
-                  }}
-                  min={1}
-                  type="number"
-                  className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                  placeholder="Enter Dollar amount"
-                />
+                <div className="relative w-full">
+                  <span className="absolute left-4 top-3 text-gray-400 ">
+                    $
+                  </span>
+                  <input
+                    onChange={(e) => {
+                      e.preventDefault();
+                      handleSetPrice(Number(e.target.value));
+                      // setWicAmount(e.target.value);
+                    }}
+                    min={1}
+                    type="number"
+                    className="w-full py-3 px-8 rounded-l-lg border border-gray-600 bg-gray-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition pl-8"
+                    placeholder="Enter Dollar amount"
+                  />
+                </div>
                 <button className="flex items-center justify-center text-white rounded-r-lg transition px-4">
                   <img
                     src="/wclogo.png"
@@ -526,8 +531,14 @@ const Presale = ({
                     />
                     <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
                       <img
-                        src="/wclogo.png"
-                        alt="Preloader Logo"
+                        src={
+                          getNameByModeId(selectedPaymentMode) === "USDC"
+                            ? "/usdc(bep-20).png"
+                            : getNameByModeId(selectedPaymentMode) === "BNB"
+                            ? "/bnb.png"
+                            : "/usdt(bep-20).png"
+                        }
+                        alt={`token_logo`}
                         width={30}
                         height={30}
                       />

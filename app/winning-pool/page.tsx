@@ -159,9 +159,9 @@ export default function Page() {
                 </TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="text-center">
               {stages.map((item, index) => (
-                <TableRow key={index}>
+                <TableRow key={index} className="text-center">
                   <TableCell className=" border-r border-gray-600">
                     {item.stage}
                   </TableCell>

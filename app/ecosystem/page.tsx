@@ -283,7 +283,7 @@ export default function Page() {
 
           <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#61CE70] border-2">
             <div className="flex flex-col gap-6 items-center">
-              <a target="_blank" href="https://widnet.network/">
+              <a target="_blank" href="https://wusdtoken.com/">
                 <img
                   className="size-[5.75rem]"
                   src="/ecosystem/wusd.png"
