@@ -523,10 +523,10 @@ const Presale = ({
                       )} to pay`}
                       value={
                         getNameByModeId(selectedPaymentMode) === "USDC"
-                          ? prices.usdcAmount
+                          ? prices.usdcAmount.toFixed(3)
                           : getNameByModeId(selectedPaymentMode) === "BNB"
-                          ? prices.bnbAmount
-                          : prices.usdtAmount
+                          ? prices.bnbAmount.toFixed(3)
+                          : prices.usdtAmount.toFixed(3)
                       }
                     />
                     <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
@@ -555,7 +555,9 @@ const Presale = ({
                       disabled
                       className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-gray-500 text-sm"
                       placeholder="$WID you receive"
-                      value={prices.widAmount}
+                      value={
+                        isAirdropOpen ? prices.widAmount * 2 : prices.widAmount
+                      }
                     />
                     <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
                       <img
@@ -595,7 +597,7 @@ const Presale = ({
             <h2 className="text-white text-lg font-semibold">
               Your $WID ={" "}
               {userWIDTokens
-                ? userWIDTokens.purchasedTokens.toString() +
+                ? userWIDTokens.purchasedTokens.toFixed(2).toString() +
                   " " +
                   "($" +
                   (
@@ -612,8 +614,12 @@ const Presale = ({
             <p className="text-sm md:text-base">Your Purchased $WID</p>
             <p className="text-sm md:text-base">
               {userWIDTokens
-                ? Number(userWIDTokens.referralTokens) +
-                  userWIDTokens.purchasedTokens +
+                ? (
+                    Number(userWIDTokens.referralTokens) +
+                    userWIDTokens.purchasedTokens
+                  )
+                    .toFixed(2)
+                    .toString() +
                   " $WID ($" +
                   (
                     (userWIDTokens.referralTokens +
@@ -645,7 +651,7 @@ const Presale = ({
             <p className="text-sm md:text-base">Token Sold</p>
             <p className="text-sm md:text-base">
               {data.stageDetails.stageSupply} /{" "}
-              {data.stageDetails.supplyRemaining} $WID
+              {data.stageDetails.supplyRemaining.toFixed(2)} $WID
             </p>
           </div>
           <div className="statBottom flex justify-between items-center py-3">
