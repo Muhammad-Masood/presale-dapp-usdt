@@ -7,9 +7,12 @@ import { FaXTwitter } from "react-icons/fa6";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const Footer = () => {
   const controls = useAnimation();
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
 
   const [ref, inView] = useInView();
 
@@ -94,16 +97,16 @@ const Footer = () => {
       <div className="bg-white w-full">
         <ul className="flex md:flex-row  h-12 md:gap-4 font-roborto text-[#54595F] text-[0.875rem] justify-center items-center  flex-wrap gap-x-3.5 ">
           <li className="border-r border-[#54595F] pr-2 border-1">
-            <Link href="terms-of-use">Terms of Use</Link>
+            <Link href={referral?`terms-of-use?ref=${referral}`:'terms-of-use'}>Terms of Use</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            <Link href="privacy-policy">Privacy Policy</Link>
+            <Link href={referral?`privacy-policy?ref=${referral}`:'privacy-policy'}>Privacy Policy</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            <Link href="cookies-policy">Cookies Policy</Link>
+            <Link href={referral?`cookies-policy?ref=${referral}`:'cookies-policy'}>Cookies Policy</Link>
           </li>
           <li className="border-r border-[#54595F] pr-2 border-1">
-            <Link href="contact-us">Contact US</Link>
+            <Link href={referral?`contact-us?ref=${referral}`:'contact-us'}>Contact US</Link>
           </li>
         </ul>
       </div>

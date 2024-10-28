@@ -101,6 +101,7 @@ function LanguageSelector({ onChange, value }) {
     menu: (provided) => ({
       ...provided,
       backgroundColor: "black",
+      zIndex: 1000, // Ensure zIndex is a number
     }),
     indicatorSeparator: () => ({
       display: "none", // Hide the indicator separator
@@ -126,6 +127,7 @@ function LanguageSelector({ onChange, value }) {
           {lang.label}
         </div>
       )}
+      
       onChange={onChange}
       value={languages.find((lang) => lang.value === langCookie)}
       styles={customStyles} // Apply custom styles for black background

@@ -22,6 +22,8 @@ import { useInView } from "react-intersection-observer";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 const stages = [
   { stage: "Stage 1", minParticipation: "$150", widwin: "$20,000" },
@@ -111,6 +113,9 @@ const HowItsWork = (expanded: boolean | undefined) => {
 };
 
 export default function Page() {
+  const isHighlighted = useSearchParams().get("highlight") === "referral";
+  console.log("isHighlighted -> ", isHighlighted);
+  const referralRef = useRef(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -127,6 +132,14 @@ export default function Page() {
       },
     },
   };
+
+  useEffect(() => {
+    if (isHighlighted && referralRef.current) {
+      // Scroll to the paragraph when the component mounts
+      (referralRef.current as any).scrollIntoView({ behavior: "smooth" });
+    }
+    console.log(referralRef.current)
+  }, [isHighlighted]);
 
   return (
     <div>
@@ -154,12 +167,10 @@ export default function Page() {
                 <TableHead className="text-white text-center">
                   Minimum participation $WID
                 </TableHead>
-                <TableHead className="text-center text-white">
-                  WIN
-                </TableHead>
+                <TableHead className="text-center text-white">WIN</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="text-center">
+            <TableBody className="text-center notranslate">
               {stages.map((item, index) => (
                 <TableRow key={index} className="text-center">
                   <TableCell className=" border-r border-gray-600">
@@ -307,7 +318,7 @@ export default function Page() {
 
               <AccordionItemPanel className="p-4 text-[#6C7975] font-roborto">
                 <p className="space-y-4">
-                  <div>
+                  <div ref={referralRef}>
                     To qualify, ensure you hold a minimum participation of{" "}
                     <span className="font-bold">$150</span> or more in the{" "}
                     <span className="font-bold">Widcoin presale.</span>
@@ -324,7 +335,9 @@ export default function Page() {
                     balance automatically when you connect your wallet to the
                     purchase form.
                   </div>
-                  <div>
+                  <div
+                    className={`${isHighlighted ? "bg-yellow-200" : ""}`}
+                  >
                     <span className="font-bold">
                       How to Earn Free $WID Tokens:
                     </span>{" "}

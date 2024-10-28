@@ -109,6 +109,7 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <main className=" banner bg-gradient-to-r from-gray-900 to-purple-900">
               <Sticky
+                isIOSFixEnabled={false}
                 stickyStyle={{
                   zIndex: 40,
                 }}

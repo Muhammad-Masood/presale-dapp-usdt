@@ -19,7 +19,7 @@ const page = async () => {
   console.log(winnersTillCurrentStage, currentStage, isTradingEnabled);
   return (
     <Suspense>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center py-[3rem]">
         <Claim
           isTradingEnabled={isTradingEnabled}
           winners={winnersTillCurrentStage}
