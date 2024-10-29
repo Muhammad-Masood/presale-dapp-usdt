@@ -75,6 +75,7 @@ export default async function Home() {
           stageNumber={currentStageNumber}
           totalFundsRaised={totalFundsRaised}
           tokensPrices={{ usdtPrice, bnbPrice, usdcPrice }}
+          referrerPercentage={5}
         />
       </div>
     </Suspense>

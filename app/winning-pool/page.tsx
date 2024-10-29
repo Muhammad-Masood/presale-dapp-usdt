@@ -113,6 +113,7 @@ const HowItsWork = (expanded: boolean | undefined) => {
 };
 
 export default function Page() {
+  const referral = useSearchParams().get("ref");
   const isHighlighted = useSearchParams().get("highlight") === "referral";
   console.log("isHighlighted -> ", isHighlighted);
   const referralRef = useRef(null);
@@ -138,7 +139,7 @@ export default function Page() {
       // Scroll to the paragraph when the component mounts
       (referralRef.current as any).scrollIntoView({ behavior: "smooth" });
     }
-    console.log(referralRef.current)
+    console.log(referralRef.current);
   }, [isHighlighted]);
 
   return (
@@ -288,7 +289,7 @@ export default function Page() {
               }}
             />
             <motion.button className="relative font-bold font-poppins  shadow-sm  bg-bg-gradientText4 p-3 px-8 text-[#3D214B]  text-base rounded-3xl">
-              <Link href="/buy">
+              <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
                 $ {"  "}
                 Buy WID
               </Link>
@@ -335,9 +336,7 @@ export default function Page() {
                     balance automatically when you connect your wallet to the
                     purchase form.
                   </div>
-                  <div
-                    className={`${isHighlighted ? "bg-yellow-200" : ""}`}
-                  >
+                  <div className={`${isHighlighted ? "bg-yellow-200" : ""}`}>
                     <span className="font-bold">
                       How to Earn Free $WID Tokens:
                     </span>{" "}

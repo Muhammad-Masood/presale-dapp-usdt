@@ -32,6 +32,7 @@ const Presale = ({
   stageDetails,
   totalFundsRaised,
   tokensPrices,
+  referrerPercentage,
 }: {
   initialAirdropCountdown: string;
   isAirdropOpen: boolean;
@@ -45,6 +46,7 @@ const Presale = ({
     bnbPrice: number;
     usdcPrice: number;
   };
+  referrerPercentage: number;
 }) => {
   const [data, setData] = useState({
     // initialAirdropCountdown,
@@ -369,6 +371,11 @@ const Presale = ({
     }
   };
 
+  const calculateReferrerAmount = (widAmount: number) => {
+    const referrerAmount = (referrerPercentage * widAmount) / 100; // 5% of widAmount
+    return referrerAmount;
+  };
+
   return (
     <div className="w-full lg:w-1/2 my-4">
       {showPopup && (
@@ -556,7 +563,15 @@ const Presale = ({
                       className="w-full py-3 px-4 rounded-l-lg border border-gray-600 bg-gray-900 text-gray-500 text-sm"
                       placeholder="$WID you receive"
                       value={
-                        isAirdropOpen ? prices.widAmount * 2 : prices.widAmount
+                        isAirdropOpen
+                          ? prices.widAmount * 2 +
+                            "+ " +
+                            calculateReferrerAmount(
+                              prices.widAmount * 2
+                            ).toFixed(2)
+                          : prices.widAmount +
+                            "+ " +
+                            calculateReferrerAmount(prices.widAmount).toFixed(2)
                       }
                     />
                     <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">

@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Button } from "../shared";
+import { useSearchParams } from "next/navigation";
 
 const Hero9: React.FunctionComponent = () => {
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <h1 className="text-4xl md:text-[3.125rem] pt-4 md:pt-7 md:mt-0 font-bold font-albertSans text-center text-white">
@@ -16,7 +19,9 @@ const Hero9: React.FunctionComponent = () => {
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
             Exclusive access to discounted Widcoins at{" "}
             <span className="text-pink-600 hover:text-gray-700">
-              <a href="widcoin.net">
+              <a
+                href={referral ? `widcoin.net?ref=${referral}` : "widcoin.net"}
+              >
                 {"{"}widcoin.net{"}"}.
               </a>
             </span>
@@ -26,7 +31,9 @@ const Hero9: React.FunctionComponent = () => {
             your journey into the Widcoin ecosystem today!
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            <Link href="/buy">$ Buy WID</Link>
+            <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
+              $ Buy WID
+            </Link>
           </Button>
         </div>
 

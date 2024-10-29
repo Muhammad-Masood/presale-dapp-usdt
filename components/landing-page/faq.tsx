@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import {
   Accordion,
   AccordionItem,
@@ -48,6 +49,8 @@ const AccorditionExpanded = (text: string, expanded: boolean | undefined) => {
   }
 };
 const FaqSection: React.FC = () => {
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
   return (
     <section className="relative bg-bg-gradientHero5 py-6   ">
       <div className="bg-bg-gradient2 absolute inset-0 bg-contain bg-no-repeat opacity-30  "></div>
@@ -69,7 +72,7 @@ const FaqSection: React.FC = () => {
                     {({ expanded }) =>
                       AccorditionExpanded(
                         "                How can I participate in the Widcoin presale?",
-                        expanded,
+                        expanded
                       )
                     }
                   </AccordionItemState>
@@ -82,7 +85,14 @@ const FaqSection: React.FC = () => {
                     <li>
                       <span className="font-bold">
                         Visit
-                        <a className="text-pink-700" href="http://widcoin.net/">
+                        <a
+                          className="text-pink-700"
+                          href={
+                            referral
+                              ? `http://widcoin.net/?ref=${referral}`
+                              : "http://widcoin.net/"
+                          }
+                        >
                           {" "}
                           widcoin.net :
                         </a>
@@ -98,7 +108,14 @@ const FaqSection: React.FC = () => {
                     <li>
                       <span className="font-bold">Beware of Phishing:</span>
                       Ensure the URL is
-                      <a className="text-pink-700" href="http://widcoin.net/">
+                      <a
+                        className="text-pink-700"
+                        href={
+                          referral
+                            ? `http://widcoin.net/?ref=${referral}`
+                            : "http://widcoin.net/"
+                        }
+                      >
                         {" "}
                         https://widcoin.net{" "}
                       </a>
@@ -115,7 +132,7 @@ const FaqSection: React.FC = () => {
                     {({ expanded }) =>
                       AccorditionExpanded(
                         "What makes Widcoin unique as a utility token?",
-                        expanded,
+                        expanded
                       )
                     }
                   </AccordionItemState>
@@ -145,7 +162,7 @@ const FaqSection: React.FC = () => {
                     {({ expanded }) =>
                       AccorditionExpanded(
                         "How can I get involved in community governance?",
-                        expanded,
+                        expanded
                       )
                     }
                   </AccordionItemState>
@@ -168,7 +185,7 @@ const FaqSection: React.FC = () => {
                     {({ expanded }) =>
                       AccorditionExpanded(
                         "Where can I trade Widcoin after the presale?",
-                        expanded,
+                        expanded
                       )
                     }
                   </AccordionItemState>
@@ -193,7 +210,7 @@ const FaqSection: React.FC = () => {
                       AccorditionExpanded(
                         "How can I secure my Widcoin tokens after purchase?",
 
-                        expanded,
+                        expanded
                       )
                     }
                   </AccordionItemState>

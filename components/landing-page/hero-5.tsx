@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Button } from "../shared";
+import { useSearchParams } from "next/navigation";
 
 const Hero5: React.FC = () => {
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
@@ -34,7 +37,9 @@ const Hero5: React.FC = () => {
             understanding and strategic approach.
           </p>
           <Button className="" size={"md"} color={"primary"}>
-            <Link href="/buy">$ Buy WID</Link>
+            <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
+              $ Buy WID
+            </Link>
           </Button>
         </div>
       </div>

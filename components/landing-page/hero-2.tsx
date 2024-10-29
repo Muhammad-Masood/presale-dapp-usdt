@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { Button } from "../shared";
 import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 const Hero2: React.FC = () => {
-  
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
@@ -36,7 +38,7 @@ const Hero2: React.FC = () => {
             driving growth, community engagement, and seamless integration
             across diverse platforms.
           </p>
-          <Link href={"/buy"}>
+          <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
             <Button className="" size={"md"} color={"primary"}>
               $ Buy WID
             </Button>

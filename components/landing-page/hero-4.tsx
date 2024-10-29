@@ -2,8 +2,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 import { Button } from "../shared";
+import { useSearchParams } from "next/navigation";
 
 const Hero4: React.FC = () => {
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("ref");
   return (
     <section className="bg-bg-gradientHero4  body-font">
       <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-12">
@@ -43,7 +46,7 @@ const Hero4: React.FC = () => {
             Join us in embracing Widcoin, where value meets utility in the world
             of digital assets.
           </p>
-          <Link href="/buy">
+          <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
             <Button className="" size={"md"} color={"primary"}>
               $ Buy WID
             </Button>
