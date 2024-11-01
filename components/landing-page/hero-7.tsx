@@ -9,7 +9,7 @@ const Hero7: React.FC = () => {
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
-        <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
+        {/* <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div> */}
         <div className="md:pl-12 w-3/5 mx-auto mb-10 md:mb-0">
           <img
             className="object-cover  object-center rounded"

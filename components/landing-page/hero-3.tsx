@@ -9,7 +9,7 @@ const Hero3: React.FC = () => {
   return (
     <section className="bg-bg-gradientHero3  body-font">
       <div className="relative container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
-        <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div>
+        {/* <div className=" bg-bg-gradient absolute inset-0 bg-contain bg-no-repeat opacity-10 "></div> */}
         <div className="relative z-10  flex flex-col md:items-start md:text-left items-center text-center">
           <h1 className="title-font font-bold sm:text-4xl text-white font-poppins text-3xl mb-4  ">
             Presale and Community Governance :{" "}

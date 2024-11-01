@@ -39,6 +39,7 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     uint8 private _totalStages = 10;
     uint8 private _referralPercentage = 10; // 10%
     uint8 private _referrerPercentage = 5; // 5%
+    uint256 private _totalBuyers;
     uint256 private eligibleBuyersCounter;
     uint8 private constant PERCENTAGE_PRECISION = 100;
     uint64 private constant WEI_PRECISION = 1e18;
@@ -272,6 +273,7 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
         ) {
             requestRandomWords(false);
         }
+        _totalBuyers+=1;
         emit BuyToken(msg.sender, amount, mode);
     }
 
@@ -581,4 +583,9 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     function isAirdropOpen() public view returns (bool) {
         return block.timestamp < _airdropEndTime ? true : false;
     }
+
+    function totalBuyers() public view returns (uint256) {
+        return _totalBuyers;
+    }
+
 }

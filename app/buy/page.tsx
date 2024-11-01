@@ -27,6 +27,7 @@ export default async function Home() {
     supplyRemaining: remainingSupply,
     stageSupply: updatedStageSupply,
     tokenPrice: updatedTokenPrice,
+    winningPool: Number(stageDetails.winningPool) / 1e8,
   };
 
   const currentStage = await presaleContractEthers.currentStage();

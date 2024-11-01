@@ -48,15 +48,15 @@ const Presale = ({
   };
   referrerPercentage: number;
 }) => {
-  const [data, setData] = useState({
-    // initialAirdropCountdown,
-    // isAirdropOpen,
-    airdropEndTime,
-    // referral,
-    stageNumber,
-    stageDetails,
-    totalFundsRaised,
-  });
+  // const [data, setData] = useState({
+  //   // initialAirdropCountdown,
+  //   // isAirdropOpen,
+  //   airdropEndTime,
+  //   // referral,
+  //   stageNumber,
+  //   stageDetails,
+  //   totalFundsRaised,
+  // });
   const [selectedPaymentMode, setSelectedPaymentMode] = useState<number>(0); // 0 => BNB 1 => USDT
   const [showPopup, setShowPopup] = useState<boolean>(isAirdropOpen);
   const [referralLink, setReferralLink] = useState<string | undefined>(
@@ -90,6 +90,11 @@ const Presale = ({
     error,
     isError,
   } = useSendTransaction();
+  console.log(
+    "stage_details in presale",
+    stageDetails,
+    stageDetails.winningPool
+  );
 
   useEffect(() => {
     const fetchAndUpdateData = async () => {
@@ -105,50 +110,6 @@ const Presale = ({
       console.log(userWIDTokens);
       const isAirdropOpen = await presaleContractEthers.isAirdropOpen();
       const airdropEndTime = await presaleContractEthers.airdropEndTime();
-      const currentStageNumber = await presaleContractEthers.currentStage();
-      const stageDetails = await presaleContractEthers.getStageSpecs(
-        currentStageNumber
-      );
-      const updatedStageSupply = ethers.formatEther(stageDetails.stageSupply);
-      const supplySoldFormat = Number(
-        ethers.formatEther(stageDetails.supplySold)
-      );
-      const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
-      const updatedMinPartcip = Number(stageDetails.minParticipationUSDT) / 1e8;
-      const updatedTokenPrice = Number(stageDetails.tokenPrice) / 1e8;
-      const updatedStageDetails: Stage = {
-        ...stageDetails,
-        minParticipationUSDT: updatedMinPartcip,
-        supplyRemaining: remainingSupply,
-        stageSupply: updatedStageSupply,
-        tokenPrice: updatedTokenPrice,
-      };
-
-      const currentStage = await presaleContractEthers.currentStage();
-      let totalFundsRaised: number = 0;
-      const stageSpecs = await Promise.all(
-        Array.from({ length: Number(currentStage) }, async (_, index) => {
-          const stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
-            index + 1
-          );
-          const supplySoldFormat = Number(
-            ethers.formatEther(stageSpecs.supplySold!)
-          );
-          totalFundsRaised +=
-            supplySoldFormat *
-            Number(ethers.formatUnits(stageSpecs.tokenPrice, 8));
-          return stageSpecs;
-        })
-      );
-      setData({
-        // initialAirdropCountdown:{isAirdropOpen ? calculateInitialCountdown(airdropEndTime) : ""},
-        // isAirdropOpen: isAirdropOpen,
-        airdropEndTime: airdropEndTime,
-        // referral: undefined,
-        stageDetails: updatedStageDetails,
-        stageNumber: currentStageNumber,
-        totalFundsRaised: totalFundsRaised,
-      });
       setCountdown(
         isAirdropOpen ? calculateInitialCountdown(airdropEndTime) : ""
       );
@@ -190,50 +151,6 @@ const Presale = ({
       }
       const isAirdropOpen = await presaleContractEthers.isAirdropOpen();
       const airdropEndTime = await presaleContractEthers.airdropEndTime();
-      const currentStageNumber = await presaleContractEthers.currentStage();
-      const stageDetails = await presaleContractEthers.getStageSpecs(
-        currentStageNumber
-      );
-      const updatedStageSupply = ethers.formatEther(stageDetails.stageSupply);
-      const supplySoldFormat = Number(
-        ethers.formatEther(stageDetails.supplySold)
-      );
-      const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
-      const updatedMinPartcip = Number(stageDetails.minParticipationUSDT) / 1e8;
-      const updatedTokenPrice = Number(stageDetails.tokenPrice) / 1e8;
-      const updatedStageDetails: Stage = {
-        ...stageDetails,
-        minParticipationUSDT: updatedMinPartcip,
-        supplyRemaining: remainingSupply,
-        stageSupply: updatedStageSupply,
-        tokenPrice: updatedTokenPrice,
-      };
-
-      const currentStage = await presaleContractEthers.currentStage();
-      let totalFundsRaised: number = 0;
-      const stageSpecs = await Promise.all(
-        Array.from({ length: Number(currentStage) }, async (_, index) => {
-          const stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
-            index + 1
-          );
-          const supplySoldFormat = Number(
-            ethers.formatEther(stageSpecs.supplySold!)
-          );
-          totalFundsRaised +=
-            supplySoldFormat *
-            Number(ethers.formatUnits(stageSpecs.tokenPrice, 8));
-          return stageSpecs;
-        })
-      );
-      setData({
-        // initialAirdropCountdown:{isAirdropOpen ? calculateInitialCountdown(airdropEndTime) : ""},
-        // isAirdropOpen: isAirdropOpen,
-        airdropEndTime: airdropEndTime,
-        // referral: undefined,
-        stageDetails: updatedStageDetails,
-        stageNumber: currentStageNumber,
-        totalFundsRaised: totalFundsRaised,
-      });
       setCountdown(
         isAirdropOpen ? calculateInitialCountdown(airdropEndTime) : ""
       );
@@ -241,6 +158,7 @@ const Presale = ({
     };
     fetchAndUpdateData();
   }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       const now = Date.now();
@@ -410,8 +328,7 @@ const Presale = ({
           </div>
           <p className="text-xl text-yellow-400 font-semibold pb-2 pt-2">
             🔥 1 $WID ={" "}
-            <span className="font-bold">${data.stageDetails.tokenPrice}</span>{" "}
-            🔥
+            <span className="font-bold">${stageDetails.tokenPrice}</span> 🔥
           </p>
         </div>
         <ul className="flex justify-center space-x-6 mb-5 pt-3">
@@ -564,14 +481,21 @@ const Presale = ({
                       placeholder="$WID you receive"
                       value={
                         isAirdropOpen
-                          ? prices.widAmount * 2 +
-                            "+ " +
-                            calculateReferrerAmount(
-                              prices.widAmount * 2
-                            ).toFixed(2)
-                          : prices.widAmount +
-                            "+ " +
-                            calculateReferrerAmount(prices.widAmount).toFixed(2)
+                          ? `${(prices.widAmount * 2).toFixed(2)} ${
+                              referral
+                                ? calculateReferrerAmount(
+                                    prices.widAmount * 2
+                                  ).toFixed(2)
+                                : ""
+                            }`
+                          : `${prices.widAmount.toFixed(2)} ${
+                              referral
+                                ? "+" +
+                                  calculateReferrerAmount(
+                                    prices.widAmount
+                                  ).toFixed(2)
+                                : ""
+                            }`
                       }
                     />
                     <button className="flex items-center justify-center text-white rounded-r-lg  transition px-4">
@@ -616,7 +540,7 @@ const Presale = ({
                   " " +
                   "($" +
                   (
-                    userWIDTokens.purchasedTokens * data.stageDetails.tokenPrice
+                    userWIDTokens.purchasedTokens * stageDetails.tokenPrice
                   ).toString() +
                   ")"
                 : activeAccount
@@ -639,7 +563,7 @@ const Presale = ({
                   (
                     (userWIDTokens.referralTokens +
                       userWIDTokens.purchasedTokens) *
-                    data.stageDetails.tokenPrice
+                    stageDetails.tokenPrice
                   ).toString() +
                   ")"
                 : "---"}{" "}
@@ -652,7 +576,7 @@ const Presale = ({
                 ? Number(userWIDTokens.referralTokens) +
                   " $WID ($" +
                   (
-                    userWIDTokens.referralTokens * data.stageDetails.tokenPrice
+                    userWIDTokens.referralTokens * stageDetails.tokenPrice
                   ).toString() +
                   ")"
                 : "---"}{" "}
@@ -660,27 +584,39 @@ const Presale = ({
           </div>
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Stage</p>
-            <p className="text-sm md:text-base">{Number(data.stageNumber)}</p>
+            <p className="text-sm md:text-base">{Number(stageNumber)}</p>
           </div>
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Token Sold</p>
             <p className="text-sm md:text-base">
-              {data.stageDetails.stageSupply} /{" "}
-              {data.stageDetails.supplyRemaining.toFixed(2)} $WID
+              {stageDetails.stageSupply} /{" "}
+              {stageDetails.supplyRemaining.toFixed(2)} $WID
             </p>
           </div>
-          <div className="statBottom flex justify-between items-center py-3">
-            <p className="text-sm md:text-base">
-              Min Participation (Winner Pool)
-            </p>
-            <p className="text-sm md:text-base">
-              {data.stageDetails.minParticipationUSDT} $
-            </p>
-          </div>
+
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Total Funds Raised</p>
             <p className="text-sm md:text-base">
-              {data.totalFundsRaised.toString()} $
+              {totalFundsRaised.toString()} $
+            </p>
+          </div>
+
+          <div className="bg-blue-500 py-3 px-4 rounded-xl mt-2 border border-gray-900">
+            <p className="text-center pt-1">Winning poll</p>
+            <div className="statBottom flex justify-between items-center py-1">
+              <p>Win</p>
+              <p>{stageDetails.winningPool.toString()} $</p>
+            </div>
+            <div className="statBottom flex justify-between items-center py-2">
+              <p className="text-sm md:text-base">
+                Min Participation (Winner Pool)
+              </p>
+              <p className="text-sm md:text-base">
+                {stageDetails.minParticipationUSDT} $
+              </p>
+            </div>
+            <p className="text-center pt-1">
+              You will participate in the drawing, Good Luck!
             </p>
           </div>
         </div>
