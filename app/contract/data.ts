@@ -1,5 +1,5 @@
-// const presale_address: string = "0xFaCaf1c2808b099c8031903Ce39f113Dff3C15d6";
-const presale_address: string = "0x9C6C4E2A2a76e4c4C9D5948417988E9E7E81dE9D";
+const presale_address: string = "0x936E3de85546d8C862F65bc643Fd6748626Ee119";
+// const presale_address: string = "0x9C6C4E2A2a76e4c4C9D5948417988E9E7E81dE9D";
 const presale_abi: any = [
   {
     inputs: [],
@@ -796,6 +796,19 @@ const presale_abi: any = [
   },
   {
     inputs: [],
+    name: "totalBuyers",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "totalEligibleUsersForWinningPool",
     outputs: [
       {
@@ -835,8 +848,8 @@ const presale_abi: any = [
   },
 ];
 
-// const widcoin_address: string = "0xb6CFc7b7aC28aad46773a9B1605e5992C61d8aDa";
-const widcoin_address: string = "0x8d2415C3736B775c33B23518025D89eAcB48eCEC";
+const widcoin_address: string = "0xe553E36A8f080fc08314d03B4E57A272aC6d8383";
+// const widcoin_address: string = "0x8d2415C3736B775c33B23518025D89eAcB48eCEC";
 const erc20_abi: any = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
@@ -995,10 +1008,10 @@ const erc20_abi: any = [
   },
 ];
 
-const usdt_address: string = "0x3Bbf78eB227f243e9e308476fF7CA33eFcD015dc";
-// const usdt_address: string = "0x55d398326f99059fF775485246999027B3197955";
-const usdc_address: string = "0x130799d0F0DFA7206AA3B9c0D34daaEC51a9648E";
-// const usdc_address: string = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d";
+// const usdt_address: string = "0x3Bbf78eB227f243e9e308476fF7CA33eFcD015dc";
+const usdt_address: string = "0x55d398326f99059fF775485246999027B3197955";
+// const usdc_address: string = "0x130799d0F0DFA7206AA3B9c0D34daaEC51a9648E";
+const usdc_address: string = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d";
 
 export {
   presale_address,

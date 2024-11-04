@@ -616,7 +616,7 @@ const Presale = ({
               </p>
             </div>
             <p className="text-center pt-1">
-              You will participate in the drawing, Good Luck!
+              {referral?"You will participate in the drawing, Good Luck!":""}
             </p>
           </div>
         </div>
