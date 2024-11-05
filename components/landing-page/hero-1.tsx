@@ -163,7 +163,16 @@ const Hero1 = () => {
                 <ul className="text-xs space-y-4 pt-2  md:text-[1.188rem] text-center pb-4 font-poppins font-bold">
                   <li>+ Launch Price = $0.15</li>
                   <li className="pb-4">+ Join $1,500,000 Quest</li>
-                  <Link href="/winning-pool?highlight=referral" className="scale-110 hover:scale-110">+ Get 15% free tokens with Referral link</Link>
+                  <Link
+                    href={
+                      ref
+                        ? `/winning-pool?highlight=referral?ref=${ref}`
+                        : "/winning-pool?highlight=referral"
+                    }
+                    className="scale-110 hover:scale-110"
+                  >
+                    + Get 15% free tokens with Referral link
+                  </Link>
                   <OpenModalToken />
                 </ul>
               </Card>

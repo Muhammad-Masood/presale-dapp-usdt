@@ -37,7 +37,6 @@ const Presale = ({
   initialAirdropCountdown: string;
   isAirdropOpen: boolean;
   airdropEndTime: number;
-  // referral: string | undefined;
   stageNumber: number;
   stageDetails: Stage;
   totalFundsRaised: Number;
@@ -48,15 +47,6 @@ const Presale = ({
   };
   referrerPercentage: number;
 }) => {
-  // const [data, setData] = useState({
-  //   // initialAirdropCountdown,
-  //   // isAirdropOpen,
-  //   airdropEndTime,
-  //   // referral,
-  //   stageNumber,
-  //   stageDetails,
-  //   totalFundsRaised,
-  // });
   const [selectedPaymentMode, setSelectedPaymentMode] = useState<number>(0); // 0 => BNB 1 => USDT
   const [showPopup, setShowPopup] = useState<boolean>(isAirdropOpen);
   const [referralLink, setReferralLink] = useState<string | undefined>(
@@ -293,7 +283,7 @@ const Presale = ({
     const referrerAmount = (referrerPercentage * widAmount) / 100; // 5% of widAmount
     return referrerAmount;
   };
-
+  console.log("referral -> ", referral);
   return (
     <div className="w-full lg:w-1/2 my-4">
       {showPopup && (
@@ -616,7 +606,9 @@ const Presale = ({
               </p>
             </div>
             <p className="text-center pt-1">
-              {referral?"You will participate in the drawing, Good Luck!":""}
+              {referral
+                ? "You will participate in the drawing, Good Luck!"
+                : ""}
             </p>
           </div>
         </div>

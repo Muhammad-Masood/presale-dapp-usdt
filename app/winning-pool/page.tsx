@@ -352,7 +352,11 @@ export default function Page() {
                     out on this opportunity to win big with Widcoin! **Share
                     your Referral Link along with an Advertising Banner{" "}
                     <span className="text-pink-700 hover:text-[#2A4867]">
-                      <Link href="/banner">{"<Download Banners👆>"}</Link>
+                      <Link
+                        href={referral ? `/banner?ref=${referral}` : "/banner"}
+                      >
+                        {"<Download Banners👆>"}
+                      </Link>
                     </span>
                   </div>
                 </p>

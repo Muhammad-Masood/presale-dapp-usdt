@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Button } from "../shared";
+import { useSearchParams } from "next/navigation";
 
 const Hero6: React.FC = () => {
+  const referral = useSearchParams().get("ref");
   return (
     <section className="bg-bg-gradientHero4  body-font">
       <div className="container mx-auto  p-16 grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-12">
@@ -26,7 +28,7 @@ const Hero6: React.FC = () => {
           </p>
 
           <Button className="" size={"md"} color={"primary"}>
-            <Link href="/buy">$ Buy WID</Link>
+            <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>$ Buy WID</Link>
           </Button>
         </div>
 
