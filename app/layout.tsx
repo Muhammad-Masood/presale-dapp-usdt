@@ -8,7 +8,7 @@ import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import final from "../public/final.png";
+// import final from "../public/final.png";
 import Image from "next/image";
 
 export default function RootLayout({
@@ -98,7 +98,7 @@ export default function RootLayout({
           {isLoading && (
             <div className="flex items-center justify-center h-screen bg-black">
               <Image
-                src={final}
+                src={"/final.png"}
                 alt="Loading..."
                 className="animate-spin"
                 width={120}

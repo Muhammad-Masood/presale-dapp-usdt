@@ -348,9 +348,11 @@ export default function Page() {
                     receive a percentage of free $WID tokens! The owner of the
                     Referral link will receive 10% of the purchased value in
                     $WID tokens while the user who used the Referral link to
-                    purchase $WID tokens will receive 5% more tokens. Don’t miss
-                    out on this opportunity to win big with Widcoin! **Share
-                    your Referral Link along with an Advertising Banner{" "}
+                    purchase $WID tokens will receive 5% more tokens. The amount
+                    of free tokens received will be shown in the box “$WID You
+                    Receive” after the symbol “+” .Don’t miss out on this
+                    opportunity to win big with Widcoin! **Share your Referral
+                    Link along with an Advertising Banner{" "}
                     <span className="text-pink-700 hover:text-[#2A4867]">
                       <Link
                         href={referral ? `/banner?ref=${referral}` : "/banner"}

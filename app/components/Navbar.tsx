@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
   const referral = searchParams.get("ref");
-
+  console.log("referral from navbar ", referral);
   return (
     <div>
       <header className="bg-[#040C18] text-[#f1f1f1] ">
@@ -26,6 +26,7 @@ const Navbar = () => {
               <Link
                 className="navbar-brand"
                 href={`/${referral ? `?ref=${referral}` : ""}`}
+                // href={referral?'/wow':'/lol'}
               >
                 <img
                   src={"/wclogo.png"}

@@ -166,7 +166,7 @@ const Hero1 = () => {
                   <Link
                     href={
                       ref
-                        ? `/winning-pool?highlight=referral?ref=${ref}`
+                        ? `/winning-pool?highlight=referral&ref=${ref}`
                         : "/winning-pool?highlight=referral"
                     }
                     className="scale-110 hover:scale-110"

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import tg from "@/public/tg.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -48,7 +49,9 @@ export default function Page() {
           <h2 className="text-[2.313rem] font-roborto font-bold text-center text-[#6EC1E4] mb-6">
             Contact Us
           </h2>
+          <Link href={'https://t.me/widsupport'}>
           <Image src={tg} width={200} height={200} alt="tg_support"></Image>
+          </Link>
         </div>
       </div>
     </section>

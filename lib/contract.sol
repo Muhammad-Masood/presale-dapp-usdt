@@ -67,12 +67,12 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
     uint32 numWords = 1;
 
-    // address private usdtAddress = 0x55d398326f99059fF775485246999027B3197955;
-    address private usdtAddress = 0x3Bbf78eB227f243e9e308476fF7CA33eFcD015dc;
-    address private usdcAddress = 0x130799d0F0DFA7206AA3B9c0D34daaEC51a9648E;
-    // address private usdcAddress = 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d;
-    // address private widCoinAddress = 0xb6CFc7b7aC28aad46773a9B1605e5992C61d8aDa;
-    address private widCoinAddress = 0x8d2415C3736B775c33B23518025D89eAcB48eCEC;
+    address private usdtAddress = 0x55d398326f99059fF775485246999027B3197955;
+    // address private usdtAddress = 0x3Bbf78eB227f243e9e308476fF7CA33eFcD015dc;
+    // address private usdcAddress = 0x130799d0F0DFA7206AA3B9c0D34daaEC51a9648E;
+    address private usdcAddress = 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d;
+    address private widCoinAddress = 0xe553E36A8f080fc08314d03B4E57A272aC6d8383;
+    // address private widCoinAddress = 0x8d2415C3736B775c33B23518025D89eAcB48eCEC;
 
     mapping(uint8 stage => mapping(uint256 index => address buyer))
         private stageToIndexOfBuyerEligibleForPool;
@@ -89,15 +89,15 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     mapping(address => bool hasClaimedPresaleTokens)
         private addressToHasClaimedPresaleTokens;
 
-    // AggregatorV3Interface private usdtPriceFeed = AggregatorV3Interface(0xB97Ad0E74fa7d920791E90258A6E2085088b4320);
-    // AggregatorV3Interface private usdcPriceFeed = AggregatorV3Interface(0x51597f405303C4377E36123cBc172b13269EA163);
-    // AggregatorV3Interface private bnbPriceFeed = AggregatorV3Interface(0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE);
-    AggregatorV3Interface private usdtPriceFeed =
-        AggregatorV3Interface(0xEca2605f0BCF2BA5966372C99837b1F182d3D620); // testnet
-    AggregatorV3Interface private usdcPriceFeed =
-        AggregatorV3Interface(0x90c069C4538adAc136E051052E14c1cD799C41B7); // testnet
-    AggregatorV3Interface private bnbPriceFeed =
-        AggregatorV3Interface(0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526); // testnet
+    AggregatorV3Interface private usdtPriceFeed = AggregatorV3Interface(0xB97Ad0E74fa7d920791E90258A6E2085088b4320);
+    AggregatorV3Interface private usdcPriceFeed = AggregatorV3Interface(0x51597f405303C4377E36123cBc172b13269EA163);
+    AggregatorV3Interface private bnbPriceFeed = AggregatorV3Interface(0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE);
+    // AggregatorV3Interface private usdtPriceFeed =
+    //     AggregatorV3Interface(0xEca2605f0BCF2BA5966372C99837b1F182d3D620); // testnet
+    // AggregatorV3Interface private usdcPriceFeed =
+    //     AggregatorV3Interface(0x90c069C4538adAc136E051052E14c1cD799C41B7); // testnet
+    // AggregatorV3Interface private bnbPriceFeed =
+    //     AggregatorV3Interface(0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526); // testnet
 
     // The gas lane to use, which specifies the maximum gas price to bump to.
     // For a list of available gas lanes on each network,
@@ -140,7 +140,7 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     **/
     constructor(
         uint256 subscriptionId
-    ) VRFConsumerBaseV2Plus(0xDA3b641D438362C440Ac5458c57e00a712b66700) {
+    ) VRFConsumerBaseV2Plus(0xd691f04bc0C9a24Edb78af9E005Cf85768F694C9) {
         uint96[10] memory stageAllocSupply = [
             50000000 ether,
             100000000 ether,
