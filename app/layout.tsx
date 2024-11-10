@@ -97,7 +97,7 @@ export default function RootLayout({
         <body className="w-full !top-0">
           {isLoading && (
             <div className="flex items-center justify-center h-screen bg-black">
-              <Image
+              <img
                 src={"/final.png"}
                 alt="Loading..."
                 className="animate-spin"

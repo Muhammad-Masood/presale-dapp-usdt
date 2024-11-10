@@ -50,7 +50,7 @@ export default function Page() {
             Contact Us
           </h2>
           <Link href={'https://t.me/widsupport'}>
-          <Image src={tg} width={200} height={200} alt="tg_support"></Image>
+          <img src={'/tg.png'} width={200} height={200} alt="tg_support"></img>
           </Link>
         </div>
       </div>

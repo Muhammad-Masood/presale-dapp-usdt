@@ -1,4 +1,4 @@
-const presale_address: string = "0x936E3de85546d8C862F65bc643Fd6748626Ee119";
+const presale_address: string = "0xb54692392CE55Fbd9B1CAf2D2C4ce33c1f251DCE";
 // const presale_address: string = "0x9C6C4E2A2a76e4c4C9D5948417988E9E7E81dE9D";
 const presale_abi: any = [
   {
@@ -547,7 +547,7 @@ const presale_abi: any = [
   },
 ];
 
-const widcoin_address: string = "0xe553E36A8f080fc08314d03B4E57A272aC6d8383";
+const widcoin_address: string = "0x1040adb17b0279AeAf07d0018F9Fa021d49FB056";
 // const widcoin_address: string = "0x8d2415C3736B775c33B23518025D89eAcB48eCEC";
 const erc20_abi: any = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },

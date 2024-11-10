@@ -2,6 +2,7 @@
 pragma solidity ^0.8.24;
 
 import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {VRFConsumerBaseV2Plus} from "@chainlink/contracts@1.1.1/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol";
@@ -9,7 +10,9 @@ import {VRFV2PlusClient} from "@chainlink/contracts@1.1.1/src/v0.8/vrf/dev/libra
 // import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IERC20Extended is IERC20 {
+    // function burn(uint256 value) external;
     function burn(uint256 value) external;
+    function burnFrom(address account, uint256 value) external;
 }
 
 contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
@@ -71,8 +74,8 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     // address private usdtAddress = 0x3Bbf78eB227f243e9e308476fF7CA33eFcD015dc;
     // address private usdcAddress = 0x130799d0F0DFA7206AA3B9c0D34daaEC51a9648E;
     address private usdcAddress = 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d;
-    address private widCoinAddress = 0xe553E36A8f080fc08314d03B4E57A272aC6d8383;
-    // address private widCoinAddress = 0x8d2415C3736B775c33B23518025D89eAcB48eCEC;
+    // address private widCoinAddress = 0xe553E36A8f080fc08314d03B4E57A272aC6d8383; // 
+    address private widCoinAddress = 0x1040adb17b0279AeAf07d0018F9Fa021d49FB056; // mainnet
 
     mapping(uint8 stage => mapping(uint256 index => address buyer))
         private stageToIndexOfBuyerEligibleForPool;
@@ -225,7 +228,7 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
         if (amount > remainingSupply) {
             amount = remainingSupply;
         }
-        uint256 payableAmount = calculateTotalTokensCost(initAmount, mode); 
+        uint256 payableAmount = calculateTotalTokensCost(initAmount, mode);
         if (mode == PaymentMethod.BNB) {
             require(msg.value >= payableAmount, "InvalidFundsSentFromBuyer");
         } else {
@@ -273,7 +276,7 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
         ) {
             requestRandomWords(false);
         }
-        _totalBuyers+=1;
+        _totalBuyers += 1;
         emit BuyToken(msg.sender, amount, mode);
     }
 
@@ -503,12 +506,11 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
         AggregatorV3Interface priceFeed = getPriceFeed(mode);
         (
             ,
-            /** uint80 roundID **/ int price,
+            /** uint80 roundID **/ int price /** uint startedAt **/ /** uint timeStamp **/ /** uint80 answeredInRound **/,
             ,
             ,
 
-        ) = /** uint startedAt **/ /** uint timeStamp **/ /** uint80 answeredInRound **/
-            priceFeed.latestRoundData();
+        ) = priceFeed.latestRoundData();
         return price;
     }
 
@@ -587,5 +589,4 @@ contract Presale is ReentrancyGuard, VRFConsumerBaseV2Plus {
     function totalBuyers() public view returns (uint256) {
         return _totalBuyers;
     }
-
 }

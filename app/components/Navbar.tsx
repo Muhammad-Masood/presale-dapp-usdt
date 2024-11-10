@@ -62,7 +62,7 @@ const Navbar = () => {
             </div>
 
             <div className="hidden md:flex items-center space-x-7">
-              <Link href={`/buy?ref=${referral}`}>
+              <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
                 <Button className="bg-gradient-to-r to-white from-blue-500 text-black  shadow-lg hover:from-gray-300 hover:to-blue-600 transform hover:scale-105 transition-transform duration-300">
                   Buy $WID
                 </Button>
@@ -75,10 +75,10 @@ const Navbar = () => {
               <ConnectButton
                 client={client}
                 wallets={wallets}
-                // chain={bsc}
-                chain={bscTestnet}
-                // chains={[bsc]}
-                chains={[bscTestnet]}
+                chain={bsc}
+                // chain={bscTestnet}
+                chains={[bsc]}
+                // chains={[bscTestnet]}
               />
               {isBrowser && <GoogleTranslate />}
             </div>
@@ -133,7 +133,7 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              <Link href={`/buy?ref=${referral}`}>
+              <Link href={referral ? `/buy?ref=${referral}` : "/buy"}>
                 <Button className="mb-4 bg-gradient-to-r text-left to-white w-full from-blue-500 text-black  shadow-lg hover:from-gray-300 hover:to-blue-600 transform hover:scale-105 transition-transform duration-300">
                   Buy $WID
                 </Button>
