@@ -40,10 +40,10 @@ const Navbar = () => {
               <div className=" font-poppins hidden md:block font-semibold md:mr-48  p-1 px-2">
                 <ul className="uppercase  flex gap-6">
                   <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                    <Link href={`/ecosystem?ref=${referral}`}>EcoSystem</Link>
+                    <Link href={referral?`/ecosystem?ref=${referral}`:'/ecosystem'}>EcoSystem</Link>
                   </li>
                   <li className="hover:text-[#FFAB00] hover:underline decoration-2 hover:underline-offset-[29px]">
-                    <Link href={`/winning-pool?ref=${referral}`}>
+                    <Link href={referral?`/winning-pool?ref=${referral}`:'/winning-pool'}>
                       Winning Pool
                     </Link>
                   </li>

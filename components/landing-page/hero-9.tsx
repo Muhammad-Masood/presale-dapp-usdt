@@ -19,11 +19,11 @@ const Hero9: React.FunctionComponent = () => {
           <p className="mb-8 leading-6 font-poppins text-white text-[0.938rem]">
             Exclusive access to discounted Widcoins at{" "}
             <span className="text-pink-600 hover:text-gray-700">
-              <a
-                href={referral ? `widcoin.net?ref=${referral}` : "widcoin.net"}
+              <Link
+                href={referral ? `/buy?ref=${referral}` : "/buy"}
               >
                 {"{"}widcoin.net{"}"}.
-              </a>
+              </Link>
             </span>
             Easy transactions with BNB, USDC (BEP-20) or USDT (BEP-20) via a
             user-friendly form. Secure smart contract ensures token release

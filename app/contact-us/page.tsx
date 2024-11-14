@@ -49,7 +49,7 @@ export default function Page() {
           <h2 className="text-[2.313rem] font-roborto font-bold text-center text-[#6EC1E4] mb-6">
             Contact Us
           </h2>
-          <Link href={'https://t.me/widsupport'}>
+          <Link href={'https://t.me/widsupport'} target="_blank">
           <img src={'/tg.png'} width={200} height={200} alt="tg_support"></img>
           </Link>
         </div>

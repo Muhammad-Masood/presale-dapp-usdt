@@ -138,13 +138,13 @@ export default function Page() {
 
           <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#6DD8D4] border-2">
             <div className="flex flex-col gap-6 items-center">
-              <a target="_blank" href="">
+              {/* <a target="_blank" href=""> */}
                 <img
                   className="size-[5.75rem]"
                   src="/ecosystem/lopro2.png"
                   alt=""
                 />
-              </a>
+              {/* </a> */}
               <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 Swapbay
               </h3>
@@ -317,13 +317,13 @@ export default function Page() {
 
           <Card className="p-2 rounded-none  w-11/12 bg-[#27283C]  border-[#61CE70] border-2">
             <div className="flex flex-col gap-6 items-center">
-              <a target="_blank" href="">
+              {/* <a target="_blank" href=""> */}
                 <img
                   className="size-[5.75rem]"
                   src="/ecosystem/lopro5.png"
                   alt=""
                 />
-              </a>
+              {/* </a> */}
               <h3 className="font-poppins text-white font-bold text-[1.75rem] notranslate">
                 New Project
               </h3>

@@ -81,7 +81,7 @@ const Footer = () => {
             only generates profits but also empowers a community of visionaries.
           </motion.div>
           <a
-            href="https://github.com/TechRate/Smart-Contract-Audits/blob/main/September_2024/WidCoin.pdf"
+            href="https://widcoin.net/audit.pdf"
             target="_blank"
             className="w-2/3   justify-self-center"
           >
