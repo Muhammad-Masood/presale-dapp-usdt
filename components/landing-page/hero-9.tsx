@@ -22,7 +22,7 @@ const Hero9: React.FunctionComponent = () => {
               <Link
                 href={referral ? `/buy?ref=${referral}` : "/buy"}
               >
-                {"{"}widcoin.net{"}"}.
+                {"{"}widcoin.org{"}"}.
               </Link>
             </span>
             Easy transactions with BNB, USDC (BEP-20) or USDT (BEP-20) via a

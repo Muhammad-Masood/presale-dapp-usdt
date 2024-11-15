@@ -14,11 +14,11 @@ export default function Page() {
         <li>
           <h2 className="text-xl font-semibold mb-2">Introduction</h2>
           <p>
-            This Cookie Policy applies to https://widcoin.net and any products,
+            This Cookie Policy applies to https://widcoin.org and any products,
             forums, and services we offer through the Website. This Cookies
             Policy is designed to help you understand how we collect, use, and
             store cookies and similar technologies when you visit our website,
-            widcoin.net. Please take a moment to review this policy carefully.
+            widcoin.org. Please take a moment to review this policy carefully.
           </p>
           <p className="mt-2">
             By using our website, you consent to the use of cookies and similar

@@ -12,7 +12,7 @@ export default function Page() {
           <p>
             This document outlines how WIDCOIN ("Our Team", "We", "Our", or
             "Us") manage, utilize, and safeguard users' Personal Details on our
-            platform, including https://widcoin.net (the "Platform"). By using
+            platform, including https://widcoin.org (the "Platform"). By using
             our services, you consent to the management, utilization, and
             sharing of Personal Details as elaborated below.
           </p>
@@ -21,7 +21,7 @@ export default function Page() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Acceptance of Terms</h2>
           <p>
-            By accessing presale.widcoin.net, you acknowledge and agree to abide
+            By accessing presale.widcoin.org, you acknowledge and agree to abide
             by this Privacy Policy, subject to periodic updates reflected by the
             "Last Updated" date.
           </p>
