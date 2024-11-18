@@ -114,7 +114,7 @@ const Footer = () => {
       <div className="md:text-base text-xs h-24   text-center px-6">
         <span className="pt-4 leading-6   font-poppins font-semibold text-gray-300  ">
           Copyright © 2024 All rights reserved WIDCOIN Network LLC –
-          info@widcoin.org
+          support@widcoin.org
         </span>
       </div>
     </footer>

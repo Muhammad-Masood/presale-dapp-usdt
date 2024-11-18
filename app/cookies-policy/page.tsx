@@ -141,7 +141,7 @@ export default function Page() {
           <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
           <p>
             If you have any questions or concerns about this Cookies Policy or
-            our cookie practices, please contact us at: info@widcoin.org
+            our cookie practices, please contact us at: support@widcoin.org
           </p>
         </li>
       </ol>

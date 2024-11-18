@@ -181,7 +181,7 @@ export default function Page() {
           <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
           <p>
             For inquiries or concerns about this Privacy Policy or your personal
-            data, contact us at <strong>info@widcoin.org</strong>.
+            data, contact us at <strong>support@widcoin.org</strong>.
           </p>
         </section>
       </div>
