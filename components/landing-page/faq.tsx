@@ -89,12 +89,12 @@ const FaqSection: React.FC = () => {
                           className="text-pink-700"
                           href={
                             referral
-                              ? `http://widcoin.net/?ref=${referral}`
-                              : "http://widcoin.net/"
+                              ? `http://widcoin.org/?ref=${referral}`
+                              : "http://widcoin.org/"
                           }
                         >
                           {" "}
-                          widcoin.net :
+                          widcoin.org :
                         </a>
                       </span>
                       Go to our official website during the presale period.
@@ -112,12 +112,12 @@ const FaqSection: React.FC = () => {
                         className="text-pink-700"
                         href={
                           referral
-                            ? `http://widcoin.net/?ref=${referral}`
-                            : "http://widcoin.net/"
+                            ? `http://widcoin.org/?ref=${referral}`
+                            : "http://widcoin.org/"
                         }
                       >
                         {" "}
-                        https://widcoin.net{" "}
+                        https://widcoin.org{" "}
                       </a>
                       to avoid phishing scams.
                     </li>

@@ -13,12 +13,12 @@ export default function Page() {
           <h2 className="text-xl font-semibold mb-2">Introduction</h2>
           <p className="mb-4">
             The following Terms of Use govern your access to and use of the
-            Widcoin token ($WID), the Widcoin website https://widcoin.net and
+            Widcoin token ($WID), the Widcoin website https://widcoin.org and
             any related services provided by Widcoin. By accessing, using the
-            website (https://widcoin.net) and/or purchasing and using $WID
+            website (https://widcoin.org) and/or purchasing and using $WID
             token, you agree to comply with and be bound by these terms. If you
             do not agree with these terms, you must refrain from accessing or
-            using https://widcoin.net.
+            using https://widcoin.org.
           </p>
           <p className="mb-4">
             These terms of use along with the Privacy Policy and Cookies Policy
@@ -41,11 +41,11 @@ export default function Page() {
         <li>
           <h2 className="text-xl font-semibold mb-2">Acceptance of Terms</h2>
           <p>
-            By accessing or using the https://widcoin.net, you acknowledge that
+            By accessing or using the https://widcoin.org, you acknowledge that
             you have read, understood, and agree to abide by these Terms. These
             Terms may be changed at any later time which can be checked against
             the "Last Updated" date. By either continuing to use the website
-            https://widcoin.net and/or buying, acquiring or being in the
+            https://widcoin.org and/or buying, acquiring or being in the
             possession of $WID token after the updated terms of use, you
             inherently agree to the modifications of these terms of use.
           </p>
@@ -61,7 +61,7 @@ export default function Page() {
             above. "$WID" refers to the digital cryptocurrency token associated
             with the Widcoin project. "Users" or "You" refers to any individual
             or entity that purchases, uses, or interacts with either the website
-            https://widcoin.net or the token $WID.
+            https://widcoin.org or the token $WID.
           </p>
         </li>
 
@@ -81,12 +81,12 @@ export default function Page() {
           <h2 className="text-xl font-semibold mb-2">Eligibility</h2>
           <p className="mb-4">
             You must be at least 18 years old to use our platform. By using
-            https://widcoin.net, you confirm that you are of legal age in your
+            https://widcoin.org, you confirm that you are of legal age in your
             jurisdiction.
           </p>
           <p>
             We are not intending to market our services to anyone underage. If
-            any minor engages with https://widcoin.net and/or buys $WID token,
+            any minor engages with https://widcoin.org and/or buys $WID token,
             it is considered they do so with the support and consent of their
             parent or guardian and therefore, we are not made to be responsible
             for their activities.
@@ -95,7 +95,7 @@ export default function Page() {
 
         <li>
           <h2 className="text-xl font-semibold mb-2">Prohibited Activities</h2>
-          <p className="mb-4">While using widcoin.net, you agree not to:</p>
+          <p className="mb-4">While using widcoin.org, you agree not to:</p>
           <ol className="list-[lower-alpha] pl-6 space-y-2">
             <li>
               Engage in illegal activities, including money laundering, fraud,
@@ -120,7 +120,7 @@ export default function Page() {
               malwares to either the website, platform or its users. To protect
               against any dangerous activity we recommend using an antivirus or
               checking you are only accessing the correct website
-              https://widcoin.net.
+              https://widcoin.org.
             </li>
           </ol>
         </li>
@@ -131,7 +131,7 @@ export default function Page() {
           </h2>
           <ol className="list-[lower-alpha] pl-6 space-y-2">
             <li>
-              By accessing https://widcoin.net, you are granted a limited,
+              By accessing https://widcoin.org, you are granted a limited,
               non-sublicensable license to access and use our services and token
               subject to the clauses in these terms.
             </li>
@@ -237,15 +237,15 @@ export default function Page() {
           <p className="mb-4">
             Widcoin, its developers, employees, and associated entities will not
             be held liable for any damages, losses, or expenses resulting from
-            your use or inability to use https://widcoin.net or from any
+            your use or inability to use https://widcoin.org or from any
             unauthorized access to or use of our servers and/or any information
-            stored therein. Widcoin.net is provided "as is" and "as available"
+            stored therein. Widcoin.org is provided "as is" and "as available"
             without any warranties, expressed or implied for any particular
             purpose.
           </p>
           <p>
             Although we aim to offer a very secure and reliable service, we
-            cannot guarantee that https://widcoin.net will always be secure,
+            cannot guarantee that https://widcoin.org will always be secure,
             timely and free of bugs. There might be situations in which some or
             all services might be suspended for a limited time due to technical
             or maintenance issues. We may also change or suspend parts of the
@@ -267,7 +267,7 @@ export default function Page() {
         <li>
           <h2 className="text-xl font-semibold mb-2">Privacy Policy</h2>
           <p>
-            Your use of widcoin.net is subject to our Privacy Policy, which
+            Your use of widcoin.org is subject to our Privacy Policy, which
             outlines how we collect, use, and protect your personal information.
             By using our platform, you consent to the practices described in our
             Privacy Policy which is also available on our website. For more
@@ -292,13 +292,13 @@ export default function Page() {
           <h2 className="text-xl font-semibold mb-2">Contact Information</h2>
           <p>
             If you have any questions or concerns regarding these Terms or
-            widcoin.net website, you can contact us at info@widcoin.net.
+            widcoin.org website, you can contact us at info@widcoin.org.
           </p>
         </li>
       </ol>
 
       <p className="mt-8">
-        By using widcoin.net, you acknowledge that you have read and understood
+        By using widcoin.org, you acknowledge that you have read and understood
         these Terms of Service and agree to be bound by them. These Terms along
         with the Privacy and Cookies policy constitute the entire agreement
         between you and Widcoin regarding your use of the platform.

@@ -80,9 +80,9 @@ const Footer = () => {
             boundaries of digital ventures, creating a dynamic network that not
             only generates profits but also empowers a community of visionaries.
           </motion.div>
-          <a
-            href="https://widcoin.net/audit.pdf"
-            target="_blank"
+          <div
+            // href="https://widcoin.org/audit.pdf"
+            // target="_blank"
             className="w-2/3   justify-self-center"
           >
             <img
@@ -90,7 +90,7 @@ const Footer = () => {
               className="rounded-lg"
               alt="Certified Smart Contract"
             />
-          </a>
+          </div>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ const Footer = () => {
       <div className="md:text-base text-xs h-24   text-center px-6">
         <span className="pt-4 leading-6   font-poppins font-semibold text-gray-300  ">
           Copyright © 2024 All rights reserved WIDCOIN Network LLC –
-          info@widcoin.net
+          info@widcoin.org
         </span>
       </div>
     </footer>
