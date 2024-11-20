@@ -103,7 +103,7 @@ const Hero1 = () => {
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
                     <a
-                      href="https://widcoin.net/whitepaper.pdf"
+                      href="/whitepaper.pdf"
                       target="_blank"
                     >
                       White Paper
@@ -113,7 +113,7 @@ const Hero1 = () => {
 
                 <JitterText>
                   <button className="bg-bg-button text-primary hover:text-white py-2 px-4 rounded-xl">
-                    <a href="https://widcoin.net/audit.pdf" target="_blank">
+                    <a href="/audit.pdf" target="_blank">
                       Audit report
                     </a>
                   </button>
