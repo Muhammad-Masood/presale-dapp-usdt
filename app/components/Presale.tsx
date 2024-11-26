@@ -1,8 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import bnb from "../../public/bnb.png";
-// import usdt from "../../public/usdt(bep-20).png";
-// import wclogo from "@/public/wclogo.png";
 import { useActiveAccount, useSendTransaction } from "thirdweb/react";
 import { useToast } from "@/components/ui/use-toast";
 import { Badge } from "@/components/ui/badge";
@@ -27,9 +24,7 @@ const Presale = ({
   initialAirdropCountdown,
   isAirdropOpen,
   airdropEndTime,
-  // referral,
   stageNumber,
-  stageDetails,
   totalFundsRaised,
   tokensPrices,
   referrerPercentage,
@@ -38,7 +33,6 @@ const Presale = ({
   isAirdropOpen: boolean;
   airdropEndTime: number;
   stageNumber: number;
-  stageDetails: Stage;
   totalFundsRaised: Number;
   tokensPrices: {
     usdtPrice: number;
@@ -59,6 +53,9 @@ const Presale = ({
     usdcAmount: 0,
   });
   const [isApproving, setIsApproving] = useState<boolean>(false);
+  const [updatedTotalFunds, setUpdatedTotalFunds] = useState<
+    number | undefined
+  >(undefined);
   const [userWIDTokens, setUserWIDTokens] = useState<
     | {
         purchasedTokens: number;
@@ -66,6 +63,9 @@ const Presale = ({
       }
     | undefined
   >(undefined);
+  const [stageDetails, setStageDetails] = useState<Stage | undefined>(
+    undefined
+  );
   const [countdown, setCountdown] = useState<string>(initialAirdropCountdown);
 
   const activeAccount = useActiveAccount();
@@ -80,11 +80,6 @@ const Presale = ({
     error,
     isError,
   } = useSendTransaction();
-  console.log(
-    "stage_details in presale",
-    stageDetails,
-    stageDetails.winningPool
-  );
 
   useEffect(() => {
     const fetchAndUpdateData = async () => {
@@ -103,6 +98,47 @@ const Presale = ({
       setCountdown(
         isAirdropOpen ? calculateInitialCountdown(airdropEndTime) : ""
       );
+      const currentStageNumber = await presaleContractEthers.currentStage();
+      const stageDetailsRaw = await presaleContractEthers.getStageSpecs(
+        currentStageNumber
+      );
+      const updatedStageSupply = ethers.formatEther(
+        stageDetailsRaw.stageSupply
+      );
+      const supplySoldFormat = Number(
+        ethers.formatEther(stageDetailsRaw.supplySold)
+      );
+      const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
+      const updatedMinPartcip =
+        Number(stageDetailsRaw.minParticipationUSDT) / 1e8;
+      const updatedTokenPrice = Number(stageDetailsRaw.tokenPrice) / 1e8;
+      const updatedStageDetails: Stage = {
+        ...stageDetailsRaw,
+        stageNumber: currentStageNumber,
+        minParticipationUSDT: updatedMinPartcip,
+        supplyRemaining: remainingSupply,
+        stageSupply: updatedStageSupply,
+        tokenPrice: updatedTokenPrice,
+        winningPool: Number(stageDetailsRaw.winningPool) / 1e8,
+      };
+      setStageDetails(updatedStageDetails);
+      let _totalFundsRaised: number = 0;
+      await Promise.all(
+        Array.from({ length: Number(currentStageNumber) }, async (_, index) => {
+          const _stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
+            index + 1
+          );
+          const supplySoldFormat = Number(
+            ethers.formatEther(_stageSpecs.supplySold!)
+          );
+          _totalFundsRaised +=
+            supplySoldFormat *
+            Number(ethers.formatUnits(_stageSpecs.tokenPrice, 8));
+          return _stageSpecs;
+        })
+      );
+      console.log("_totalFundsRaised: ", _totalFundsRaised);
+      setUpdatedTotalFunds(_totalFundsRaised);
       setShowPopup(isAirdropOpen);
     };
     if (activeAccount) fetchAndUpdateData();
@@ -128,6 +164,47 @@ const Presale = ({
 
   useEffect(() => {
     const fetchAndUpdateData = async () => {
+      const currentStageNumber = await presaleContractEthers.currentStage();
+      const stageDetailsRaw = await presaleContractEthers.getStageSpecs(
+        currentStageNumber
+      );
+      const updatedStageSupply = ethers.formatEther(
+        stageDetailsRaw.stageSupply
+      );
+      const supplySoldFormat = Number(
+        ethers.formatEther(stageDetailsRaw.supplySold)
+      );
+      const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
+      const updatedMinPartcip =
+        Number(stageDetailsRaw.minParticipationUSDT) / 1e8;
+      const updatedTokenPrice = Number(stageDetailsRaw.tokenPrice) / 1e8;
+      const updatedStageDetails: Stage = {
+        ...stageDetailsRaw,
+        stageNumber: currentStageNumber,
+        minParticipationUSDT: updatedMinPartcip,
+        supplyRemaining: remainingSupply,
+        stageSupply: updatedStageSupply,
+        tokenPrice: updatedTokenPrice,
+        winningPool: Number(stageDetailsRaw.winningPool) / 1e8,
+      };
+      setStageDetails(updatedStageDetails);
+      let _totalFundsRaised: number = 0;
+      await Promise.all(
+        Array.from({ length: Number(currentStageNumber) }, async (_, index) => {
+          const _stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
+            index + 1
+          );
+          const supplySoldFormat = Number(
+            ethers.formatEther(_stageSpecs.supplySold!)
+          );
+          _totalFundsRaised +=
+            supplySoldFormat *
+            Number(ethers.formatUnits(_stageSpecs.tokenPrice, 8));
+          return _stageSpecs;
+        })
+      );
+      console.log("_totalFundsRaised: ", _totalFundsRaised);
+      setUpdatedTotalFunds(_totalFundsRaised);
       if (activeAccount) {
         const { address } = activeAccount;
         const amount = await presaleContractEthers.purchasedTokens(address);
@@ -210,11 +287,6 @@ const Presale = ({
           const signer = await provider.getSigner();
           // BNB Payment
           if (selectedPaymentMode === 1) {
-            // const totalWIDCost =
-            //   await presaleContractEthers.calculateTotalTokensCost(
-            //     wicAmountDec,
-            //     selectedPaymentMode
-            //   );
             await prepareAndSendTransaction(totalWIDCost);
           } else {
             const tokenSignerContract = new ethers.Contract(
@@ -252,7 +324,7 @@ const Presale = ({
 
   const handleSetPrice = (usdAmount: number) => {
     const { usdtPrice, bnbPrice, usdcPrice } = tokensPrices;
-    const widAmount = usdAmount / stageDetails.tokenPrice;
+    const widAmount = usdAmount / stageDetails!.tokenPrice;
     console.log("Inside_handle -> ", usdtPrice, bnbPrice, usdcPrice);
     const usdtAmount = usdAmount / usdtPrice;
     const bnbAmount = usdAmount / bnbPrice;
@@ -318,7 +390,10 @@ const Presale = ({
           </div>
           <p className="text-xl text-yellow-400 font-semibold pb-2 pt-2">
             🔥 1 $WID ={" "}
-            <span className="font-bold">${stageDetails.tokenPrice}</span> 🔥
+            <span className="font-bold">
+              ${stageDetails && stageDetails.tokenPrice}
+            </span>{" "}
+            🔥
           </p>
         </div>
         <ul className="flex justify-center space-x-6 mb-5 pt-3">
@@ -405,7 +480,6 @@ const Presale = ({
                     onChange={(e) => {
                       e.preventDefault();
                       handleSetPrice(Number(e.target.value));
-                      // setWicAmount(e.target.value);
                     }}
                     min={1}
                     type="number"
@@ -521,28 +595,11 @@ const Presale = ({
           </div>
         </div>
         <div className="presaleStats bg-yellow-500 bg-opacity-10 text-gray-200 p-6 rounded-lg shadow-inner">
-          <div className="flex space-x-2 items-center justify-center my-5">
-            <hr className="border-t border-white w-1/5" />
-            <h2 className="text-white text-lg font-semibold">
-              Your $WID ={" "}
-              {userWIDTokens
-                ? userWIDTokens.purchasedTokens.toFixed(2).toString() +
-                  " " +
-                  "($" +
-                  (
-                    userWIDTokens.purchasedTokens * stageDetails.tokenPrice
-                  ).toString() +
-                  ")"
-                : activeAccount
-                ? "---"
-                : "Connect Wallet"}
-            </h2>
-            <hr className="border-t border-white w-1/5" />
-          </div>
-          <div className="statTop flex justify-between items-center pb-3">
-            <p className="text-sm md:text-base">Your Purchased $WID</p>
+          <div className="flex space-x-2 items-center justify-center my-5 text-white text-xl font-semibold">
+            {/* <hr className="border-t border-white w-1/5" /> */}
+            <p className="">Your $WID = </p>
             <p className="text-sm md:text-base">
-              {userWIDTokens
+              {userWIDTokens && stageDetails
                 ? (
                     Number(userWIDTokens.referralTokens) +
                     userWIDTokens.purchasedTokens
@@ -554,40 +611,64 @@ const Presale = ({
                     (userWIDTokens.referralTokens +
                       userWIDTokens.purchasedTokens) *
                     stageDetails.tokenPrice
-                  ).toString() +
+                  )
+                    .toFixed(2)
+                    .toString() +
                   ")"
                 : "---"}{" "}
+            </p>
+            {/* <hr className="border-t border-white w-1/5" /> */}
+          </div>
+          <div className="statTop flex justify-between items-center pb-3">
+            <p className="text-sm md:text-base">Your Purchased $WID</p>
+            <p>
+              {userWIDTokens && stageDetails
+                ? userWIDTokens.purchasedTokens.toFixed(2).toString() +
+                  " " +
+                  "($" +
+                  (userWIDTokens.purchasedTokens * stageDetails.tokenPrice)
+                    .toFixed(2)
+                    .toString() +
+                  ")"
+                : activeAccount
+                ? "---"
+                : "Connect Wallet"}
             </p>
           </div>
           <div className="statTop flex justify-between items-center border-b border-gray-600 pb-3">
             <p className="text-sm md:text-base">Your Referral Rewards</p>
             <p className="text-sm md:text-base">
-              {userWIDTokens
-                ? Number(userWIDTokens.referralTokens) +
+              {userWIDTokens && stageDetails
+                ? Number(userWIDTokens.referralTokens).toFixed(2) +
                   " $WID ($" +
-                  (
-                    userWIDTokens.referralTokens * stageDetails.tokenPrice
-                  ).toString() +
+                  (userWIDTokens.referralTokens * stageDetails.tokenPrice)
+                    .toFixed(2)
+                    .toString() +
                   ")"
                 : "---"}{" "}
             </p>
           </div>
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Stage</p>
-            <p className="text-sm md:text-base">{Number(stageNumber)}</p>
+            <p className="text-sm md:text-base">
+              {Number(stageDetails ? stageDetails.stageNumber : stageNumber)}
+            </p>
           </div>
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Token Sold</p>
             <p className="text-sm md:text-base">
-              {stageDetails.stageSupply} /{" "}
-              {stageDetails.supplyRemaining.toFixed(2)} $WID
+              {stageDetails && stageDetails.stageSupply} /{" "}
+              {stageDetails && stageDetails.supplyRemaining.toFixed(2)} $WID
             </p>
           </div>
 
           <div className="statBottom flex justify-between items-center py-3">
             <p className="text-sm md:text-base">Total Funds Raised</p>
             <p className="text-sm md:text-base">
-              {totalFundsRaised.toString()} $
+              {updatedTotalFunds
+                ? updatedTotalFunds.toFixed(2).toString()
+                : totalFundsRaised.toFixed(2).toString()}{" "}
+              $
             </p>
           </div>
 
@@ -595,18 +676,21 @@ const Presale = ({
             <p className="text-center pt-1">Winning poll</p>
             <div className="statBottom flex justify-between items-center py-1">
               <p>Win</p>
-              <p>{stageDetails.winningPool.toString()} $</p>
+              <p>{stageDetails && stageDetails.winningPool.toString()} $</p>
             </div>
             <div className="statBottom flex justify-between items-center py-2">
               <p className="text-sm md:text-base">
                 Min Participation (Winner Pool)
               </p>
               <p className="text-sm md:text-base">
-                {stageDetails.minParticipationUSDT} $
+                {stageDetails && stageDetails.minParticipationUSDT} $
               </p>
             </div>
             <p className="text-center pt-1">
-              {referral
+              {stageDetails &&
+              userWIDTokens &&
+              userWIDTokens.purchasedTokens * stageDetails.tokenPrice >=
+                stageDetails.minParticipationUSDT
                 ? "You will participate in the drawing, Good Luck!"
                 : ""}
             </p>

@@ -1,5 +1,4 @@
 // "use server";
-import Image from "next/image";
 import { ethers } from "ethers";
 import { calculateInitialCountdown } from "@/lib/utils";
 import { Suspense } from "react";
@@ -7,32 +6,32 @@ import { Stage } from "../lib/types";
 import Presale from "../components/Presale";
 import { presaleContractEthers } from "../lib/thirdweb";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const isAirdropOpen = await presaleContractEthers.isAirdropOpen();
   const airdropEndTime = await presaleContractEthers.airdropEndTime();
   const currentStageNumber = await presaleContractEthers.currentStage();
-  const stageDetails = await presaleContractEthers.getStageSpecs(
-    currentStageNumber
-  );
-  const updatedStageSupply = ethers.formatEther(stageDetails.stageSupply);
-  const supplySoldFormat = Number(ethers.formatEther(stageDetails.supplySold));
-  const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
-  const updatedMinPartcip = Number(stageDetails.minParticipationUSDT) / 1e8;
-  const updatedTokenPrice = Number(stageDetails.tokenPrice) / 1e8;
-  const updatedStageDetails: Stage = {
-    ...stageDetails,
-    minParticipationUSDT: updatedMinPartcip,
-    supplyRemaining: remainingSupply,
-    stageSupply: updatedStageSupply,
-    tokenPrice: updatedTokenPrice,
-    winningPool: Number(stageDetails.winningPool) / 1e8,
-  };
+  // const stageDetails = await presaleContractEthers.getStageSpecs(
+  //   currentStageNumber
+  // );
+  // const updatedStageSupply = ethers.formatEther(stageDetails.stageSupply);
+  // const supplySoldFormat = Number(ethers.formatEther(stageDetails.supplySold));
+  // const remainingSupply = Number(updatedStageSupply) - supplySoldFormat;
+  // const updatedMinPartcip = Number(stageDetails.minParticipationUSDT) / 1e8;
+  // const updatedTokenPrice = Number(stageDetails.tokenPrice) / 1e8;
+  // const updatedStageDetails: Stage = {
+  //   ...stageDetails,
+  //   minParticipationUSDT: updatedMinPartcip,
+  //   supplyRemaining: remainingSupply,
+  //   stageSupply: updatedStageSupply,
+  //   tokenPrice: updatedTokenPrice,
+  //   winningPool: Number(stageDetails.winningPool) / 1e8,
+  // };
 
   const currentStage = await presaleContractEthers.currentStage();
   let totalFundsRaised: number = 0;
-  const stageSpecs = await Promise.all(
+  await Promise.all(
     Array.from({ length: Number(currentStage) }, async (_, index) => {
       const stageSpecs: Stage = await presaleContractEthers.getStageSpecs(
         index + 1
@@ -72,7 +71,7 @@ export default async function Home() {
           isAirdropOpen={isAirdropOpen}
           airdropEndTime={Number(airdropEndTime)}
           // referral={undefined}
-          stageDetails={updatedStageDetails}
+          // stageDetails={updatedStageDetails}
           stageNumber={currentStageNumber}
           totalFundsRaised={totalFundsRaised}
           tokensPrices={{ usdtPrice, bnbPrice, usdcPrice }}
